@@ -4,6 +4,7 @@ import AutoLogin from './AutoLogin';
 import Home from './Home';
 import Lenis from 'lenis';
 import Protected from './Protected';
+import WanderingHartNavbar from './utils/Navbar';
 const MainRoutes = () => {
 
 
@@ -49,7 +50,7 @@ let Order=lazy(()=>{return import("./order/Order_panel")})
     return (
         <div className='bg-gray-900 relative scrollbar-hide  max-w-screen min-h-screen'>
             {/* <div className='absolute  top-0 z-0 left-0 h-full w-full backdrop-blur-'></div> */}
-            
+            <WanderingHartNavbar/>
             <div data-lenis-speed="0.4"  className='relative w-[98vw] z-10 scrollbar-hide '>   {memo}</div>
 
         </div>

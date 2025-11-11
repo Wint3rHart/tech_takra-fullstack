@@ -57,7 +57,7 @@ let opacity=useTransform(top_hotles_scroll.scrollYProgress,[0,.5,.6,1],[1,4,0,0]
 
   <div    className="min-h-screen overflow-hidden h-[100vh] w-[99vw] bg-gray-900  relative bg-[url('uk2.jpg')]  bg-blend-color-dodge  bg-no-repeat bg-cover bg-top flex  [mask-image:linear-gradient(180deg,rgb(0,0,0,.1),rgb(0,0,0,.4),black,black,rgb(0,0,0,.8),rgb(0,0,0,.8),transparent)]">
 
-<TextStaggerComp refer={ref} text1="THE" text2="WANDERING" text3="HART" />
+<TextStaggerComp refer={ref} text1="Computer" text2="Science" text3="Society" />
 
 
    <div ref={ref} className='relative  ml-24 sm:h-[800px] overflow-hidden mt-36 ' style={{transformStyle:"preserve-3d",perspective:"800px"}}>

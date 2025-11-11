@@ -10,15 +10,6 @@ function App() {
   const [count, setCount] = useState(0)
 let {ref,socket_fnx}=useSocket()
 
-useEffect(()=>{
-
-
-  let x=new Map();
-  x.set("key","hassan");
-
-  x.set("key","ahmad")
-    console.log(x);
-},[])
 
   return (
     <>
