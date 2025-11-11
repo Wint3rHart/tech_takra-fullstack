@@ -1,24 +1,58 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect, useMemo } from 'react';
 import { Route, Routes } from 'react-router-dom';
-
+import AutoLogin from './AutoLogin';
+import Home from './Home';
+import Lenis from 'lenis';
+import Protected from './Protected';
 const MainRoutes = () => {
 
-const Home=lazy(()=>{return import("./App")});
-const Test=lazy(()=>{return import("./Trial_1")});
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      lerp: 0.1,
+      smooth: true,
+    });
+
+    const raf = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
+    let Sign = lazy(() => { return import("./Sign") });
+let City=lazy(()=>{return import("./City")});
+let Order=lazy(()=>{return import("./order/Order_panel")})
+
+    let memo = useMemo(() => {
+        return <div>
+
+            {/* <AutoLogin /> */}
+            <Suspense fallback={<p>Loading</p>}>
+
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/sign' element={<Sign />} />
+                    <Route path='/booking/:city' element={<Protected><Order/></Protected>} />
+              <Route path='/City' element={<City/>} />
+                </Routes>
+
+            </Suspense>
+        </div>
+    }, [])
 
     return (
-        <Suspense fallback="LOADING">
-        <div>
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path='/test' element={<Test/>}/>
-                
-            </Routes>
+        <div className='bg-gray-900 relative scrollbar-hide  max-w-screen min-h-screen'>
+            {/* <div className='absolute  top-0 z-0 left-0 h-full w-full backdrop-blur-'></div> */}
             
-
+            <div data-lenis-speed="0.4"  className='relative w-[98vw] z-10 scrollbar-hide '>   {memo}</div>
 
         </div>
-        </Suspense>
     );
 }
 
