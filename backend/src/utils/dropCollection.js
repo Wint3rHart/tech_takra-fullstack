@@ -18,7 +18,7 @@ const TeamMember = mongoose.model("teamMember", teamMemberSchema);
 async function dropCollections() {
     try {
         // Connect to MongoDB
-        await mongoose.connect("mongodb+srv://CSS:fs5hqcUCpS3cp7D@tech-takra.n8rnlj0.mongodb.net/?appName=tech-takra");
+        await mongoose.connect(process.env.MONGO_URI);
         console.log("Connected to MongoDB");
   
 
