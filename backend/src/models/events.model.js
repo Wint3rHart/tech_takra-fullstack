@@ -4,7 +4,12 @@ const eventsSchema = new mongoose.Schema({
     description: String,
     date: { type: Date, required: true },
     location: String,
-    image: String,
+    images: [
+    {
+      url: String,
+      public_id: String
+    }
+    ],
     category: { type: String, default: "general" }, // sports, charity, etc.
     isFeatured: { type: Boolean, default: false }   
   },
