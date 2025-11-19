@@ -6,6 +6,7 @@ import eventRoutes from './routes/events.route.js';
 import regFormRoutes from './routes/regform.route.js';
 import teamRoutes from './routes/team.route.js';
 import adminRoutes from './routes/admin.route.js'
+import announcementRoutes from './routes/announcement.route.js';
 //import cookieParser from "cookie-parser";
 const app =express();
 dotenv.config();
@@ -16,6 +17,7 @@ app.use("/api/auth/admin" , adminRoutes)
 app.use("/api/events", eventRoutes)
 app.use("/api/regForm", regFormRoutes)
 app.use("/api/team" , teamRoutes)
+app.use("/api/announcement" , announcementRoutes)
 
 const startServer = async () => {
   try {
