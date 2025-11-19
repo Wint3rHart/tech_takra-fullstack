@@ -149,3 +149,36 @@ export const refreshAccessToken = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const changePassword = async (req, res) => {
+  try{
+  const { oldPassword, newPassword } = req.body;
+  const adminId = req.admin.id; // Coming from auth middleware
+
+  const admin = await Admin.findById(adminId);
+
+  const isMatch = await admin.comparePassword(oldPassword);
+  if (!isMatch) {
+    return res.status(400).json({ message: "Old password incorrect" });
+  }
+
+  admin.password = newPassword;
+  await admin.save();
+
+  res.status(200).json({ success: true, message: "Password updated" });
+}
+catch (error) {
+  res.status(500).json({ message: error.message });
+}
+};
+
+export const logoutAdmin = async (req, res) => {
+  try {
+    const admin = await Admin.findById(req.admin.id);
+    admin.refreshToken = null;
+    await admin.save();
+    res.status(200).json({ success: true, message: "Logged out successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

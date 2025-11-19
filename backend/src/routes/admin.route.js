@@ -5,7 +5,9 @@ import {
   deleteAdmin,
   getAllAdmins,
   getMyProfile,
-  refreshAccessToken
+  refreshAccessToken,
+  changePassword,
+  logoutAdmin
 } from "../controllers/admin.controller.js";
 
 import { isLoggedIn, isSuperAdmin } from "../middlewares/auth.js";
@@ -19,5 +21,7 @@ router.delete("/delete/:id", isLoggedIn, isSuperAdmin, deleteAdmin);
 router.get("/all", isLoggedIn, isSuperAdmin, getAllAdmins);
 router.get("/me", isLoggedIn, getMyProfile);
 router.post("/refresh-token", refreshAccessToken);
+router.post("/change-password" , isLoggedIn , changePassword);
+router.post("/logout", isLoggedIn , logoutAdmin);
 
 export default router;
