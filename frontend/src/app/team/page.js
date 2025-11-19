@@ -2,6 +2,7 @@
 
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import BgEffect from '@/util_comps/bg_effect';
 
 // Sample data with Unsplash images
 const samplePlaces = [

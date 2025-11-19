@@ -72,7 +72,14 @@ export default function App() {
     <section
       ref={containerRef}
       className="min-h-[300vh] bg-gray-900 py-20 px-4 relative bg-[url('/gcu.jpg.jpg')] bg-blend-overlay bg-no-repeat bg-cover bg-bottom [mask-image:linear-gradient(180deg,black,black,rgb(0,0,0,7),black,black,rgb(0,0,0,.8),rgb(0,0,0,.7),rgb(0,0,0,.4))] bg-fixed"
-    >
+    >  {/* Lightweight Glassy Background */}
+<div className="absolute inset-0 pointer-events-none z-0 
+     bg-gray-900/40 
+     backdrop-saturate-150 
+     border-t border-white/5 
+     rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.03)]">
+</div>
+
       <div className="fixed top-0 left-0 h-[100vh] w-[98vw]">
         {/* Fireflies/Stars Effect */}
         <div className="absolute top-20 left-20 w-1 h-1 bg-amber-400/80 rounded-full animate-ping shadow-lg shadow-amber-400/60"></div>

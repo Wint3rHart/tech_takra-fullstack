@@ -63,7 +63,18 @@ console.log("root layout rendered");
     <html lang="en">
       <body
         className={`${cormorant.variable} ${cinzel.variable} ${playfair.variable} ${inter.variable} antialiased hide-scrollbar flex flex-col justify-center bg-gray-900 relative  max-w-screen min-h-screen custom-grid-background  z-10 scrollbar-hide`}
-      >  <TanstackQueryClient>
+      > 
+      
+    <div className="absolute inset-0 pointer-events-none z-0 
+     bg-gray-900/40 h-full
+     backdrop-saturate-150 
+     border-t border-white/5 
+     rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.03)]">
+</div>
+
+
+       <TanstackQueryClient>
+
         <Get_status/>
         <SmoothScroll>
         

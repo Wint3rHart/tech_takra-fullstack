@@ -165,8 +165,8 @@
     radial-gradient(circle at 65% 70%, rgba(212, 175, 55, 0.7) 1.5px, rgba(212, 175, 55, 0.18) 3px, transparent 5px),
     radial-gradient(circle at 15% 85%, rgba(255, 255, 255, 0.68) 1.5px, rgba(255, 255, 255, 0.15) 3px, transparent 4px);
   background-size: 100% 100%;
-  animation: starPulse2 .6s ease-in-out infinite;
-  pointer-events: none;
+  /* animation: starPulse2 .6s ease-in-out infinite;
+  pointer-events: none; */
 }
 
 .custom-grid-background::after {
