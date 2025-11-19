@@ -2,14 +2,21 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDb from './lib/connectDb.js';
-//import authRoutes from './routes/auth.route.js';
+import eventRoutes from './routes/events.route.js';
+import regFormRoutes from './routes/regform.route.js';
+import teamRoutes from './routes/team.route.js';
+import adminRoutes from './routes/admin.route.js'
 //import cookieParser from "cookie-parser";
 const app =express();
 dotenv.config();
-//app.use(express.json()); 
+app.use(express.json()); 
 //app.use(cookieParser());
 const port = process.env.PORT;
-//app.use("/api/auth", authRoutes)
+app.use("/api/auth/admin" , adminRoutes)
+app.use("/api/events", eventRoutes)
+app.use("/api/regForm", regFormRoutes)
+app.use("/api/team" , teamRoutes)
+
 const startServer = async () => {
   try {
     await connectDb(); // ✅ Wait for DB to connect first
