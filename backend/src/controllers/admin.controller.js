@@ -1,6 +1,6 @@
 import Admin from "../models/admin.model.js";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 
 const sendToken = async (admin, res) => {
   const accessToken = admin.generateToken();
