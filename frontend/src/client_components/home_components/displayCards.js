@@ -133,11 +133,11 @@ if (val.includes("name") || val.includes("title")) {
       `}
     >
       <div
-        style={{
-          backgroundImage: `url('https://picsum.photos/600/400?random=${ind * 100 }')`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
+        // style={{
+        //   backgroundImage: `url('https://picsum.photos/600/400?random=${ind * 100 }')`,
+        //   backgroundRepeat: "no-repeat",
+        //   backgroundSize: "cover",
+        // }}
        
     className="rounded-2xl brightness-100 hover:brightness-110 absolute inset-0 w-full h-full transition-all duration-300 scale-100  group-hover:scale-102"
 

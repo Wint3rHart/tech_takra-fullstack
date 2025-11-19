@@ -8,6 +8,8 @@ const WanderingHartNavbar = ({data}) => {
   // const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 const [isSigned,setSigned]=useState({status:false,data:null});
+
+  const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
   // useEffect(() => {
   //   const handleScroll = () => {
   //     setIsScrolled(window.scrollY > 50);
@@ -35,8 +37,8 @@ const sign_display=useMemo(()=>{
   const navItems = [
   
     
-    { name: 'Hotels', href: '/hotels' },
-    { name: 'Cities', href: '/cities' },{name:"SignUp",href:"/signUp"}
+    { name: 'Team', href: '/team' },
+    { name: 'Updates', href: '/updates' }
   ];
 
   return (
@@ -95,6 +97,38 @@ const sign_display=useMemo(()=>{
               </Link>  </div>
 
 
+ <div className="relative" onMouseEnter={() => setIsCoursesDropdownOpen(true)} onMouseLeave={() => setIsCoursesDropdownOpen(false)}>
+  
+              <button className="flex items-center space-x-1 py-6 cursor-pointer text-stone-100 hover:text-amber-300 font-medium transition-colors duration-200 relative group">
+                <span>Courses</span> 
+                <div className="absolute inset-0 bg-amber-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                {/* <ChevronDown size={16} className={`transition-transform duration-200 ${isCoursesDropdownOpen ? 'rotate-180' : ''}`} /> */}
+                {/* <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400/100 group-hover:w-full transition-all duration-300"></span> */}
+              </button>
+               <div className="absolute -top-1 right-1 w-1 h-1 bg-amber-400/0 rounded-full group-hover:bg-amber-400/80 group-hover:animate-ping transition-all duration-300"></div>
+              {/* Dropdown Menu */}
+              <div className={`absolute top-15 flex flex-col items-center justify-center text-center -left-10 mt-2 w-40 bg-gray-800 rounded-2xl shadow-xl border border-amber-300 overflow-hidden transition-all duration-300 ${
+                isCoursesDropdownOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-2 invisible'
+              }`}>
+                <div className="p-6">
+                  <div className="text-sm font-semibold cursor-pointer hover:text-amber-400/80 text-stone-100 uppercase tracking-wide mb-4">Upcoming Events</div>
+                  <div className="text-sm font-semibold cursor-pointer hover:text-amber-400/80 text-stone-100 uppercase tracking-wide mb-4">Past Events</div>
+                  <div className="space-y-3">
+                    {/* {courses.map((course, index) => (
+                      <div key={index} onClick={()=>{router.push(`/courses/details/${course.id}`)}} className="flex items-center space-x-3 p-3 rounded-xl hover:bg-blue-50 transition-colors duration-200 group">
+                        <div className="text-2xl">{course.icon}</div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200">{course.name}</div>
+                          
+                        </div>
+                        <div className="w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                      </div>
+                    ))} */}
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
               {navItems.map((item, index) => (
               <div key={index} className='relative group px-3 py-2 text-white hover:text-amber-400 transition-all duration-300 text-lg font-medium'> 
               <Link href={`${item.href}`} >
@@ -115,7 +149,11 @@ const sign_display=useMemo(()=>{
               ))}
             </div>
           </div>
+          
 {sign_display}
+
+
+
           {/* Book Now Button */}
           
           {/* <div className="hidden md:block"> */}

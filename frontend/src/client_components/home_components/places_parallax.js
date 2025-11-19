@@ -73,11 +73,11 @@ const PlacesCards = ({ x, scroll, i }) => {
                     <div
                         key={index}
                         className="group border border-amber-200 relative h-96 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 cursor-pointer "
-                        style={{
-                            backgroundImage: `url('https://picsum.photos/600/400?random=${i * 100 + index}')`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center'
-                        }}
+                        // style={{
+                        //     backgroundImage: `url('https://picsum.photos/600/400?random=${i * 100 + index}')`,
+                        //     backgroundSize: 'cover',
+                        //     backgroundPosition: 'center'
+                        // }}
                     >
                         {/* Simple overlay - no blur for performance */}
                         <div className='absolute z-10 inset-0 rounded-2xl bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/70 transition-all duration-500' />

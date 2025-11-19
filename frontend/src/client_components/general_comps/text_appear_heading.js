@@ -18,7 +18,7 @@ whileInView={{x:0,opacity:1}} transition={{duration:.4,ease:"easeIn",delay:.2}} 
 };
 
 export const TextAppear_2=({children})=>{
-    console.log(children);
+    // console.log(children);
     
 let Comp=motion[children?.[0]?.type];
 
@@ -41,21 +41,34 @@ return (
 }
 
 
-
 export const TextAppear_para=({children,styling})=>{
     // console.log(children);
       let {opacityVar}=UseVariants();
 
 return(
-<motion.div  className="text-lg flex justify-center items-evenly  flex-wrap w-[60vw]">
+<motion.div className="text-lg flex justify-center items-evenly flex-wrap w-[60vw]">
 
     {React.Children.toArray(children).map((x,i)=>{
     ;return(
-     <motion.p key={i} variants={opacityVar} className={styling} initial="initial" whileInView="animate" viewport={{amount:.7,once:true}}
- >{x.props.children}</motion.p>)
+     <motion.p 
+       key={i} 
+       variants={opacityVar} 
+       className={styling} 
+       initial="initial" 
+       whileInView="animate" 
+       viewport={{amount:.7,once:true}}
+     >
+       {x.props.children}
+     </motion.p>)
  })
 }
-<motion.span initial={{scaleX:0}} whileInView={{scaleX:1}} viewport={{amount:.6,once:true}} transition={{duration:.6}} className='w-[30vw] h-[10px] border-b  mt-12  border-b-[#C5B358]' />
+<motion.span 
+  initial={{scaleX:0}} 
+  whileInView={{scaleX:1}} 
+  viewport={{amount:.6,once:true}} 
+  transition={{duration:.6}} 
+  className='w-[30vw] h-[10px] border-b mt-12 border-b-[#d4af37]' 
+/>
  
 </motion.div>
 )
