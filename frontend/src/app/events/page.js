@@ -1,3 +1,5 @@
+import { get_fetch } from "@/server_fetch_fncs/fetch_fnx";
+import BgEffect from "@/util_comps/bg_effect";
 
 
 const upcoming_events = [
@@ -17,21 +19,39 @@ const upcoming_events = [
   }
 ];
 
-export default function HotelPage() {
+export default async function HotelPage({searchParams}) {
+
+let {type}=await searchParams;
+
+try {
+  let get=await get_fetch("events",type);
+  console.log(get.length);
+  
   return (
-    <div className='h-full mt-32 pb-16 px-4 sm:px-8 w-full bg-gradient-to-b from-gray-900 via-gray-800 to-black'>
-      <h1 className='text-4xl sm:text-6xl lg:text-8xl m-auto max-w-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-300 tracking-wide uppercase'>
-        HOTELS
+    <div className={`bg-gray-900 py-20 px-4 relative bg-[url('/gcu.jpg.jpg')] bg-blend-overlay bg-no-repeat bg-cover bg-bottom [mask-image:linear-gradient(180deg,black,black,rgb(0,0,0,7),black,black,rgb(0,0,0,.8),rgb(0,0,0,.7),rgb(0,0,0,.4))] bg-fixed  h-full  mt-6 pb-16 px-4 sm:px-8 w-full bg-gradient-to-b from-gray-900 via-gray-800 to-black`}>
+
+      <h1 className='text-4xl sm:text-6xl lg:text-8xl m-auto max-w-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-500 to-amber-300 tracking-wide uppercase  drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)] w-[100vw] font-cinzel'>
+        {type.toUpperCase()==="upcoming".toUpperCase()?"Upcoming Events":"Past Events"}
         <div className='h-1 w-full bg-gradient-to-r from-amber-500 to-transparent mt-2 rounded-full'></div>
       </h1>
       
-      <div className="flex h-full  flex-wrap justify-center gap-6 mt-8">
-        {upcoming_events.map((x, i) => (
+      <div className="flex h-full relative flex-wrap justify-center gap-6 mt-8"><BgEffect/>
+        {get.map((x, i) => (
           <VerticalCard key={i} data={x} index={i} />
         ))}
       </div>
     </div>
   );
+} catch (error) {
+  console.log(error.message);
+  
+}
+
+
+
+
+
+
 }
 
 const VerticalCard = ({ data, index }) => {
@@ -70,7 +90,7 @@ const VerticalCard = ({ data, index }) => {
     >
       <div
         style={{
-          backgroundImage: `url('https://picsum.photos/600/400?random=${index * 100}')`,
+          backgroundImage: `url('${data.images[0].url}')`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
@@ -84,7 +104,7 @@ const VerticalCard = ({ data, index }) => {
         
         {/* Hotel Name */}
         <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 text-amber-50 drop-shadow-lg tracking-wide leading-tight line-clamp-2">
-          {data.name}
+          {data.title}
         </h3>
 
         {/* Location */}
@@ -113,7 +133,7 @@ const VerticalCard = ({ data, index }) => {
         </p>
 
         {/* Featured Section */}
-        <div className="space-y-2 sm:space-y-3">
+       {data.isFeatured&& <div className="space-y-2 sm:space-y-3">
           <div className="flex items-center gap-2">
             <svg className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
@@ -140,7 +160,7 @@ const VerticalCard = ({ data, index }) => {
               </div>
             )}
           </div>
-        </div>
+        </div>}
 
         {/* View Rooms Button - appears on hover */}
         <button 

@@ -25,7 +25,7 @@ console.log("sending req from booking");
         <div className='text-white font-black text-4xl relative'>
 
           
-            <Suspense fallback={<div className='min-w-[100vw] flex items-center justify-center min-h-[100vh] m-auto '><p className='text-2xl text-white font-bold'>LOADING...</p></div>}>
+            <Suspense fallback={<div className='min-w-[100vw] flex items-center justify-center min-h-[100vh] m-auto h-full '><p className='text-2xl text-white font-bold'>LOADING...</p></div>}>
           <ErrorBoundary FallbackComponent={MyErrorFallback}>
         <Form/>
           </ErrorBoundary>

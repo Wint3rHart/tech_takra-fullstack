@@ -68,7 +68,7 @@ let opacityTrans=useTransform(scrollYProgress,[0,.1,1],[1,0,0]);
 
 </motion.div>
 
-<motion.div variants={parentVar} className={`flex items-center font-playfair text-2xl sm:text-4xl md:text-6xl font-bold text-[#d4af37] justify-center w-full mt-6`}>
+<motion.div variants={parentVar} className={`flex items-center font-playfair text-2xl sm:text-4xl md:text-6xl font-bold text-[#d4af37] justify-center w-full `}>
   <motion.p style={{y:y1}} variants={childVar}>
     Computer <strong className='text-stone-200'>Science</strong> Society
   </motion.p>

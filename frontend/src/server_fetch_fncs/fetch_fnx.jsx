@@ -13,11 +13,23 @@ let timer=setTimeout(() => {
 
 try {
     let url;
-  switch (route) {case "places_parallax":{
+  switch (route) {
+    
+    case "events":{url=`http://localhost:4600/api/events/${options}`;break;};
+    
+    
+    
+    
+    
+    
+    case "places_parallax":{
     url=`http://localhost:4600/api/places_parallax`;break;}; 
  case "cities_cards":{url=`http://localhost:4600/api/cities_details`;break;};
  case "top_hotels":{url=`http://localhost:4600/api/top_hotels`;break;}
 case "city_data":{console.log(options);
+
+
+
 url=`http://localhost:4600/api/city_data/${options}`;break;}
 case "order_dets":{console.log("in order dets");
 ;url=`http://localhost:4600/api/order_dets?city=${options}&type=${x?"package":"custom"}&package_id=${x?x:"none"}`;break;}

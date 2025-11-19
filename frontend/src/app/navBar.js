@@ -100,7 +100,7 @@ const sign_display=useMemo(()=>{
  <div className="relative" onMouseEnter={() => setIsCoursesDropdownOpen(true)} onMouseLeave={() => setIsCoursesDropdownOpen(false)}>
   
               <button className="flex items-center space-x-1 py-6 cursor-pointer text-stone-100 hover:text-amber-300 font-medium transition-colors duration-200 relative group">
-                <span>Courses</span> 
+                <span>Events</span> 
                 <div className="absolute inset-0 bg-amber-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                 {/* <ChevronDown size={16} className={`transition-transform duration-200 ${isCoursesDropdownOpen ? 'rotate-180' : ''}`} /> */}
                 {/* <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400/100 group-hover:w-full transition-all duration-300"></span> */}
@@ -110,9 +110,9 @@ const sign_display=useMemo(()=>{
               <div className={`absolute top-15 flex flex-col items-center justify-center text-center -left-10 mt-2 w-40 bg-gray-800 rounded-2xl shadow-xl border border-amber-300 overflow-hidden transition-all duration-300 ${
                 isCoursesDropdownOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-2 invisible'
               }`}>
-                <div className="p-6">
-                  <div className="text-sm font-semibold cursor-pointer hover:text-amber-400/80 text-stone-100 uppercase tracking-wide mb-4">Upcoming Events</div>
-                  <div className="text-sm font-semibold cursor-pointer hover:text-amber-400/80 text-stone-100 uppercase tracking-wide mb-4">Past Events</div>
+                <div className="p-6 flex flex-col">
+                  <Link  href='/events?type=upcoming' className="text-sm font-semibold cursor-pointer hover:text-amber-400/80 text-stone-100 uppercase tracking-wide mb-4">Upcoming Events</Link>
+                  <Link href='/events?type=past' className="text-sm font-semibold cursor-pointer hover:text-amber-400/80 text-stone-100 uppercase tracking-wide mb-4">Past Events</Link>
                   <div className="space-y-3">
                     {/* {courses.map((course, index) => (
                       <div key={index} onClick={()=>{router.push(`/courses/details/${course.id}`)}} className="flex items-center space-x-3 p-3 rounded-xl hover:bg-blue-50 transition-colors duration-200 group">

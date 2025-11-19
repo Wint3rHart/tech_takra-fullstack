@@ -3,7 +3,7 @@ import CryptoJS from 'crypto-js';
 import { NextResponse } from 'next/server';
 
 
-export const config={matcher:["/","/booking/:path*"]};
+export const config={matcher:["/"]};
 
 
 
