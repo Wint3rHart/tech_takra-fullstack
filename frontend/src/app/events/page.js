@@ -19,13 +19,13 @@ const upcoming_events = [
 
 export default function HotelPage() {
   return (
-    <div className='min-h-screen mt-32 pb-16 px-4 sm:px-8 w-full bg-gradient-to-b from-gray-900 via-gray-800 to-black'>
+    <div className='h-full mt-32 pb-16 px-4 sm:px-8 w-full bg-gradient-to-b from-gray-900 via-gray-800 to-black'>
       <h1 className='text-4xl sm:text-6xl lg:text-8xl m-auto max-w-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-300 tracking-wide uppercase'>
         HOTELS
         <div className='h-1 w-full bg-gradient-to-r from-amber-500 to-transparent mt-2 rounded-full'></div>
       </h1>
       
-      <div className="flex flex-wrap justify-center gap-6 mt-8">
+      <div className="flex h-full  flex-wrap justify-center gap-6 mt-8">
         {upcoming_events.map((x, i) => (
           <VerticalCard key={i} data={x} index={i} />
         ))}
@@ -46,7 +46,7 @@ const VerticalCard = ({ data, index }) => {
         min-w-[320px]
         flex-shrink-0
         shadow-[0_10px_40px_rgba(0,0,0,0.8)]
-        h-[85vh]
+        h-[50vh]
         sm:h-[90vh]
         lg:h-[95vh]
         max-h-[800px]

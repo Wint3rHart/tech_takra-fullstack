@@ -30,7 +30,7 @@ let   places_parallax= get_fetch("places_parallax");
 
 
     return (
-      <div className="font-sans flex flex-col w-full min-h-screen pb-20">
+      <div className="font-sans flex w-[99vw] flex-col w-full min-h-screen pb-20">
 
     {/* Hero Section */}
 <div className="overflow-hidden group relative w-full h-[70vh] sm:h-[80vh] md:h-[100vh] text-white font-black text-4xl sm:text-6xl lg:text-7xl bg-gray-900 bg-[url('/gcu.jpg.jpg')] bg-blend-overlay bg-no-repeat bg-cover bg-bottom [mask-image:linear-gradient(180deg,black,black,rgb(0,0,0,7),black,black,rgb(0,0,0,.8),rgb(0,0,0,.3),transparent)]">{/* Lightweight Glassy Background */}
@@ -74,7 +74,7 @@ let   places_parallax= get_fetch("places_parallax");
        
       </section>
 
- <section className="w-full h-full mt-20 md:mt-36 relative rounded-lg bg-gray-700 px-4 sm:px-6">
+ <section className="w-full h-full mt-20 md:mt-36 relative rounded-lg bg-gray-700 ">
       {/* Suspense fallback could be used here if needed:
           <Suspense fallback={<p className="text-white font-black">Loading...</p>}>
       */}
@@ -83,7 +83,7 @@ let   places_parallax= get_fetch("places_parallax");
         <Places data={places_parallax}/>
       </ErrorBoundary>
     </section>
-    <section className="min-h-screen h-full relative w-full hide-scrollbar mt-20 md:mt-36 px-4 sm:px-6">
+    <section className="min-h-screen  h-full w-full relative w-full hide-scrollbar mt-20 md:mt-36">
       
       <ErrorBoundary FallbackComponent={MyErrorFallback}>
          <TextAppear_2>
