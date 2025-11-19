@@ -1,35 +1,55 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const adminSchema = new mongoose.Schema(
-    {
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
+  {
+    name: { type: String, required: true },
+
+    email: { type: String, required: true, unique: true, lowercase: true , trim: true},
+
+    password: { type: String, required: true },
+
     role: {
       type: String,
-      default: "admin",
+      enum: ["superadmin", "admin"],
+      default: "admin"
     },
-    lastLogin: {
-      type: Date,
-      default: null,
-    }
+
+    refreshToken: { type: String } // <-- Add this line
   },
   { timestamps: true }
-    
 );
 
-const admin = mongoose.model("User", adminSchema);
-export default admin;
+adminSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
+
+adminSchema.methods.comparePassword = function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
+adminSchema.methods.generateToken = function () {
+  return jwt.sign(
+    { id: this._id, role: this.role },
+    process.env.JWT_SECRET,
+    { expiresIn: "7d" }
+  );
+};
+
+adminSchema.statics.createSuperAdmin = async function (data) {
+  const superAdminExists = await this.findOne({ role: "superadmin" });
+
+  if (superAdminExists) {
+    throw new Error("Superadmin already exists — cannot create another.");
+  }
+
+  return this.create({ ...data, role: "superadmin" });
+};
+
+const Admin = mongoose.model("Admin", adminSchema);
+
+export default Admin;
