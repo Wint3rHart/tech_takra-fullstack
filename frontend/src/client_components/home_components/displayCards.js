@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion, useTransform } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -13,9 +13,21 @@ const DisplayCards = ({scroll,ind,x,nav_url}) => {
 
   
 let transX=useTransform(scroll,[0,0.3,.9],[`translate3d(${ind*-15}vw,0,0) rotateY(35deg)`,`translate3d(${ind*-0}vw,0px,0px) rotateY(0deg)`,`translate3d(${ind*-0}vw,${math_memo}px,0px) rotateY(0deg)`]
-  
- 
 )
+
+// detect mobile to switch to vertical stacking animation (no change to desktop behavior)
+const [isMobile, setIsMobile] = useState(false);
+useEffect(()=>{
+  const mq = window.matchMedia('(max-width: 640px)');
+  const handler = () => setIsMobile(mq.matches);
+  handler();
+  if (mq.addEventListener) mq.addEventListener('change', handler);
+  else mq.addListener(handler);
+  return ()=>{ if (mq.removeEventListener) mq.removeEventListener('change', handler); else mq.removeListener(handler); }
+},[]);
+
+// vertical transform for mobile: translate on Y instead of X, preserve scroll-driven mapping
+let transY = useTransform(scroll,[0,0.3,.9],[`translate3d(0,${ind*8}vh,0) rotateY(0deg)`,`translate3d(0,${-ind*1}vh,0) rotateY(0deg)`,`translate3d(0,${-ind*3}vh,${math_memo}px) rotateY(0deg)`]);
 
 
 let reduce_memo=useMemo(()=>{
@@ -106,31 +118,12 @@ if (val.includes("name") || val.includes("title")) {
     return (
         <motion.div
       key={ind}
-      style={{transform:transX,willChange:"transform,filter"}}
-      className={`group 
-        w-[25vw] 
-        ml-6
-        shadow-[-12px_6px_20px_4px_rgba(0,0,0,0.8)]
-        hover:shadow-[-15px_8px_10px_6px_rgba(0,0,0,0.9)]
-        h-[70vh]
-        mb-2
-        cursor-pointer
-        rounded-2xl 
-        border
-        border-amber-400/80
-        hover:border-amber-300/90
-        relative 
-        text-white 
-        bg-no-repeat
-        bg-[100%] 
-       z-20
-        group
-        overflow-hidden
-        backdrop-blur-sm
-  
-
-       
-      `}
+      style={{transform: isMobile ? transY : transX, willChange:"transform,filter"}}
+      className={`group w-[70vw] sm:w-[66vw] md:w-[28vw] md:ml-4 mx-auto md:mx-0
+        shadow-[-12px_6px_20px_4px_rgba(0,0,0,0.8)] hover:shadow-[-15px_8px_10px_6px_rgba(0,0,0,0.9)]
+        h-[50vh] sm:h-[60vh] md:h-[70vh] mb-2 cursor-pointer rounded-2xl
+        border border-amber-400/80 hover:border-amber-300/90 relative text-white bg-no-repeat bg-[100%]
+        z-20 overflow-hidden backdrop-blur-sm`}
     >
       <div
         // style={{

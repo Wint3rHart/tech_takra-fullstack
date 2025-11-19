@@ -13,13 +13,11 @@ console.log(get);
 let {scrollYProgress}=useScroll({target:ref,offset:["start center","center start"]});
 
 return (
-
-
-<div ref={ref} style={{perspective:"1200px"}} className='h-[100vh] w-full'>
-<CitiesAd scroll={scrollYProgress} data={get} />
-</div>
-
-)};
+  <div ref={ref} style={{perspective:"1200px"}} className='w-full md:h-[100vh]'>
+    <CitiesAd scroll={scrollYProgress} data={get} />
+  </div>
+);
+};
 
 
 
@@ -42,8 +40,7 @@ return <div style={{transformStyle:"preserve-3d"}} key={i}> <DisplayCards key={i
 
 
     return (
-     <div className=' flex justify-start items-center  overflow-x-auto 
-  scrollbar-hide overflow-y-hidden h-full relative hide-scrollbar' style={{transformStyle:"preserve-3d",perspective:"1000px"}}>
+     <div className='flex flex-col sm:flex-row sm:justify-start items-center sm:items-center gap-4 sm:gap-6 overflow-y-auto sm:overflow-x-auto overflow-x-hidden h-auto sm:h-full relative hide-scrollbar py-4 px-4' style={{transformStyle:"preserve-3d",perspective:"1000px"}}>
   {map_memo}
 </div>
 
