@@ -1,10 +1,18 @@
-import { Geist, Geist_Mono ,Tangerine} from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Tangerine,
+  Inter,
+  Cormorant_Garamond,
+  Cinzel,
+  Playfair_Display,
+} from "next/font/google";
+
 import "./globals.css";
 import SmoothScroll from "./smooth_scroll";
 import TanstackQueryClient from  "@/client_components/general_comps/tanstack_query_client";
 // import WanderingHartNavbar from "./navBar";
 import { Get_status } from "@/util_comps/nav_comp";
-
 
 
 const geistSans = Geist({
@@ -16,6 +24,30 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
 
 export const metadata = {
   title: "Create Next App",
@@ -30,8 +62,19 @@ console.log("root layout rendered");
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased hide-scrollbar flex flex-col justify-center bg-gray-900 relative  max-w-screen min-h-screen   z-10 scrollbar-hide`}
-      >  <TanstackQueryClient>
+        className={`${cormorant.variable} ${cinzel.variable} ${playfair.variable} ${inter.variable} antialiased hide-scrollbar flex flex-col justify-center bg-gray-900 relative  max-w-screen min-h-screen   z-10 scrollbar-hide`}
+      > 
+      
+    <div className="absolute inset-0 pointer-events-none z-0 
+     bg-gray-900/40 h-full
+     backdrop-saturate-150 
+     border-t border-white/5 
+     rounded-xl shadow-[0_0_40px_rgba(255,255,255,0.03)]">
+</div> 
+
+
+       <TanstackQueryClient>
+
         <Get_status/>
         <SmoothScroll>
         

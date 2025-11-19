@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import React, { useContext, useEffect ,useMemo, useRef,use} from 'react';
 import {useScroll,useTransform } from 'framer-motion';
@@ -15,7 +15,7 @@ let {scrollYProgress}=useScroll({target:ref,offset:["start center","center start
 return (
 
 
-<div ref={ref} style={{perspective:"1200px"}} className='h-[100vh] w-full'>
+<div ref={ref} style={{perspective:"1200px"}} className='h-[100vh] w-[100vw]'>
 <CitiesAd scroll={scrollYProgress} data={get} />
 </div>
 
@@ -43,7 +43,7 @@ return <div style={{transformStyle:"preserve-3d"}} key={i}> <DisplayCards key={i
 
     return (
      <div className=' flex justify-start items-center  overflow-x-auto 
-  scrollbar-hide overflow-y-hidden h-full relative hide-scrollbar' style={{transformStyle:"preserve-3d",perspective:"1000px"}}>
+  scrollbar-hide overflow-y-hidden h-full relative hide-scrollbar' style={{transformStyle:"preserve-3d",perspective:"1900px"}}>
   {map_memo}
 </div>
 
