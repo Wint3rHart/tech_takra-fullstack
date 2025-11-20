@@ -13,9 +13,11 @@ const cormotant = Work_Sans({ subsets: ["latin"], weight: ["400", "700"] });
 
 const Page =async () => {
 
-return <AuthWrapper>
+return( 
+
   <User_header/>
-</AuthWrapper>
+
+)
 
 
 }
