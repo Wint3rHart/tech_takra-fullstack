@@ -25,11 +25,9 @@ const form_fnx=async(data)=>{
 try {
 
  let logIn= await signUp_serverAction(data,reg);
+ setLog(x=>{return {...x,status:true,msg:logIn.msg}})
 console.log(logIn);
 
-if(reg){setLog(x=>{return {...x,status:false,msg:logIn.msg}})}
-
-else{setLog(x=>{return {...x,status:true,msg:logIn.msg}})}
 
 } catch (error) {
 
@@ -68,42 +66,17 @@ else{setLog(x=>{return {...x,status:true,msg:logIn.msg}})}
         {/* Shimmer effect */}
         {/* <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div> */}
 
-        {/* Toggle buttons */}
         <div className="flex gap-4 mb-8 relative z-10">
           <h2 
-            onClick={() => {setReg(x => {return false})}} 
-            className={`flex-1 py-3 font-semibold rounded-lg transition-all duration-300 cursor-pointer text-center ${
-              !reg
-                ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 shadow-lg shadow-amber-400/50'
-                : 'bg-gray-700/50 text-gray-400 hover:bg-gray-700 hover:text-amber-300'
-            }`}
+          className="font-cinzel text-[#d4af37] text-4xl sm:text-6xl  font-bold mt-6 lg:mt-16
+                          drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]"
           >
             Login
           </h2>
-          <h2 
-            onClick={() => {setReg(x => {return true})}} 
-            className={`flex-1 py-3 font-semibold rounded-lg transition-all duration-300 cursor-pointer text-center ${
-              reg
-                ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 shadow-lg shadow-amber-400/50'
-                : 'bg-gray-700/50 text-gray-400 hover:bg-gray-700 hover:text-amber-300'
-            }`}
-          >
-            Register
-          </h2>
+        
         </div>
 
-        {/* Name field */}
-        <div className="mb-6 relative z-10">
-          <label htmlFor="name" className="block text-amber-300 font-semibold mb-2 text-sm tracking-wide">Name</label>
-          <input {...register("name",{required:"must be present",validate:((x)=>{if(x.length<6){return "must have atleast 6 characters"}else {return true}})})}
-            type="text"
-            id="name"
-            name="name"
-            className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all duration-300"
-            placeholder="Enter your name"
-          /> <p className=" text-amber-300 font-bold text-lg z-20 drop-shadow-lg ">{errors?.name?.message}</p>
-        </div>
-<p></p>
+    
         {/* Email field */}
         <div className="mb-6 relative z-10">
           <label htmlFor="email" className="block text-amber-300 font-semibold mb-2 text-sm tracking-wide">Email</label>
@@ -117,17 +90,7 @@ else{setLog(x=>{return {...x,status:true,msg:logIn.msg}})}
         </div>
 
         {/* Profile pic field (register only) */}
-        {reg &&
-          <div className="mb-6 relative z-10">
-            <label htmlFor="pic" className="block text-amber-300 font-semibold mb-2 text-sm tracking-wide">Profile Pic</label>
-            <input {...register("pic",{required:"must be present"})}
-              type="file" 
-              id="pic"
-              name="pic"
-              className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-amber-400 file:text-gray-900 file:font-semibold hover:file:bg-amber-500 file:cursor-pointer focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all duration-300"
-            /><p className=" text-amber-300 font-bold text-lg z-20 drop-shadow-lg ">{errors?.pic?.message}</p>
-          </div>
-        }
+       
 
         {/* Password field */}
         <div className="mb-6 relative z-10">
@@ -143,25 +106,14 @@ else{setLog(x=>{return {...x,status:true,msg:logIn.msg}})}
         </div>
 
         {/* Confirm password field (register only) */}
-        {reg && 
-          <div className="mb-3 mt-12 relative z-10">
-            <label htmlFor="confirm_password" className="block text-amber-300 font-semibold mb-2 text-sm tracking-wide">Confirm Password</label>
-            <input {...register("confirm_password",{required:"must be present", validate:(x)=>{if(x!=ref.current.value){return "must be same as password"}else{return true}}})}
-              type="password"
-              id="confirm_password"
-              name="confirm_password"
-              className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all duration-300"
-              placeholder="Confirm your password"
-            />   <p className="absolute  text-amber-300 font-bold text-xl z-20 drop-shadow-lg ">{errors?.confirm_password?.message}</p>
-          </div>
-        }
+        
 
         {/* Submit button */}
         <button
           type="submit"
           className="w-full/2 mt-12 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 font-bold py-3 px-4 rounded-lg hover:from-amber-500 hover:to-amber-600 transition-all duration-300 shadow-lg shadow-amber-400/30 hover:shadow-amber-400/50 hover:scale-[1.02] active:scale-[0.98] relative z-10"
         >
-          {reg ? 'Create Account' : 'Sign In'}
+          {'LogIn'}
         </button>
          <p className="absolute left-60 bottom-10 text-amber-300 font-bold text-xl z-20 drop-shadow-lg ">{logStatus.msg}</p>
       </form>

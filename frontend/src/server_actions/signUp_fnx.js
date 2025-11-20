@@ -43,7 +43,8 @@ let url="";
 let body_data;
 switch (type) {
     case "signIn":{
-   body_data=JSON.stringify({name:data.name,email:data.email,password:data.password}) ;url='http://localhost:4600/api/signIn';break;}
+   body_data=JSON.stringify({email:data.email,password:data.password}) ;
+   url='http://localhost:4600/api/auth/admin/login';break;}
 
 case "registration":{
       body_data=JSON.stringify(data) ;url='http://localhost:4600/api/regForm';break;

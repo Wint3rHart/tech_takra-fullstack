@@ -96,10 +96,10 @@ let   places_parallax= get_fetch("places_parallax");
      </section>
 
 
-{/* 
+
 <section className="max-h-[100vh] h-full custom-grid-background flex flex-col items-center justify-center relative w-[98vw]  text-4xl text-white w-screen">
   <ErrorBoundary FallbackComponent={MyErrorFallback}>
-<div style={{top:"-60vh"}} className={`"h-[100vh] text-center w-full absolute  flex flex-col justify-center items-center ${tangerine.className} "`}> 
+<div  className={`h-[100vh] text-center w-full absolute  flex flex-col justify-center items-center font-cinzel `}> 
     <TextAppear_2>
       <p className="text-stone-300 text-8xl [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">Why</p>
        <p className="text-[#d4af37] text-8xl drop-shadow-[2px_2px_2px_rgba(255,255,255,0.2)]">Choose</p>
@@ -107,10 +107,8 @@ let   places_parallax= get_fetch("places_parallax");
         </TextAppear_2>
     </div> 
 
-<WhyChooseUs   />
-
   </ErrorBoundary>
-</section> */}
+</section>
 
 <section className="flex flex-col items-center mt-20 md:mt-36 relative justify-center text-center px-4 sm:px-6">
   <BgEffect/>
