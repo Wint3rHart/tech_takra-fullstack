@@ -18,13 +18,16 @@ let timer=setTimeout(() => {
 try{
     let url="";
     switch (type) {
-        case "gallery":{url=`http://localhost:4600/api/gallery?city=${key}`;break}
-        case "hotel_rooms":{
-        url=`http://localhost:4600/api/hotel_rooms?city=${key}`;break};
+    
+        case "get_forms":{ if (key=="All"){url="http://localhost:4600/api/regForm";}else{url=`http://localhost:4600/api/regForm/${key}`;console.log(url);
+        };break;};
+        case "events":{url="http://localhost:4600/api/events";break}
+
         case "sign_status":{url="http://localhost:4600/sign_status"};
-        case "rooms":{url=`http://localhost:4600/api/rooms?hotel_id=${key}`;break}
+       
         case "user_data":{
         ;url=`http://localhost:4600/api/user_data?id=${key}`;break;}
+
   default:{url=`http://localhost:4600/api/${type}`;break;}  };
 
         let get=await fetch(url,{signal});
