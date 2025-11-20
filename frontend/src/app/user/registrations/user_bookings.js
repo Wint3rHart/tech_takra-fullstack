@@ -5,6 +5,8 @@ import React, { useEffect } from 'react';
 import { Cinzel, Work_Sans } from 'next/font/google';
 import Link from 'next/link';
 import Cards from './cards';
+import BgEffect from '@/util_comps/bg_effect';
+import { useSearchParams } from 'next/navigation';
 
 
 const tangerine = Cinzel({ subsets: ["latin"], weight: ["400", "700"] });
@@ -13,8 +15,11 @@ const cormotant = Work_Sans({ subsets: ["latin"], weight: ["400", "700"] });
 
 
 const UserBookings = ({id}) => {
+console.log("in user");
+let search=useSearchParams();
 
-    const {query,abort_ref}=useData("user_data",id)
+
+    const {query,abort_ref}=useData("get_forms",!search.get("id")?"All":search.get("id"));
     const {data,isSuccess,error,isPending}=query;
 
 useEffect(()=>{console.log(data);
@@ -36,7 +41,7 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
               <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce delay-200"></div>
             </div>
             
-            <p className={`${tangerine.className} text-[#d4af37] text-2xl font-bold 
+            <p className={`font-cinzel text-[#d4af37] text-2xl font-bold 
                           drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]`}>
               Loading Your Journey...
             </p>
@@ -45,20 +50,7 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
     if(error){return <div>  <div className='min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden'>
       
       {/* Ambient Background Effects - Fireflies/Stars */}
-      <div className="absolute top-20 left-20 w-1 h-1 bg-amber-400/80 rounded-full animate-ping shadow-lg shadow-amber-400/60"></div>
-      <div className="absolute top-32 right-24 w-2 h-2 bg-white/70 rounded-full animate-pulse shadow-md shadow-white/50"></div>
-      <div className="absolute bottom-40 left-16 w-1.5 h-1.5 bg-amber-300/60 rounded-full animate-pulse delay-700 shadow-lg shadow-amber-300/50"></div>
-      <div className="absolute top-1/3 right-32 w-0.5 h-0.5 bg-white/60 rounded-full animate-ping delay-1000 shadow-sm shadow-white/40"></div>
-      <div className="absolute bottom-1/3 left-1/4 w-1 h-1 bg-amber-500/70 rounded-full animate-pulse delay-500 shadow-md shadow-amber-500/50"></div>
-      <div className="absolute top-1/4 right-1/3 w-1.5 h-1.5 bg-white/50 rounded-full animate-ping delay-300 shadow-md shadow-white/40"></div>
-      <div className="absolute bottom-1/4 right-20 w-1 h-1 bg-amber-200/80 rounded-full animate-pulse delay-1200 shadow-sm shadow-amber-200/60"></div>
-      <div className="absolute top-40 left-1/3 w-0.5 h-0.5 bg-white/70 rounded-full animate-ping delay-800 shadow-sm shadow-white/50"></div>
-      <div className="absolute bottom-32 right-1/4 w-2 h-2 bg-amber-400/60 rounded-full animate-pulse delay-400 shadow-lg shadow-amber-400/40"></div>
-      <div className="absolute top-1/5 left-40 w-1 h-1 bg-white/40 rounded-full animate-ping delay-600 shadow-sm shadow-white/30"></div>
-      
-      {/* Larger Glowing Orbs */}
-      <div className="absolute top-24 right-40 w-3 h-3 bg-amber-400/50 rounded-full animate-pulse shadow-xl shadow-amber-400/70 blur-sm"></div>
-      <div className="absolute bottom-24 left-32 w-4 h-4 bg-white/30 rounded-full animate-pulse delay-900 shadow-xl shadow-white/50 blur-sm"></div>
+    <BgEffect/>
       
       {/* Back Button - Top Left */}
       {/*  */}
@@ -114,8 +106,8 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
 
     return (
         <div>
-            {data.map((x,i)=>{
-                return <div className='mt-3' key={x.id}><Cards booking={x} i={i}/></div>
+            { data.map((x,i)=>{
+                return <div className='mt-3' key={x._id}><Cards data={x} i={i}/></div>
             })}
         </div>
     );
