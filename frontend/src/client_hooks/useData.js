@@ -22,7 +22,9 @@ try{
         case "get_forms":{ if (key=="All"){url="http://localhost:4600/api/regForm";}else{url=`http://localhost:4600/api/regForm/${key}`;console.log(url);
         };break;};
         case "events":{url="http://localhost:4600/api/events";break}
-
+        case "team":{url="http://localhost:4600/api/team";break}
+case "notice":{url="http://localhost:4600/api/announcement";break}
+case "admin":{url="http://localhost:4600/api/auth/admin/all";break}
         case "sign_status":{url="http://localhost:4600/sign_status"};
        
         case "user_data":{

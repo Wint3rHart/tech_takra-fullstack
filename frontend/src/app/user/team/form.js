@@ -3,17 +3,16 @@ import React, { useEffect, useState } from "react";
 import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
 import BgEffect from "@/util_comps/bg_effect";
-import { serverAction } from "@/server_actions/signUp_fnx";
 import usePost from "@/client_hooks/usePost";
 
-export const Form = () => {
+export const TeamForm = () => {
   const { register, control, formState: { errors, isDirty }, handleSubmit,reset } = useForm();
 
-  const { abort_ref, post, msg } = usePost("create_event", "POST");
+  const { abort_ref, post, msg } = usePost("create_team", "POST");
   const { isError, isSuccess } = post;
 
   const onSubmit = (formData) => {
-    console.log("Updated form:", {formData});
+    console.log("New team member:", { formData });
     
     let form = new FormData();
 
@@ -21,15 +20,16 @@ export const Form = () => {
       const value = formData[key];
 
       if (value instanceof FileList) {
+        // Handle file input
         Array.from(value).forEach((file) => {
-          form.append("images", file);
+          form.append("image", file);
         });
       } else {
         form.append(key, value);
       }
     }
 
-    post.mutate({form:form});
+    post.mutate({ form: form });
         let timer= setTimeout(() => {
       abort_ref.current.abort("Took too long");
       clearTimeout(timer);
@@ -55,101 +55,59 @@ export const Form = () => {
           </button>
         </div>
 
-        {/* TITLE */}
+        {/* NAME */}
         <div className="mb-4 sm:mb-5 relative z-10">
-          <label className="text-xs mt-6 text-amber-200/60 mb-1">Title</label>
+          <label className="text-xs mt-6 text-amber-200/60 mb-1">Name</label>
           <input
             type="text"
-            {...register("title", {
-              required: "Title is required",
+            {...register("name", {
+              required: "Name is required",
               minLength: { value: 3, message: "At least 3 characters" },
-              pattern: { value: /^[A-Za-z0-9\s]+$/, message: "Only letters and numbers allowed" }
+              pattern: { value: /^[A-Za-z\s]+$/, message: "Only letters allowed" }
             })}
             className="text-2xl sm:text-3xl font-bold text-amber-50 bg-transparent outline-none w-full"
-            placeholder="Enter title"
+            placeholder="Enter name"
           />
-          {errors.title && (
-            <p className="mt-1 text-amber-300 text-xs sm:text-sm">{errors.title.message}</p>
+          {errors.name && (
+            <p className="mt-1 text-amber-300 text-xs sm:text-sm">{errors.name.message}</p>
           )}
         </div>
 
-        {/* LOCATION */}
+        {/* POSITION */}
         <div className="mb-4 sm:mb-5 relative z-10">
-          <label className="text-xs text-amber-200/60 mb-1">Location</label>
+          <label className="text-xs text-amber-200/60 mb-1">Position</label>
           <input
             type="text"
-            {...register("location", {
-              required: "Location is required",
+            {...register("position", {
+              required: "Position is required",
               minLength: { value: 3, message: "At least 3 characters" },
               pattern: { value: /^[A-Za-z\s]+$/, message: "Only letters allowed" }
             })}
             className="text-base sm:text-lg text-yellow-300 bg-transparent outline-none w-full"
-            placeholder="Enter location"
+            placeholder="Enter position (e.g., Media Head)"
           />
-          {errors.location && (
-            <p className="mt-1 text-amber-300 text-xs sm:text-sm">{errors.location.message}</p>
+          {errors.position && (
+            <p className="mt-1 text-amber-300 text-xs sm:text-sm">{errors.position.message}</p>
           )}
         </div>
 
-        {/* DATE */}
+        {/* IMAGE */}
         <div className="mb-4 sm:mb-5 relative z-10">
-          <label className="text-xs text-amber-200/60 mb-1">Date</label>
-          <input
-            type="date"
-            {...register("date", { required: "Date is required" })}
-            className="text-base sm:text-lg text-yellow-300 bg-transparent outline-none w-full"
-          />
-          {errors.date && (
-            <p className="mt-1 text-amber-300 text-xs sm:text-sm">{errors.date.message}</p>
-          )}
-        </div>
-
-        {/* DESCRIPTION */}
-        <div className="mb-4 sm:mb-5 relative z-10">
-          <label className="text-xs text-amber-200/60 mb-1">Description</label>
-          <textarea
-            {...register("description", {
-              required: "Description is required",
-              minLength: { value: 10, message: "At least 10 characters" }
-            })}
-            className="text-sm text-gray-200 bg-transparent outline-none w-full h-24"
-            placeholder="Enter description"
-          />
-          {errors.description && (
-            <p className="mt-1 text-amber-300 text-xs sm:text-sm">{errors.description.message}</p>
-          )}
-        </div>
-
-        {/* CATEGORY */}
-        <div className="mb-4 sm:mb-5 relative z-10">
-          <label className="text-xs text-amber-200/60 mb-1">Category</label>
-          <input
-            type="text"
-            {...register("category", {
-              required: false,
-              pattern: { value: /^[A-Za-z\s]+$/, message: "Only letters allowed" }
-            })}
-            className="text-base sm:text-lg text-yellow-300 bg-transparent outline-none w-full"
-            placeholder="Enter category"
-          />
-          {errors.category && (
-            <p className="mt-1 text-amber-300 text-xs sm:text-sm">{errors.category.message}</p>
-          )}
-        </div>
-
-        {/* IMAGES */}
-        <div className="mb-4 sm:mb-5 relative z-10">
-          <label className="text-xs mt-6 text-amber-200/60 mb-1">Images</label>
+          <label className="text-xs mt-6 text-amber-200/60 mb-1">Profile Image</label>
           <input
             type="file"
-            multiple
             accept="image/*"
-            {...register("images")}
+            {...register("image", {
+              required: "Image is required"
+            })}
             className="text-sm text-gray-200 bg-transparent outline-none w-full"
           />
+          {errors.image && (
+            <p className="mt-1 text-amber-300 text-xs sm:text-sm">{errors.image.message}</p>
+          )}
         </div>
 
-        {/* Success message */}
+        {/* Success/Error message */}
         <div className="mb-4 p-3 rounded-xl border border-amber-600/10 relative z-10">
           <p className="text-xs text-gray-400 font-semibold mb-1"></p>
           <p className="text-lg text-gray-300">{msg}</p>
@@ -165,7 +123,7 @@ export const Form = () => {
               : 'bg-gray-600 text-gray-400 cursor-not-allowed opacity-50'
             }`}
         >
-          {isDirty ? 'Submit Event' : 'No Changes Made'}
+          {isDirty ? 'Add Team Member' : 'No Changes Made'}
         </button>
 
         {/* DevTool */}
