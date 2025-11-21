@@ -23,6 +23,10 @@ app.use(
 app.use(express.json()); 
 //app.use(cookieParser());
 const port = process.env.PORT;
+app.get("/", (req, res) => {
+  res.send("Backend is running...");
+});
+
 app.use("/api/auth/admin" , adminRoutes)
 app.use("/api/events", eventRoutes)
 app.use("/api/regForm", regFormRoutes)
