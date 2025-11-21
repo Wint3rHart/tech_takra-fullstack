@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { DevTool } from "@hookform/devtools";
+
 import { useForm } from "react-hook-form";
 import usePost from "@/client_hooks/usePost";
 
@@ -180,8 +180,7 @@ export const Form = ({access}) => {
           </div>
         </div>
 
-        {/* DevTool */}
-        {typeof window !== "undefined" && <DevTool control={control} />}
+     
       </form>
     </article>
   );

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { DevTool } from "@hookform/devtools";
+
 import { useForm } from "react-hook-form";
 import BgEffect from "@/util_comps/bg_effect";
 import usePost from "@/client_hooks/usePost";
@@ -185,8 +185,7 @@ export const TeamForm = ({access}) => {
           </span>
         </button>
 
-        {/* DevTool */}
-        {typeof window !== "undefined" && <DevTool control={control} />}
+      
       </form>
     </div>
   );

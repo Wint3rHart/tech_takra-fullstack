@@ -1,6 +1,6 @@
 "use client"
 
-import { DevTool } from '@hookform/devtools';
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { signUp_serverAction } from './sign_serverAction';
@@ -135,7 +135,6 @@ const SignUp = () => {
         </div>
       </div>
 
-      <DevTool control={control} />
     </div>
   );
 };

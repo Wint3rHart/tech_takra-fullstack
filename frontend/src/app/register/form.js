@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { DevTool } from "@hookform/devtools";
+
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import BgEffect from "@/util_comps/bg_effect";
@@ -160,7 +160,7 @@ export const Form = () => {
             </form>
 
             <div className="mt-4">{/* DevTool shown only when included in dev */}
-              <DevTool control={control} />
+             
             </div>
           </div>
         </div>

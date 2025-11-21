@@ -19,18 +19,18 @@ try{
     let url="";
     switch (type) {
     
-        case "get_forms":{ if (key=="All"){url="http://localhost:4600/api/regForm";}else{url=`http://localhost:4600/api/regForm/${key}`;console.log(url);
+        case "get_forms":{ if (key=="All"){url="https://computersciencesocietyonrender.com/api/regForm";}else{url=` https://computersciencesocietyonrender.com/api/regForm/${key}`;console.log(url);
         };break;};
-        case "events":{url="http://localhost:4600/api/events";break}
-        case "team":{url="http://localhost:4600/api/team";break}
-case "notice":{url="http://localhost:4600/api/announcement";break}
-case "admin":{url="http://localhost:4600/api/auth/admin/all";break}
-        case "sign_status":{url="http://localhost:4600/sign_status"};
-       
+        case "events":{url="https://computersciencesocietyonrender.com/api/events";break}
+        case "team":{url="https://computersciencesocietyonrender.com/api/team";break}
+case "notice":{url="https://computersciencesocietyonrender.com/api/announcement";break}
+case "admin":{url="https://computersciencesocietyonrender.com/api/auth/admin/all";break}
+    
+      
         case "user_data":{
-        ;url=`http://localhost:4600/api/user_data?id=${key}`;break;}
+        ;url=`https://computersciencesocietyonrender.com/api/user_data?id=${key}`;break;}
 
-  default:{url=`http://localhost:4600/api/${type}`;break;}  };
+  default:{url=`https://computersciencesocietyonrender.com/api/${type}`;break;}  };
 
         const authHeader = key ? { "authorization": `Bearer ${key}` } : {};
         console.log(`Fetching ${type} from ${url}`, { hasAuth: !!key });

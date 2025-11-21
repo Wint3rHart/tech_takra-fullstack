@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
+
 import BgEffect from "@/util_comps/bg_effect";
 import usePost from "@/client_hooks/usePost";
 
@@ -124,8 +124,7 @@ export const Form = ({access}) => {
           </span>
         </button>
 
-        {/* DevTool */}
-        {typeof window !== "undefined" && <DevTool control={control} />}
+    
       </form>
     </div>
   );

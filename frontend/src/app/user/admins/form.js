@@ -134,8 +134,7 @@ export const Form = ({access}) => {
           </div>
         </div>
 
-        {/* DevTool */}
-        {typeof window !== "undefined" && <DevTool control={control} />}
+      
       </form>
     </article>
   );
