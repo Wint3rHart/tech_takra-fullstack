@@ -22,7 +22,7 @@ console.log("sending req from booking");
 
 
     return (
-        <div className='text-white font-black text-4xl relative'>
+        <div className='text-white font-black mt-16 text-4xl relative'>
 
           
             <Suspense fallback={<div className='min-w-[100vw] flex items-center justify-center min-h-[100vh] m-auto h-full '><p className='text-2xl text-white font-bold'>LOADING...</p></div>}>

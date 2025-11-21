@@ -1,6 +1,7 @@
 import { get_fetch } from "@/server_fetch_fncs/fetch_fnx";
 import BgEffectLite from "@/util_comps/bg_effect_lite";
 import VerticalCard from '@/client_components/events/verticalCard';
+import Link from "next/link";
 
 export default async function HotelPage({ searchParams }) {
   const { type } = searchParams || {};
@@ -10,15 +11,27 @@ export default async function HotelPage({ searchParams }) {
 
     return (
       <div className="bg-gray-900 min-h-screen py-20 px-4 relative">
-
+<div className="mt-6 flex justify-center">
+  <Link
+    href="/"
+    className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium 
+               text-amber-200 bg-amber-700/10 border border-amber-400/10
+               hover:bg-amber-700/20 transition"
+  >
+    Back
+  </Link>
+</div>
         {/* Subtle decorative particles */}
         <BgEffectLite />
 
         {/* Page header - styled like team/updates pages */}
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-4xl mx-auto text-center mt-12 relative z-10">
+        
           <h1 className='text-4xl sm:text-5xl lg:text-6xl m-auto max-w-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 tracking-wide uppercase drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)] font-inter'>
             {((type || '').toString().toUpperCase() === 'UPCOMING') ? 'Upcoming Events' : 'Past Events'}
           </h1>
+
+
 
           <div className='w-32 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent rounded-full mx-auto mt-4' />
           <p className="mt-6 text-lg sm:text-xl text-gray-400 font-poppins">

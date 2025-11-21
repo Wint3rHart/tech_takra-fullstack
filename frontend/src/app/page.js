@@ -78,12 +78,18 @@ export default async function Home() {
        
       </section>
 
- <section className="w-full h-full mt-20 md:mt-36 relative rounded-lg bg-gray-700 border border-amber-400/25 shadow-sm">
+ <section className="w-full h-full mt-36 md:mt-44 relative rounded-lg  shadow-sm">
+   <div className="mb-12"><TextAppear_3>
+      <p className="font-poppins text-stone-300 text-3xl sm:text-6xl m-auto [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">
+       Past Events </p>
+        <BgEffectLite/>
+     </TextAppear_3></div>
       {/* Suspense fallback could be used here if needed:
           <Suspense fallback={<p className="text-white font-black">Loading...</p>}>
       */}
       <ErrorBoundary FallbackComponent={MyErrorFallback}>
         <BgEffectLite/>
+        
         <Places data={past_events}/>
       </ErrorBoundary>
     </section>
@@ -101,17 +107,17 @@ export default async function Home() {
 
 
 
-<section className="overflow-hidden rounded-xl group relative w-full h-[70vh] sm:h-[80vh] md:h-[100vh] text-white font-black text-4xl sm:text-6xl lg:text-7xl bg-gray-900 bg-[url('/ravil-1024x683-1.jpeg')] bg-blend-overlay bg-no-repeat bg-cover bg-bottom [mask-image:linear-gradient(180deg,black,black,rgb(0,0,0,7),black,black,rgb(0,0,0,.8),rgb(0,0,0,.4),transparent)] border-2 border-amber-400/45">
+<section className="overflow-hidden  rounded-xl group relative w-full h-[70vh] sm:h-[80vh] md:h-[100vh] text-white font-black text-4xl sm:text-6xl lg:text-7xl bg-gray-900 bg-[url('/ravil-1024x683-1.jpeg')] bg-blend-overlay bg-no-repeat bg-cover bg-bottom [mask-image:linear-gradient(180deg,black,black,rgb(0,0,0,7),black,black,rgb(0,0,0,.8),rgb(0,0,0,.4),transparent)] border-2 border-amber-400/45">
   <BgEffectLite/>
   {/* subtle dark blur overlay to make BG image pop while keeping detail */}
   <div className="absolute inset-0 rounded-xl bg-black/40 backdrop-blur-sm pointer-events-none z-10" />
   <ErrorBoundary FallbackComponent={MyErrorFallback}>
-<div  className={`h-[100vh] text-center w-full   flex flex-col justify-center items-center font-inter relative z-20 `}> 
+<div  className={`h-[80vh] text-center w-full    flex flex-col justify-center items-center font-inter relative z-20 `}> 
   {/* <BgEffect/> */}
     <TextAppear_2>
-      <p className="font-inter text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-200 drop-shadow-[0_12px_40px_rgba(212,175,55,0.45)] [text-shadow:0_8px_40px_rgba(212,175,55,0.28)]">Join</p>
-      <p className="font-inter text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 drop-shadow-[0_14px_48px_rgba(212,175,55,0.6)] [text-shadow:0_10px_50px_rgba(212,175,55,0.36)]">Us</p>
-      <p className="font-poppins text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-350 to-amber-300 drop-shadow-[0_10px_36px_rgba(212,175,55,0.42)] [text-shadow:0_8px_44px_rgba(212,175,55,0.3)]">Now</p>
+      <p className="font-inter text-6xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-200 drop-shadow-[0_12px_40px_rgba(212,175,55,0.45)] [text-shadow:0_8px_40px_rgba(212,175,55,0.28)]">Join</p>
+      <p className="font-inter text-6xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 drop-shadow-[0_14px_48px_rgba(212,175,55,0.6)] [text-shadow:0_10px_50px_rgba(212,175,55,0.36)]">Us</p>
+      <p className="font-poppins text-6xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-350 to-amber-300 drop-shadow-[0_10px_36px_rgba(212,175,55,0.42)] [text-shadow:0_8px_44px_rgba(212,175,55,0.3)]">Now</p>
 
     </TextAppear_2>
         <BgEffect/>

@@ -3,6 +3,7 @@
 import React, { useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import Link from 'next/link';
 
 const containerVariants = {
   initial: { opacity: 0 },
@@ -86,7 +87,7 @@ const AnnouncementCard = ({ announcement, index }) => {
                       hover:shadow-amber-400/20 hover:border-amber-500/40
                       transition-all duration-500 backdrop-blur-sm
                       group relative overflow-hidden">
-        
+           
         {/* Ambient Light Effect */}
         <div className="absolute w-full inset-0 bg-gradient-to-r from-transparent via-amber-400/5 to-transparent 
                         -translate-x-full group-hover:translate-x-full transition-transform duration-2000 rounded-3xl" />
@@ -175,9 +176,18 @@ const UpdatesGallery = ({ announcements }) => {
     <section
       ref={containerRef}
       className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 relative pt-32"
-    >
+    > <div className="mt-6 flex justify-center">
+  <Link
+    href="/"
+    className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium 
+               text-amber-200 bg-amber-700/10 border border-amber-400/10
+               hover:bg-amber-700/20 transition"
+  >
+    Back
+  </Link>
+</div>
       {/* Header Section */}
-      <div className="max-w-4xl mx-auto mb-16 text-center relative z-10">
+      <div className="max-w-4xl mx-auto mb-16 mt-12 text-center relative z-10">
         <motion.h1 
           style={{ y }}
           className="text-4xl sm:text-5xl lg:text-6xl font-bold font-inter mb-6

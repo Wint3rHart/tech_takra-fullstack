@@ -3,6 +3,7 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import BgEffect from '@/util_comps/bg_effect';
+import Link from 'next/link';
 
 const containerVariants = {
   initial: { opacity: 0 },
@@ -91,10 +92,19 @@ const Gallery = ({ x }) => {
   return (
     <div className='min-h-screen bg-gray-900 pt-32 pb-16 px-4 sm:px-6 lg:px-8 relative'>
       <BgEffect />
-      
+          <div className="mt-6 flex justify-center">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium 
+                     text-amber-200 bg-amber-700/10 border border-amber-400/10
+                     hover:bg-amber-700/20 transition"
+        >
+          Back
+        </Link>
+      </div>
       {/* Page Header */}
       <motion.div 
-        className="text-center mb-12 relative z-10"
+        className="text-center mb-12 relative z-10 mt-12"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
