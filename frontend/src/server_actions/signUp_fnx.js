@@ -1,11 +1,12 @@
 "use server";
 
-import { API_BASE_URL } from '@/config/api';
+import { getApiBaseUrl } from '@/config/api';
 
 /* -------------------------------------------
    REGISTER FUNCTION
 --------------------------------------------- */
 export const register_fnx = async (data) => {
+  const API_BASE_URL = getApiBaseUrl(); // Get fresh URL at runtime
   let aborter = new AbortController();
   let signal = aborter.signal;
 
@@ -21,6 +22,7 @@ export const register_fnx = async (data) => {
   form.append("pic", data.pic[0]);
 
   try {
+    console.log('[register_fnx] Using API_BASE_URL:', API_BASE_URL);
     let get = await fetch(`${API_BASE_URL}/api/register`, {
       method: "POST",
       body: form,
@@ -48,6 +50,7 @@ export const register_fnx = async (data) => {
    GENERIC SERVER ACTION (LOGIN / FORM SUBMISSION)
 --------------------------------------------- */
 export const serverAction = async (type, method, data) => {
+  const API_BASE_URL = getApiBaseUrl(); // Get fresh URL at runtime
   let abort = new AbortController();
   let signal = abort.signal;
 
@@ -75,6 +78,7 @@ export const serverAction = async (type, method, data) => {
   }
 
   try {
+    console.log('[serverAction] Using API_BASE_URL:', API_BASE_URL, 'URL:', url);
     let get = await fetch(url, {
       method,
       body: body_data,

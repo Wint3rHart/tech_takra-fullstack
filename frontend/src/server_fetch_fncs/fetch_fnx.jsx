@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '@/config/api';
+import { getApiBaseUrl } from '@/config/api';
 
 export const get_fetch = async (route, options, x, y, z, cache_option) => {
   let aborter = new AbortController();
@@ -8,6 +8,7 @@ export const get_fetch = async (route, options, x, y, z, cache_option) => {
   }, 900000);
 
   try {
+    const API_BASE_URL = getApiBaseUrl(); // Get fresh URL at runtime
     let url;
     switch (route) {
       case "events":
@@ -49,6 +50,7 @@ export const get_fetch = async (route, options, x, y, z, cache_option) => {
         break;
     }
 
+    console.log('[get_fetch] Using API_BASE_URL:', API_BASE_URL, 'Route:', route);
     let get = await fetch(url, {
       method: "GET",
       signal,

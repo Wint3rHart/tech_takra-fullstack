@@ -44,18 +44,17 @@ const getApiBaseUrl = () => {
   return 'https://computersciencesocietyonrender.com';
 };
 
-// Export as constant - evaluated when module loads
-// For client components: will check window.location at runtime (when module loads in browser)
-// For server components: will use NODE_ENV/VERCEL_ENV (when module loads on server)
-export const API_BASE_URL = getApiBaseUrl();
-
-// Also export as function for dynamic access if needed
+// Export function for runtime evaluation (not build-time constant)
+// This is critical for Vercel deployments where env vars may change
 export { getApiBaseUrl };
 
 // Helper function to build API URLs
 export const getApiUrl = (endpoint) => {
   // Remove leading slash if present
   const cleanEndpoint = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
-  return `${API_BASE_URL}/api/${cleanEndpoint}`;
+  return `${getApiBaseUrl()}/api/${cleanEndpoint}`;
 };
+
+// Deprecated: kept for backward compatibility, but use getApiBaseUrl() instead
+export const API_BASE_URL = getApiBaseUrl();
 

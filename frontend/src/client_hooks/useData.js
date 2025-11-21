@@ -1,7 +1,7 @@
 "use client"
 import { useQuery } from '@tanstack/react-query';
 import React, { useRef } from 'react';
-import { API_BASE_URL } from '@/config/api';
+import { getApiBaseUrl } from '@/config/api';
 
 
 
@@ -9,7 +9,7 @@ const useData = (type,key) => {
 console.log("in useData");
 let abort_ref=useRef();
     let query=useQuery({queryKey:[type],queryFn:async()=>{
-
+const API_BASE_URL = getApiBaseUrl(); // Get fresh URL at runtime
 let controller=new AbortController();
 let signal=controller.signal;
 abort_ref.current=controller;
