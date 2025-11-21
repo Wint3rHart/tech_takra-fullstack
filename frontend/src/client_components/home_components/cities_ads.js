@@ -71,7 +71,7 @@ const CitiesAd = ({ scroll, data }) => {
               scroll={scroll}
               ind={ind}
               x={card}
-              nav_url={`/city?city=${card.city_name}`}
+              nav_url={`/events?type=upcoming`}
               isMobile={true}
             />
           ))}

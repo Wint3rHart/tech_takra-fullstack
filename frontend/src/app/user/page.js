@@ -13,13 +13,16 @@ const Page = async () => {
     const cookieStore = await cookies();
 
     const user = cookieStore.get("User-data")?.value;
+// console.log("here");
 
-    if (user) {
+    if (user) {console.log(user);console.log("here");
+    
       const decrypt = CryptoJS.AES.decrypt(user, "125xyzabc").toString(
         CryptoJS.enc.Utf8
       );
       const parsed = JSON.parse(decrypt);
 console.log(parsed,"decrypted user data");
+
 
       if (parsed) {
         if (new Date(parsed.expiry) > new Date()) {
