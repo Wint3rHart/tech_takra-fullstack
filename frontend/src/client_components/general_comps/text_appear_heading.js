@@ -30,10 +30,10 @@ let Comp=motion[children?.[0]?.type];
 // console.log(children);
 
 return (
-<motion.div className=' font-bold text-8xl  flex flex-col justify-center items-center' variants={parent_One_after_one} initial="initial" whileInView="animate" viewport={{amount:.8}}>
+<motion.div className='text-4xl sm:text-5xl lg:text-6xl m-auto max-w-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 tracking-wide uppercase drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)] font-cinzel' variants={parent_One_after_one} initial="initial" whileInView="animate" viewport={{amount:.8}}>
 {
    React.Children.toArray(children).map((x,i)=>{
-    ;return    <Comp key={i} className={x.props.className} variants={child_one_after_one}>{x.props.children}</Comp>})
+    ;return    <Comp key={i}  variants={child_one_after_one}>{x.props.children}</Comp>})
 }
 </motion.div>
 
@@ -63,12 +63,9 @@ return (
     variants={childVar}
     onClick={() => { router.push('/signUp'); }}
     type="button"
-    className="mt-4 z-50 cursor-pointer px-6 py-3 bg-gradient-to-r from-amber-400 via-amber-300 to-[#d4af37] text-black font-semibold rounded-xl transition-transform duration-200 text-base sm:text-lg md:text-2xl shadow-[0_8px_30px_rgba(212,175,55,0.28)] hover:shadow-[0_12px_40px_rgba(212,175,55,0.45)] hover:scale-105 ring-1 ring-amber-300/20"
-    style={{
-      boxShadow: '0 8px 30px rgba(212,175,55,0.22), inset 0 -2px 8px rgba(0,0,0,0.15)'
-    }}
+    className="mt-4 z-90 cursor-pointer px-6 py-3 bg-gradient-to-r from-amber-500 to-[#d4af37] text-black font-semibold rounded-xl shadow-lg hover:scale-105 transition-transform duration-200 text-base sm:text-lg md:text-2xl"
   >
-    <span className="relative z-10">Register</span>
+    Register
   </motion.button>
 
 </motion.div>
