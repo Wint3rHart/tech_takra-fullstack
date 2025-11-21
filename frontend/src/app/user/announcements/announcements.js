@@ -106,48 +106,79 @@ export const Announcements = ({user,access}) => {
   }
 
   return (
-    <div className="w-[97vw] ml-2 mt-22 lg:mt-36 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 
-                              rounded-3xl flex flex-col items-center justify-center shadow-2xl p-8 border border-amber-600/20
-                              hover:shadow-3xl hover:shadow-amber-400/10 transition-all duration-500
-                              relative group overflow-hidden">
-      <div className="w-[50vw] flex justify-between">
-        <button
-          onClick={() => {
-            setCreate(false);
-          }}
-          type="button"
-          className="w-[20vw] cursor-pointer mt-6 px-6 py-3 rounded-xl mt-12 font-bold text-gray-900
-                   bg-gradient-to-r from-[#d4af37] to-amber-500 hover:scale-102 transition-all duration-500"
-        >
-          Update or Delete Notifications →
-        </button>
-        <button
-          onClick={() => {
-            setCreate(true);
-          }}
-          type="button"
-          className="w-[20vw] cursor-pointer mt-6 px-6 py-3 rounded-xl mt-12 font-bold text-gray-900
-                   bg-gradient-to-r from-[#d4af37] to-amber-500 hover:scale-102 transition-all duration-500"
-        >
-          Create New Notification →
-        </button>
+    <div className='w-full min-h-screen bg-gray-900 py-8 px-4 sm:px-6 lg:px-8 relative'>
+      <BgEffect />
+      
+      <div className='max-w-7xl mx-auto relative z-10'>
+        {/* Header Section */}
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className='font-cinzel text-[#d4af37] text-4xl sm:text-5xl lg:text-6xl font-bold mb-4
+                          drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]'>
+            Announcements Management
+          </h1>
+          <div className='w-24 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent rounded-full mx-auto mb-6'></div>
+          <p className="text-gray-400 text-lg">Manage your society announcements</p>
+        </div>
+
+        {/* Navigation Buttons */}
+        <div className='flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 sm:mb-12'>
+          <button
+            onClick={() => { setCreate(false) }}
+            type="button"
+            className={`w-full sm:w-auto px-8 py-3 rounded-xl font-bold font-cinzel text-sm sm:text-base
+                       transition-all duration-500 relative overflow-hidden group
+                       ${!create 
+                         ? 'bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 shadow-lg shadow-amber-400/30 hover:shadow-2xl hover:shadow-amber-400/50 scale-105' 
+                         : 'bg-gray-800 text-gray-400 border border-amber-600/20 hover:border-amber-500/40 hover:text-amber-400'
+                       }`}
+          >
+            <div className='absolute w-full inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
+                            -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-xl'></div>
+            <span className="relative z-10 flex items-center gap-2">
+              Update or Delete Announcements 
+              <span className="text-xl">→</span>
+            </span>
+          </button>
+          
+          <button
+            onClick={() => { setCreate(true) }}
+            type="button"
+            className={`w-full sm:w-auto px-8 py-3 rounded-xl font-bold font-cinzel text-sm sm:text-base
+                       transition-all duration-500 relative overflow-hidden group
+                       ${create 
+                         ? 'bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 shadow-lg shadow-amber-400/30 hover:shadow-2xl hover:shadow-amber-400/50 scale-105' 
+                         : 'bg-gray-800 text-gray-400 border border-amber-600/20 hover:border-amber-500/40 hover:text-amber-400'
+                       }`}
+          >
+            <div className='absolute w-full inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
+                            -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-xl'></div>
+            <span className="relative z-10 flex items-center gap-2">
+              Create New Announcement 
+              <span className="text-xl">+</span>
+            </span>
+          </button>
+        </div>
+        
+        {/* Content Section */}
+        <div className="w-full">
+          {create ? (
+            <Form access={access}/>
+          ) : (
+            <div className="space-y-6">
+              {data && data.length > 0 ? (
+                data.map((x, i) => (
+                  <Cards key={x._id || i} data={x} i={i} access={access}/>
+                ))
+              ) : (
+                <div className="text-center py-16 bg-gray-800/50 rounded-2xl border border-amber-600/20">
+                  <p className="text-xl text-gray-400 font-cinzel">No announcements found</p>
+                  <p className="text-sm text-gray-500 mt-2">Click "Create New Announcement" to get started</p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       </div>
-
-      <h1 className="font-cinzel text-[#d4af37] text-4xl sm:text-6xl  font-bold mt-6 lg:mt-16
-                          drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]">
-        Notifications
-      </h1>
-
-      {create ? (
-        <Form user={user} access={access}/>
-      ) : (
-        data &&
-        data.map((x, i) => (
-          <div className="mt-3 w-full max-w-3xl" key={x._id || i}>
-            <Cards data={x} i={i} user={user} access={access}/>
-          </div>
-        ))
-      )}
     </div>
   );
 };

@@ -18,8 +18,8 @@ try {
     case "events":{url=`http://localhost:4600/api/events/${options}`;break;};
     
     case "team":{url=`http://localhost:4600/api/team`;break;};
-    
-    
+    case "announcement":{url=`http://localhost:4600/api/announcement`;break;};
+    case "notice":{url=`http://localhost:4600/api/announcement`;break;};
     
     
     case "places_parallax":{
