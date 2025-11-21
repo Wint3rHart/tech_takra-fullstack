@@ -35,26 +35,36 @@ export const TeamForm = ({access}) => {
   };
 
   return (
-    <div className="flex items-center justify-center mt-12 h-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 bg-gray-900 relative">
-      <BgEffect />
-
+    <div className="flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8 relative">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-sm sm:max-w-md lg:max-w-lg px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-2xl border border-amber-400/20 relative group z-10"
+        className="w-full max-w-2xl bg-gradient-to-br from-gray-800/90 via-gray-900/90 to-gray-800/90 
+                   backdrop-blur-sm rounded-3xl shadow-2xl border border-amber-600/20 
+                   p-6 sm:p-8 lg:p-10 relative group overflow-hidden"
       >
-        {/* Back button */}
-        <div className="mb-4 sm:mb-6">
-          <button
-            type="button"
-            className="w-full sm:w-auto bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 font-bold text-sm sm:text-base py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg hover:from-amber-500 hover:to-amber-600 transition-all duration-300 shadow-lg shadow-amber-400/30 hover:shadow-amber-400/50 hover:scale-[1.02] active:scale-[0.98] relative z-10"
-          >
-            Back
-          </button>
+        {/* Ambient Light Effect */}
+        <div className="absolute w-full inset-0 bg-gradient-to-r from-transparent via-amber-400/5 to-transparent 
+                        -translate-x-full group-hover:translate-x-full transition-transform duration-2000 rounded-3xl" />
+
+        {/* Background Particles */}
+        <div className="absolute top-8 left-12 w-1 h-1 bg-amber-400/80 rounded-full animate-ping" />
+        <div className="absolute bottom-12 right-16 w-1.5 h-1.5 bg-amber-300/60 rounded-full animate-pulse" />
+
+        {/* Form Header */}
+        <div className="mb-8 relative z-10">
+          <h2 className="text-3xl sm:text-4xl font-bold font-cinzel text-transparent bg-clip-text 
+                         bg-gradient-to-r from-[#d4af37] to-amber-300 mb-2"
+              style={{textShadow: '2px 2px 4px rgba(212,175,55,0.3)'}}>
+            Add New Team Member
+          </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-[#d4af37] to-transparent rounded-full"></div>
         </div>
 
         {/* NAME */}
-        <div className="mb-4 sm:mb-5 relative z-10">
-          <label className="text-xs mt-6 text-amber-200/60 mb-1">Name</label>
+        <div className="mb-6 relative z-10">
+          <label className="text-xs font-semibold text-amber-400/80 mb-2 block uppercase tracking-wider font-cinzel">
+            Member Name *
+          </label>
           <input
             type="text"
             {...register("name", {
@@ -62,17 +72,22 @@ export const TeamForm = ({access}) => {
               minLength: { value: 3, message: "At least 3 characters" },
               pattern: { value: /^[A-Za-z\s]+$/, message: "Only letters allowed" }
             })}
-            className="text-2xl sm:text-3xl font-bold text-amber-50 bg-transparent outline-none w-full"
-            placeholder="Enter name"
+            className="w-full text-xl sm:text-2xl font-bold text-gray-100 bg-gray-900/50 
+                       border-b-2 border-amber-600/30 focus:border-amber-500/60 
+                       outline-none transition-all duration-300 pb-2 px-2 font-cinzel
+                       placeholder:text-gray-600"
+            placeholder="Enter full name"
           />
           {errors.name && (
-            <p className="mt-1 text-amber-300 text-xs sm:text-sm">{errors.name.message}</p>
+            <p className="mt-2 text-red-400 text-xs sm:text-sm font-playfair">{errors.name.message}</p>
           )}
         </div>
 
         {/* POSITION */}
-        <div className="mb-4 sm:mb-5 relative z-10">
-          <label className="text-xs text-amber-200/60 mb-1">Position</label>
+        <div className="mb-6 relative z-10">
+          <label className="text-xs font-semibold text-amber-400/70 mb-2 block uppercase tracking-wider font-cinzel">
+            Position *
+          </label>
           <input
             type="text"
             {...register("position", {
@@ -80,47 +95,94 @@ export const TeamForm = ({access}) => {
               minLength: { value: 3, message: "At least 3 characters" },
               pattern: { value: /^[A-Za-z\s]+$/, message: "Only letters allowed" }
             })}
-            className="text-base sm:text-lg text-yellow-300 bg-transparent outline-none w-full"
-            placeholder="Enter position (e.g., Media Head)"
+            className="w-full text-base sm:text-lg text-gray-300 bg-gray-900/50 
+                       border-b border-gray-700 focus:border-amber-500/40 
+                       outline-none transition-all duration-300 pb-2 px-2 font-playfair
+                       placeholder:text-gray-600"
+            placeholder="Enter position (e.g., President, Media Head)"
           />
           {errors.position && (
-            <p className="mt-1 text-amber-300 text-xs sm:text-sm">{errors.position.message}</p>
+            <p className="mt-2 text-red-400 text-xs sm:text-sm font-playfair">{errors.position.message}</p>
           )}
         </div>
 
-        {/* IMAGE */}
-        <div className="mb-4 sm:mb-5 relative z-10">
-          <label className="text-xs mt-6 text-amber-200/60 mb-1">Profile Image</label>
+        {/* ORDER/RANK */}
+        <div className="mb-6 relative z-10">
+          <label className="text-xs font-semibold text-amber-400/70 mb-2 block uppercase tracking-wider font-cinzel">
+            Display Order <span className="text-amber-400/60 normal-case font-playfair">(Lower = appears first)</span>
+          </label>
           <input
-            type="file"
-            accept="image/*"
-            {...register("image", {
-              required: "Image is required"
+            type="number"
+            {...register("order", {
+              min: { value: 1, message: "Order must be at least 1" },
+              pattern: { value: /^\d+$/, message: "Only numbers allowed" }
             })}
-            className="text-sm text-gray-200 bg-transparent outline-none w-full"
+            className="w-full text-base sm:text-lg text-gray-300 bg-gray-900/50 
+                       border-b border-gray-700 focus:border-amber-500/40 
+                       outline-none transition-all duration-300 pb-2 px-2 font-playfair
+                       placeholder:text-gray-600"
+            placeholder="999"
+            defaultValue="999"
           />
+          {errors.order && (
+            <p className="mt-2 text-red-400 text-xs sm:text-sm font-playfair">{errors.order.message}</p>
+          )}
+          <p className="mt-2 text-xs text-amber-400/60 font-playfair">
+            Tip: Use 1 for President, 2 for Vice President, etc. Higher numbers appear later.
+          </p>
+        </div>
+
+        {/* IMAGE */}
+        <div className="mb-6 relative z-10">
+          <label className="text-xs font-semibold text-amber-400/70 mb-2 block uppercase tracking-wider font-cinzel">
+            Profile Image *
+          </label>
+          <div className="relative">
+            <input
+              type="file"
+              accept="image/*"
+              {...register("image", {
+                required: "Image is required"
+              })}
+              className="w-full text-sm text-gray-300 bg-gray-900/50 rounded-lg p-3
+                         border border-amber-600/20 focus:border-amber-500/40 
+                         outline-none transition-all duration-300
+                         file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
+                         file:text-sm file:font-semibold file:font-cinzel
+                         file:bg-gradient-to-r file:from-[#d4af37] file:to-amber-500
+                         file:text-gray-900 file:cursor-pointer
+                         hover:file:scale-105 file:transition-all file:duration-300"
+            />
+          </div>
           {errors.image && (
-            <p className="mt-1 text-amber-300 text-xs sm:text-sm">{errors.image.message}</p>
+            <p className="mt-2 text-red-400 text-xs sm:text-sm font-playfair">{errors.image.message}</p>
           )}
         </div>
 
         {/* Success/Error message */}
-        <div className="mb-4 p-3 rounded-xl border border-amber-600/10 relative z-10">
-          <p className="text-xs text-gray-400 font-semibold mb-1"></p>
-          <p className="text-lg text-gray-300">{msg}</p>
-        </div>
+        {msg && (
+          <div className="mb-6 p-4 rounded-xl border border-amber-600/20 bg-gray-800/50 relative z-10">
+            <p className="text-sm sm:text-base text-gray-300 font-playfair">{msg}</p>
+          </div>
+        )}
 
         {/* Submit button */}
         <button
           type="submit"
           disabled={!isDirty}
-          className={`w-full font-bold text-sm sm:text-base py-2.5 sm:py-3 px-4 rounded-lg transition-all duration-300 shadow-lg relative z-10
-            ${isDirty 
-              ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 hover:from-amber-500 hover:to-amber-600 shadow-amber-400/30 hover:shadow-amber-400/50 hover:scale-[1.02] active:scale-[0.98] cursor-pointer' 
-              : 'bg-gray-600 text-gray-400 cursor-not-allowed opacity-50'
-            }`}
+          className={`w-full font-bold font-cinzel text-base sm:text-lg py-3 sm:py-4 px-6 rounded-xl transition-all duration-500 shadow-lg relative overflow-hidden group/btn z-10 ${isDirty ? 'bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-400/30 cursor-pointer' : 'bg-gray-700 text-gray-500 cursor-not-allowed opacity-50'}`}
         >
-          {isDirty ? 'Add Team Member' : 'No Changes Made'}
+          <div className="absolute w-full inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
+                          -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 rounded-xl" />
+          <span className="relative z-10 flex items-center justify-center gap-2">
+            {isDirty ? (
+              <>
+                Add Team Member <span className="text-xl">+</span>
+              </>
+            ) : (
+              'Fill the form to add member'
+            )}
+          </span>
         </button>
 
         {/* DevTool */}

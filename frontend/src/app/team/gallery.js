@@ -1,13 +1,8 @@
 "use client"
 
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import React, { useMemo } from 'react';
+import { motion } from 'framer-motion';
 import BgEffect from '@/util_comps/bg_effect';
-
-
-
-
-
 
 const containerVariants = {
   initial: { opacity: 0 },
@@ -24,7 +19,7 @@ const cardVariants = {
   initial: { 
     opacity: 0, 
     y: 50,
-    scale: 0.9
+    scale: 0.95
   },
   animate: { 
     opacity: 1, 
@@ -36,23 +31,16 @@ const cardVariants = {
     }
   },
   hover: {
-    scale: 0.9,
-   
+    y: -8,
     transition: {
-      duration: 0.2,
+      duration: 0.3,
       ease: "easeOut"
-    }
-  },
-  tap: {
-    scale: 0.95,
-    transition: {
-      duration: 0.1
     }
   }
 };
 
 const imageVariants = {
-  initial: { scale: 1.2, opacity: 0 },
+  initial: { scale: 1.1, opacity: 0 },
   animate: { 
     scale: 1, 
     opacity: 1,
@@ -62,7 +50,7 @@ const imageVariants = {
     }
   },
   hover: {
-    scale: 1.1,
+    scale: 1.05,
     transition: {
       duration: 0.3,
       ease: "easeOut"
@@ -70,213 +58,207 @@ const imageVariants = {
   }
 };
 
-const textVariants = {
-  initial: { opacity: 0, x: -20 },
-  animate: { 
-    opacity: 1, 
-    x: 0,
-    transition: {
-      duration: 0.6,
-      delay: 0.2,
-      ease: "easeOut"
-    }
+const Gallery = ({ x }) => {
+  // Ensure x is an array and has data, and sort by order field (ascending)
+  const teamMembers = useMemo(() => {
+    if (!x || !Array.isArray(x)) return [];
+    const filtered = x.filter(member => member && member.name);
+    // Sort by order field (lower numbers first), then by createdAt as fallback
+    return filtered.sort((a, b) => {
+      const orderA = a.order !== undefined && a.order !== null ? a.order : 999;
+      const orderB = b.order !== undefined && b.order !== null ? b.order : 999;
+      if (orderA !== orderB) {
+        return orderA - orderB;
+      }
+      // If order is the same, sort by creation date
+      const dateA = new Date(a.createdAt || 0);
+      const dateB = new Date(b.createdAt || 0);
+      return dateA - dateB;
+    });
+  }, [x]);
+
+  if (!teamMembers || teamMembers.length === 0) {
+    return (
+      <div className='min-h-screen bg-gray-900 flex items-center justify-center pt-32 pb-16 px-4'>
+        <div className="text-center p-8 bg-gray-800/60 backdrop-blur-sm rounded-xl border border-amber-700/30 shadow-lg max-w-lg mx-auto">
+          <p className="text-xl font-semibold text-amber-300 mb-2">No Team Members Found</p>
+          <p className="text-gray-300">The team directory is currently empty.</p>
+        </div>
+      </div>
+    );
   }
-};
 
- const Gallery = ({ x, i }) => {
-  // console.log(x);
-  
-  let refer = useRef(null);
-  let { scrollYProgress } = useScroll({ 
-    target: refer, 
-    offset: ["start center", "end start"] 
-  });
-
-  let [ind, setInd] = useState(0);
-  let ind_fnx = useCallback((i) => { 
-    console.log("i got made");
-    setInd(x => x = i);
-  }, []);
-console.log(x[ind].image.url);
-
-  // Parallax transforms
-  
   return (
-    <motion.div 
-      ref={refer} 
-      className='h-full bg-transparent relative w-[100vw] mt-44 flex justify-around py-6 '
-      variants={containerVariants}
-      initial="initial"
-      whileInView="animate"
-     
-    >
-        <BgEffect/>
-      {/* Main Image Container */}
-      <motion.div 
-        className='relative h-[70vh] w-[50vw] border-2 border-[#d4af37] cursor-pointer overflow-hidden rounded-2xl shadow-2xl'
+    <div className='min-h-screen bg-gray-900 pt-32 pb-16 px-4 sm:px-6 lg:px-8 relative'>
+      <BgEffect />
       
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.3 }}
+      {/* Page Header */}
+      <motion.div 
+        className="text-center mb-12 relative z-10"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
       >
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={x[ind].id}
-            src={x[ind].image.url}
-            alt={x[ind].name}
-            className='h-full w-full object-cover'
-            variants={imageVariants}
-            initial="initial"
-            animate="animate"
-            exit={{ opacity: 0, scale:1}}
-            transition={{ duration: 0.5 }}
-          />
-        </AnimatePresence>
-        
-        {/* Gradient overlay */}
-        {/* <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent' /> */}
-        
-       
+        <motion.h1 
+          className="font-bold text-4xl sm:text-5xl lg:text-6xl mb-4 bg-gradient-to-r from-white via-amber-100 to-white bg-clip-text text-transparent"
+          animate={{ 
+            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+          }}
+          transition={{ 
+            duration: 3, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        >
+          Our Team
+        </motion.h1>
+        <motion.div 
+          className='w-24 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent rounded-full mx-auto'
+          initial={{ width: 0 }}
+          animate={{ width: 96 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        />
+        <motion.p 
+          className="mt-6 text-xl sm:text-2xl font-medium 
+             text-transparent bg-clip-text 
+             bg-gradient-to-r from-[#d4af37] to-amber-300"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
+          Meet the dedicated members of our society
+        </motion.p>
       </motion.div>
 
-      {/* Text Content */}
+      {/* Team Members Grid */}
       <motion.div 
-        className='text-center max-w-[20vw] flex flex-col items-center justify-center text-white' >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={x[ind].id}
-            variants={textVariants}
-            initial="initial"
-            animate="animate"
-            exit={{ opacity: 0, x: 20 }}
-            className='space-y-6'
-          >
-            <motion.h1 
-              className='font-bold text-4xl bg-gradient-to-r from-white via-amber-100 to-white bg-clip-text text-transparent'
-              animate={{ 
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-              }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-            >
-              {x[ind].name}
-            </motion.h1>
-            
-            <motion.p 
-              className='font-medium text-lg leading-relaxed text-gray-200'
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-            >
-              {x[ind].position}
-            </motion.p>
-            
-            {/* Decorative line */}
-            <motion.div 
-              className='w-16 h-1 bg-gradient-to-r from-[#d4af37] to-gray-200 rounded-full mx-auto'
-              initial={{ width: 0 }}
-              animate={{ width: 64 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            />
-          </motion.div>
-        </AnimatePresence>
-      </motion.div>
-
-      {/* Cards Container */}
-      <motion.div 
-        className='flex justify-around flex-wrap absolute left-[5vw] top-[80vh] max-w-[70vw] h-[20vh] gap-4'
-       
+        className="max-w-7xl mx-auto relative z-10"
         variants={containerVariants}
+        initial="initial"
+        animate="animate"
       >
-        {x.map((place, i) => {
-        
-       return    <Places_cards 
-            key={i}
-            ind_fnx={ind_fnx}
-            scroll={scrollYProgress}
-            i={i}
-            data={place}
-            isSelected={i === ind}
-          />
-        })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+          {teamMembers.map((member, index) => (
+            <TeamMemberCard 
+              key={member._id || member.id || index} 
+              member={member} 
+              index={index}
+            />
+          ))}
+        </div>
       </motion.div>
-
-      {/* Background particles */}
-     
-    </motion.div>
+    </div>
   );
 };
 
-const Places_cards = React.memo(({ i, data, scroll, ind_fnx, isSelected }) => {
-  const cardY = useTransform(scroll, [0, 1], [0, -50]);
+const TeamMemberCard = ({ member, index }) => {
+  // Handle different possible image structures
+  const imageUrl = member.image?.url || member.image || null;
+  const memberName = member.name || 'Team Member';
+  const memberPosition = member.position || 'Member';
+  const memberDescription = member.description || '';
 
-  
   return (
     <motion.div
-      className={`relative cursor-pointer group ${isSelected ? 'z-10' : 'z-0'}`}
+      className="group relative"
       variants={cardVariants}
       initial="initial"
       animate="animate"
       whileHover="hover"
-      whileTap="tap"
-      onClick={() => {
-        ind_fnx(i);
-        console.log("clicked");
-      }}
-      style={{ y: cardY }}
-      layout
     >
-      <motion.div 
-        className={`relative  h-[15vh] w-[15vw] rounded-xl overflow-hidden shadow-lg transition-all duration-300 `}
-        whileHover={{ 
-          boxShadow: "0 20px 40px rgba(139, 92, 246, 0.3)",
-        }}
-      >
-        <motion.img 
-          src={data.places_image} 
-          alt={data.name}
-          className='h-full w-full object-cover transition-transform duration-300'
-          variants={imageVariants}
-          whileHover="hover"
-        />
+      <div className="relative h-full bg-gradient-to-br from-gray-800/80 via-gray-900/90 to-gray-800/80 
+                      rounded-2xl overflow-hidden border border-amber-600/20 
+                      shadow-xl hover:shadow-2xl hover:shadow-amber-400/20 
+                      transition-all duration-500 backdrop-blur-sm">
         
-        {/* Overlay */}
-        <motion.div 
-          className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'
-        />
-        
-        {/* Selected indicator */}
-        <AnimatePresence>
-          {isSelected && (
-            <motion.div
-              className='absolute top-2 right-2 w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center'
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              exit={{ scale: 0, rotate: 180 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div 
-                className='w-2 h-2 bg-white rounded-full'
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              />
-            </motion.div>
+        {/* Ambient glow effect on hover */}
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-400/0 via-transparent to-amber-400/0 
+                        opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" />
+
+        {/* Image Container */}
+        <div className="relative h-64 sm:h-72 overflow-hidden bg-gray-800">
+          {imageUrl ? (
+            <motion.img
+              src={imageUrl}
+              alt={memberName}
+              className="w-full h-full object-cover"
+              variants={imageVariants}
+              initial="initial"
+              animate="animate"
+              whileHover="hover"
+              loading="lazy"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-800">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-amber-500/30 to-amber-700/30 
+                              flex items-center justify-center border-2 border-amber-500/50">
+                <span className="text-4xl font-bold text-amber-400/70">
+                  {memberName.charAt(0).toUpperCase()}
+                </span>
+              </div>
+            </div>
           )}
-        </AnimatePresence>
-        
-        {/* Title overlay on hover */}
-        <motion.div 
-          className='absolute bottom-2 left-2 right-2 text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300'
-          initial={{ y: 10 }}
-          animate={{ y: 0 }}
-        >
-          {data.name}
-        </motion.div>
-      </motion.div>
+          
+          {/* Gradient overlay at bottom of image */}
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent" />
+        </div>
+
+        {/* Content Section */}
+        <div className="p-6 space-y-3 relative z-10">
+          {/* Name */}
+          <motion.h3 
+            className="font-bold text-xl sm:text-2xl text-transparent bg-clip-text 
+                       bg-gradient-to-r from-[#d4af37] to-amber-300 line-clamp-2"
+            style={{ textShadow: '2px 2px 4px rgba(212,175,55,0.3)' }}
+          >
+            {memberName}
+          </motion.h3>
+          
+          {/* Position */}
+          <motion.div 
+            className="flex items-center gap-2"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 + index * 0.05, duration: 0.4 }}
+          >
+            <div className="w-1 h-6 bg-gradient-to-b from-[#d4af37] to-amber-500 rounded-full" />
+            <p 
+            className="font-semibold text-sm sm:text-base uppercase tracking-wide 
+                      text-transparent bg-clip-text 
+                      bg-gradient-to-r from-[#d4af37] to-amber-300"
+             >
+            {memberPosition}
+          </p>
+
+          </motion.div>
+
+          {/* Description */}
+          {memberDescription && (
+            <motion.p 
+              className="text-gray-400 text-sm leading-relaxed line-clamp-3 pt-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 + index * 0.05, duration: 0.4 }}
+            >
+              {memberDescription}
+            </motion.p>
+          )}
+
+          {/* Decorative line */}
+          <motion.div 
+            className="w-full h-px bg-gradient-to-r from-transparent via-amber-600/30 to-transparent mt-4"
+            initial={{ width: 0 }}
+            animate={{ width: '100%' }}
+            transition={{ delay: 0.4 + index * 0.05, duration: 0.5 }}
+          />
+        </div>
+
+        {/* Corner accent */}
+        <div className="absolute top-4 right-4 w-2 h-2 bg-amber-400/60 rounded-full opacity-0 
+                        group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
     </motion.div>
   );
-});
+};
 
-export default Gallery
+export default Gallery;

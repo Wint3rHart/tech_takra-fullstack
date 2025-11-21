@@ -66,6 +66,13 @@ if(!get.ok){throw new Error(conv.msg||`Error in ${type} from usePost`)};
 return conv}
 finally{clearTimeout(timer)};}
 case "delete_team":{ url=`http://localhost:4600/api/team/delete/${data.data_id}`;
+try{
+const get=await fetch(url,{method:method,headers:{"authorization":`Bearer ${access}`},signal});
+const conv=await get.json();
+if(!get.ok){throw new Error(conv.msg||`Error in ${type} from usePost`)};
+return conv}
+finally{clearTimeout(timer);}
+break;
 }
 
 case "create_notification":{ url=`http://localhost:4600/api/announcement/create`;

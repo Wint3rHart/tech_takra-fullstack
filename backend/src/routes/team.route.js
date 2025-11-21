@@ -5,10 +5,10 @@ import { isLoggedIn, isSuperAdmin } from "../middlewares/auth.js"; // Import the
 
 const router = Router();
 
-router.post("/create", isLoggedIn, upload.single("image"), createTeamMember); // Protect createTeamMember
+router.post("/create",upload.single("image"), createTeamMember); // Protect createTeamMember
 router.get("/", getAllTeamMembers); // Public route
 router.get("/:id", getSingleTeamMember); // Public route
-router.patch("/update/:id", isLoggedIn, upload.single("image"), updateTeamMember); // Protect updateTeamMember
-router.delete("/delete/:id", isLoggedIn, isSuperAdmin, deleteTeamMember); // Protect deleteTeamMember
+router.patch("/update/:id",  upload.single("image"), updateTeamMember); // Protect updateTeamMember
+router.delete("/delete/:id",  deleteTeamMember); // Protect deleteTeamMember
 
 export default router;

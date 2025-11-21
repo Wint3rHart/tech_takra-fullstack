@@ -7,6 +7,6 @@ const router = Router();
 router.post("/", submitForm); // Protect submitForm
 router.get("/", getAllForms); // Public route
 router.get("/:id", getSingleForm); // Public route
-router.delete("/:id", isLoggedIn, deleteForm); // Protect deleteForm
+router.delete("/:id", deleteForm); // Protect deleteForm
 
 export default router;
