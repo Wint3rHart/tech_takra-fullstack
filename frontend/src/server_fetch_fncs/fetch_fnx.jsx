@@ -3,7 +3,7 @@ export const get_fetch = async (route, options, x, y, z, cache_option) => {
   let signal = aborter.signal;
   let timer = setTimeout(() => {
     aborter.abort("timed out");
-  }, 10000);
+  }, 900000);
 
   try {
     let url;

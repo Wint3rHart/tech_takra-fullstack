@@ -51,7 +51,7 @@ export const serverAction = async (type, method, data) => {
 
   const timer = setTimeout(() => {
     abort.abort("Too Long");
-  }, 10000);
+  }, 900000);
 
   let url = "";
   let body_data;
