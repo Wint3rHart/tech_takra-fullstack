@@ -16,7 +16,7 @@ try {
   switch (route) {
     
     case "events":{url=`http://localhost:4600/api/events/${options}`;break;};
-    
+   
     case "team":{url=`http://localhost:4600/api/team`;break;};
     
     

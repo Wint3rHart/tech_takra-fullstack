@@ -14,19 +14,16 @@ import FAQs from "@/client_components/general_comps/faq";
 import Footer from "@/client_components/general_comps/footer";
 import { Cinzel, Work_Sans } from "next/font/google";
 import BgEffect from "@/util_comps/bg_effect";
+import BgEffectLite from "@/util_comps/bg_effect_lite";
 import Link from "next/link";
 
-// import Places from "@/client_components/places_parallax";
-const tangerine=Cinzel({subsets: ["latin"],
-  weight: ["400", "700"],})
-const cormotant=Work_Sans({subsets: ["latin"],
-  weight: ["400", "700"],})
+
 
 export default async function Home() {
   console.log("home rendering");
   
-let   places_parallax= get_fetch("places_parallax");
-  let  cities_details= get_fetch("cities_cards");
+let   past_events= get_fetch("events","past");
+  let  upcoming_events= get_fetch("events","upcoming");
   // let top_hotels=get_fetch("top_hotels");
 
 
@@ -59,7 +56,7 @@ let   places_parallax= get_fetch("places_parallax");
       
       {/* About Us Section - SEO content rendered on server */}
       <section className="text-center relative flex flex-col items-center justify-center items-evenly min-h-screen md:h-[100vh] text-white mt-20 md:mt-36">
-<BgEffect/>
+<BgEffectLite/>
         <TextAppear styling={` font-playfair drop-shadow-[2px_2px_2px_rgba(255,255,255,0.1)]  text-6xl text-[#d4af37] font-semibold `}>
         
             WHO ARE WE <span className="text-stone-300">?</span>
@@ -75,46 +72,51 @@ let   places_parallax= get_fetch("places_parallax");
        
       </section>
 
- <section className="w-full h-full mt-20 md:mt-36 relative rounded-lg bg-gray-700 ">
+ <section className="w-full h-full mt-20 md:mt-36 relative rounded-lg bg-gray-700 border border-amber-400/25 shadow-sm">
       {/* Suspense fallback could be used here if needed:
           <Suspense fallback={<p className="text-white font-black">Loading...</p>}>
       */}
       <ErrorBoundary FallbackComponent={MyErrorFallback}>
-        <BgEffect/>
-        <Places data={places_parallax}/>
+        <BgEffectLite/>
+        <Places data={past_events}/>
       </ErrorBoundary>
     </section>
-    <section className="min-h-screen  h-full w-full relative w-full hide-scrollbar mt-20 md:mt-36">
-      
+    <section className="min-h-screen  h-full w-[100vw] relative w-full hide-scrollbar mt-20 md:mt-36">
+      <BgEffectLite/>
       <ErrorBoundary FallbackComponent={MyErrorFallback}>
          <TextAppear_3>
-      <p className="text-stone-300 text-3xl sm:text-6xl m-auto [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">
-        OFFERED CITIES </p>
-        <BgEffect/>
+      <p className="font-playfair text-stone-300 text-3xl sm:text-6xl m-auto [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">
+       Upcoming Events </p>
+        <BgEffectLite/>
      </TextAppear_3>
-      <City_Ref_wrapper data={cities_details}/>
+      <City_Ref_wrapper data={upcoming_events}/>
       </ErrorBoundary>
      </section>
 
 
 
-<section className="max-h-[100vh] h-full mt-24 custom-grid-background flex flex-col items-center justify-center relative w-[98vw]  text-4xl text-white w-screen">
+<section className="overflow-hidden rounded-xl group relative w-full h-[70vh] sm:h-[80vh] md:h-[100vh] text-white font-black text-4xl sm:text-6xl lg:text-7xl bg-gray-900 bg-[url('/ravil-1024x683-1.jpeg')] bg-blend-overlay bg-no-repeat bg-cover bg-bottom [mask-image:linear-gradient(180deg,black,black,rgb(0,0,0,7),black,black,rgb(0,0,0,.8),rgb(0,0,0,.4),transparent)] border-2 border-amber-400/45">
+  <BgEffectLite/>
+  {/* subtle dark blur overlay to make BG image pop while keeping detail */}
+  <div className="absolute inset-0 rounded-xl bg-black/40 backdrop-blur-sm pointer-events-none z-10" />
   <ErrorBoundary FallbackComponent={MyErrorFallback}>
-<div  className={`h-[100vh] text-center w-full   flex flex-col justify-center items-center font-cinzel `}> 
+<div  className={`h-[100vh] text-center w-full   flex flex-col justify-center items-center font-cinzel relative z-20 `}> 
+  {/* <BgEffect/> */}
     <TextAppear_2>
-      <p className="text-stone-300 text-8xl [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">Join</p>
-       <p className="text-[#d4af37] text-8xl drop-shadow-[2px_2px_2px_rgba(255,255,255,0.2)]">Us</p>
-       <p className="text-stone-300 text-8xl [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">Now</p>
+      <p className="font-cinzel text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-200 drop-shadow-[0_12px_40px_rgba(212,175,55,0.45)] [text-shadow:0_8px_40px_rgba(212,175,55,0.28)]">Join</p>
+      <p className="font-cinzel text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 drop-shadow-[0_14px_48px_rgba(212,175,55,0.6)] [text-shadow:0_10px_50px_rgba(212,175,55,0.36)]">Us</p>
+      <p className="font-playfair text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-350 to-amber-300 drop-shadow-[0_10px_36px_rgba(212,175,55,0.42)] [text-shadow:0_8px_44px_rgba(212,175,55,0.3)]">Now</p>
 
-        </TextAppear_2>
+    </TextAppear_2>
+        <BgEffect/>
     </div> 
 
   </ErrorBoundary>
 </section>
 
 <section className="flex flex-col items-center mt-20 md:mt-36 relative justify-center text-center px-4 sm:px-6">
-  <BgEffect/>
-  <FAQs/>
+  <BgEffectLite/>
+  
   <Footer/>
 </section>
 </div>

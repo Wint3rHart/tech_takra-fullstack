@@ -49,15 +49,28 @@ export const TextAppear_2=({children})=>{
 let Comp=motion[children?.[0]?.type];
 
 
-    let {parent_One_after_one,child_one_after_one}=UseVariants();
+    let {parent_One_after_one,child_one_after_one,childVar}=UseVariants();
 // console.log(children);
 
 return (
-<motion.div className=' font-bold text-8xl  flex flex-col justify-center items-center' variants={parent_One_after_one} initial="initial" whileInView="animate" viewport={{amount:.8}}>
+<motion.div className='font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl flex flex-col justify-center items-center gap-2' variants={parent_One_after_one} initial="initial" whileInView="animate" viewport={{amount:.8}}>
 {
    React.Children.toArray(children).map((x,i)=>{
-    ;return    <Comp key={i} className={x.props.className} variants={child_one_after_one}>{x.props.children}</Comp>})
-}<motion.p variants={child_one_after_one} onClick={()=>{router.push("/signUp")}}  href='/signUp'  className="text-stone-300 z-90 border rounded-xl mt-2 border-amber-400 hover:scale-101 z-90 text-6xl [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">Register</motion.p>
+    return <Comp key={i} className={x.props.className} variants={childVar}>{x.props.children}</Comp>
+   })}
+
+  <motion.button
+    variants={childVar}
+    onClick={() => { router.push('/signUp'); }}
+    type="button"
+    className="mt-4 z-50 cursor-pointer px-6 py-3 bg-gradient-to-r from-amber-400 via-amber-300 to-[#d4af37] text-black font-semibold rounded-xl transition-transform duration-200 text-base sm:text-lg md:text-2xl shadow-[0_8px_30px_rgba(212,175,55,0.28)] hover:shadow-[0_12px_40px_rgba(212,175,55,0.45)] hover:scale-105 ring-1 ring-amber-300/20"
+    style={{
+      boxShadow: '0 8px 30px rgba(212,175,55,0.22), inset 0 -2px 8px rgba(0,0,0,0.15)'
+    }}
+  >
+    <span className="relative z-10">Register</span>
+  </motion.button>
+
 </motion.div>
 
 

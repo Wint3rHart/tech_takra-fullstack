@@ -1,9 +1,13 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { use, useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-export const Places = () => {
+export const Places = ({data}) => {
+    
+    let past_events=use(data);
+    console.log(past_events);
+    
     const demoData = [
         [
             { city_name: 'Seoul', name: 'Gyeongbokgung', description: 'Historic palace with scenic gardens and cultural performances.' },

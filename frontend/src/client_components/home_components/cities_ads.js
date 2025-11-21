@@ -15,7 +15,7 @@ let {scrollYProgress}=useScroll({target:ref,offset:["start center","center start
 return (
 
 
-<div ref={ref} style={{perspective:"1800px"}} className='px-4 w-full h-auto lg:h-[120vh]'>
+<div ref={ref} style={{perspective:"1800px"}} className='px-6 w-full h-auto lg:h-[120vh]'>
 <CitiesAd scroll={scrollYProgress} data={get} />
 </div>
 
@@ -25,7 +25,9 @@ return (
 
 
 const CitiesAd = ({ scroll, data }) => {
-  const cards = data?.data ?? [];
+  console.log(data);
+  
+  const cards = data??  [];
 
   const [isMobile, setIsMobile] = useState(false);
 
