@@ -2,7 +2,8 @@ import announcement from "../models/announcements.js";
 import mongoose from "mongoose";
 export const getAllAnnouncements = async (req, res) => {
     try {
-        const announcements = await announcement.find();
+        // Sort by createdAt descending (newest first), then by updatedAt as fallback
+        const announcements = await announcement.find().sort({ createdAt: -1, updatedAt: -1 });
         if(!announcements) {
             return res.status(404).json({ msg: "No announcements found" });
         }

@@ -4,7 +4,7 @@ import { uploadToCloudinary } from "../utils/uploadToCloudinary.js";
 import {v2 as cloudinary} from "cloudinary";
 export const createTeamMember = async (req, res) => {
     try {
-        const { name, position, description } = req.body;
+        const { name, position, description, order } = req.body;
         let imageUrl = null;
         if (req.file) {
             const result  = await uploadToCloudinary(req.file.buffer, "team");
@@ -13,11 +13,17 @@ export const createTeamMember = async (req, res) => {
                 public_id: result.public_id
             }
         }
+        // Parse order as number, default to 999 if not provided
+        const orderValue = order !== undefined && order !== null && order !== '' 
+            ? parseInt(order, 10) 
+            : 999;
+        
         const newTeamMember = await teamMember.create({
             name,
             image: imageUrl,
             position,
             description,
+            order: orderValue,
         });
         res.status(201).json(newTeamMember);
     } catch (error) {
@@ -26,7 +32,8 @@ export const createTeamMember = async (req, res) => {
 };
 export const getAllTeamMembers = async (req, res) => {
     try {
-        const allTeamMembers = await teamMember.find({});
+        // Sort by order field (ascending - lower numbers first), then by createdAt as fallback
+        const allTeamMembers = await teamMember.find({}).sort({ order: 1, createdAt: 1 });
         if(!allTeamMembers) {
             res.status(404).json({ msg: "No team members found" });
         }
@@ -84,9 +91,14 @@ export const updateTeamMember = async (req, res) => {
       return res.status(400).json({ msg: "Invalid team member ID" });
     }
 
-    const { name, position, description } = req.body;
+    const { name, position, description, order } = req.body;
 
     let updateData = { name, position, description };
+
+    // Handle order field - parse as number if provided
+    if (order !== undefined && order !== null && order !== '') {
+      updateData.order = parseInt(order, 10);
+    }
 
     if (req.file) {
       // Find existing member to delete old image
