@@ -57,7 +57,7 @@ const VerticalCard = ({ data, index }) => {
         {/* Date badge */}
         <div className="absolute top-4 right-4 z-20">
           <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-600/20 border border-amber-500/30 backdrop-blur-sm">
-            <p className="text-xs font-semibold text-amber-300 font-cinzel">
+            <p className="text-xs font-semibold text-amber-300 font-inter">
               {formattedDate}
             </p>
           </div>

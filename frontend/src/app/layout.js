@@ -1,11 +1,8 @@
 import {
   Geist,
   Geist_Mono,
-  Tangerine,
   Inter,
-  Cormorant_Garamond,
-  Cinzel,
-  Playfair_Display,
+  Poppins,
 } from "next/font/google";
 
 import "./globals.css";
@@ -25,27 +22,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Inter for headings (700-900) and body (400-500)
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "700", "800", "900"],
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+// Poppins for sub-headings (500-700)
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const cinzel = Cinzel({
-  variable: "--font-cinzel",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["500", "600", "700"],
 });
 
 
@@ -62,7 +50,7 @@ console.log("root layout rendered");
   return (
     <html lang="en">
       <body
-        className={`${cormorant.variable} ${cinzel.variable} ${playfair.variable} ${inter.variable} antialiased hide-scrollbar flex flex-col justify-center bg-gray-900 relative  max-w-screen min-h-screen   z-10 scrollbar-hide`}
+        className={`${inter.variable} ${poppins.variable} antialiased hide-scrollbar flex flex-col justify-center bg-gray-900 relative  max-w-screen min-h-screen   z-10 scrollbar-hide`}
       > 
       
     <div className="absolute inset-0 pointer-events-none z-0 

@@ -162,7 +162,7 @@ const PlaceCard = ({ item, size = "desktop" }) => {
                         <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-600/20 border border-amber-500/30 backdrop-blur-sm">
                             <div className="flex items-center gap-2">
                                 <span className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
-                                <p className="text-xs font-semibold text-amber-300 font-cinzel">{item.city_name}</p>
+                                <p className="text-xs font-semibold text-amber-300 font-inter">{item.city_name}</p>
                             </div>
                         </div>
                     </div>

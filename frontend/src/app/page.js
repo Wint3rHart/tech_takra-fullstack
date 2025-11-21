@@ -12,7 +12,6 @@ import  { TopHotels, Wrap } from "@/client_components/home_components/top_hotels
 import WhyChooseUs from "@/client_components/general_comps/why_choose_us";
 import FAQs from "@/client_components/general_comps/faq";
 import Footer from "@/client_components/general_comps/footer";
-import { Cinzel, Work_Sans } from "next/font/google";
 import BgEffect from "@/util_comps/bg_effect";
 import BgEffectLite from "@/util_comps/bg_effect_lite";
 import Link from "next/link";
@@ -57,7 +56,7 @@ let   past_events= get_fetch("events","past");
       {/* About Us Section - SEO content rendered on server */}
       <section className="text-center relative flex flex-col items-center justify-center items-evenly min-h-screen md:h-[100vh] text-white mt-20 md:mt-36">
 <BgEffectLite/>
-        <TextAppear styling={` text-4xl sm:text-5xl lg:text-6xl m-auto max-w-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 tracking-wide uppercase drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)] font-cinzel`}>
+        <TextAppear styling={` text-4xl sm:text-5xl lg:text-6xl m-auto max-w-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 tracking-wide uppercase drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)] font-inter`}>
         
             WHO ARE WE <span className="text-stone-300">?</span>
           </TextAppear>
@@ -82,7 +81,7 @@ let   past_events= get_fetch("events","past");
       <BgEffectLite/>
       <ErrorBoundary FallbackComponent={MyErrorFallback}>
          <TextAppear_3>
-      <p className="font-playfair text-stone-300 text-3xl sm:text-6xl m-auto [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">
+      <p className="font-poppins text-stone-300 text-3xl sm:text-6xl m-auto [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">
        Upcoming Events </p>
         <BgEffectLite/>
      </TextAppear_3>
@@ -97,12 +96,12 @@ let   past_events= get_fetch("events","past");
   {/* subtle dark blur overlay to make BG image pop while keeping detail */}
   <div className="absolute inset-0 rounded-xl bg-black/40 backdrop-blur-sm pointer-events-none z-10" />
   <ErrorBoundary FallbackComponent={MyErrorFallback}>
-<div  className={`h-[100vh] text-center w-full   flex flex-col justify-center items-center font-cinzel relative z-20 `}> 
+<div  className={`h-[100vh] text-center w-full   flex flex-col justify-center items-center font-inter relative z-20 `}> 
   {/* <BgEffect/> */}
     <TextAppear_2>
-      <p className="font-cinzel text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-200 drop-shadow-[0_12px_40px_rgba(212,175,55,0.45)] [text-shadow:0_8px_40px_rgba(212,175,55,0.28)]">Join</p>
-      <p className="font-cinzel text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 drop-shadow-[0_14px_48px_rgba(212,175,55,0.6)] [text-shadow:0_10px_50px_rgba(212,175,55,0.36)]">Us</p>
-      <p className="font-playfair text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-350 to-amber-300 drop-shadow-[0_10px_36px_rgba(212,175,55,0.42)] [text-shadow:0_8px_44px_rgba(212,175,55,0.3)]">Now</p>
+      <p className="font-inter text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-200 drop-shadow-[0_12px_40px_rgba(212,175,55,0.45)] [text-shadow:0_8px_40px_rgba(212,175,55,0.28)]">Join</p>
+      <p className="font-inter text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 drop-shadow-[0_14px_48px_rgba(212,175,55,0.6)] [text-shadow:0_10px_50px_rgba(212,175,55,0.36)]">Us</p>
+      <p className="font-poppins text-8xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-350 to-amber-300 drop-shadow-[0_10px_36px_rgba(212,175,55,0.42)] [text-shadow:0_8px_44px_rgba(212,175,55,0.3)]">Now</p>
 
     </TextAppear_2>
         <BgEffect/>

@@ -42,7 +42,7 @@ export const Form = ({access}) => {
         <div className="flex flex-wrap items-start gap-6 justify-between border-b border-amber-600/20 pb-6">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold">Create Admin</p>
-            <h3 className="text-2xl font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
+            <h3 className="text-2xl font-inter text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
               New Admin Account
             </h3>
           </div>
@@ -57,11 +57,11 @@ export const Form = ({access}) => {
               required: "Name is required",
               minLength: { value: 3, message: "At least 3 characters" },
             })}
-            className="w-full text-xl font-bold text-gray-100 bg-transparent border-none outline-none font-cinzel"
+            className="w-full text-xl font-bold text-gray-100 bg-transparent border-none outline-none font-inter"
             placeholder="Enter admin name"
           />
           {errors.name && (
-            <p className="mt-2 text-xs text-red-400 font-playfair">{errors.name.message}</p>
+            <p className="mt-2 text-xs text-red-400 font-poppins">{errors.name.message}</p>
           )}
         </div>
 
@@ -78,11 +78,11 @@ export const Form = ({access}) => {
                   message: "Invalid email format",
                 },
               })}
-              className="w-full text-lg text-gray-200 font-playfair bg-transparent border-none outline-none"
+              className="w-full text-lg text-gray-200 font-poppins bg-transparent border-none outline-none"
               placeholder="admin@example.com"
             />
             {errors.email && (
-              <p className="mt-2 text-xs text-red-400 font-playfair">{errors.email.message}</p>
+              <p className="mt-2 text-xs text-red-400 font-poppins">{errors.email.message}</p>
             )}
           </div>
           <div className="bg-gray-800/60 border border-amber-600/20 rounded-2xl p-4">
@@ -93,11 +93,11 @@ export const Form = ({access}) => {
                 required: "Password is required",
                 minLength: { value: 6, message: "At least 6 characters" },
               })}
-              className="w-full text-lg text-gray-200 font-playfair bg-transparent border-none outline-none"
+              className="w-full text-lg text-gray-200 font-poppins bg-transparent border-none outline-none"
               placeholder="Enter password"
             />
             {errors.password && (
-              <p className="mt-2 text-xs text-red-400 font-playfair">{errors.password.message}</p>
+              <p className="mt-2 text-xs text-red-400 font-poppins">{errors.password.message}</p>
             )}
           </div>
         </div>
@@ -115,7 +115,7 @@ export const Form = ({access}) => {
               type="submit"
               disabled={!isDirty}
               className={`
-                w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-cinzel text-gray-900
+                w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-inter text-gray-900
                 bg-gradient-to-r from-[#d4af37] to-amber-500
                 hover:from-amber-500 hover:to-[#d4af37]
                 shadow-lg hover:shadow-2xl hover:shadow-amber-400/30

@@ -100,7 +100,7 @@ const AnnouncementCard = ({ announcement, index }) => {
           <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10">
             <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-600/20 
                           border border-amber-500/30 backdrop-blur-sm">
-              <p className="text-xs font-semibold text-amber-300 font-cinzel">
+              <p className="text-xs font-semibold text-amber-300 font-inter">
                 {formatDate(announcementDate)}
               </p>
             </div>
@@ -111,7 +111,7 @@ const AnnouncementCard = ({ announcement, index }) => {
         <div className="relative z-10">
           {/* Title */}
           <motion.h3 
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold font-cinzel 
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold font-inter 
                        text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-300
                        mb-4 pr-24 sm:pr-32 leading-tight
                        drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]"
@@ -126,7 +126,7 @@ const AnnouncementCard = ({ announcement, index }) => {
           {/* Description */}
           <motion.p 
             className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed 
-                       font-playfair whitespace-pre-wrap"
+                       font-poppins whitespace-pre-wrap"
           >
             {announcementDescription}
           </motion.p>
@@ -164,8 +164,8 @@ const UpdatesGallery = ({ announcements }) => {
     return (
       <div className='min-h-screen flex items-center justify-center pt-32 pb-16 px-4'>
         <div className="text-center p-8 bg-gray-800/60 backdrop-blur-sm rounded-xl border border-amber-700/30 shadow-lg max-w-lg mx-auto">
-          <p className="text-xl font-semibold text-amber-300 mb-2 font-cinzel">No Announcements Found</p>
-          <p className="text-gray-300 font-playfair">There are no updates available at this time.</p>
+          <p className="text-xl font-semibold text-amber-300 mb-2 font-inter">No Announcements Found</p>
+          <p className="text-gray-300 font-poppins">There are no updates available at this time.</p>
         </div>
       </div>
     );
@@ -180,7 +180,7 @@ const UpdatesGallery = ({ announcements }) => {
       <div className="max-w-4xl mx-auto mb-16 text-center relative z-10">
         <motion.h1 
           style={{ y }}
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold font-cinzel mb-6
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold font-inter mb-6
                      text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-amber-200 to-[#d4af37]
                      drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)]"
           animate={{ 
@@ -203,7 +203,7 @@ const UpdatesGallery = ({ announcements }) => {
         />
 
         <motion.p 
-          className="text-gray-400 text-lg sm:text-xl font-playfair"
+          className="text-gray-400 text-lg sm:text-xl font-poppins"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}

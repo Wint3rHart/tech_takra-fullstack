@@ -88,15 +88,15 @@ const Cards = ({ data, i, access, currentUserId }) => {
         {/* Header */}
         <div className="flex flex-wrap items-start gap-6 justify-between border-b border-amber-600/20 pb-6">
           <div className="flex items-center gap-4">
-            <div className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 rounded-2xl font-cinzel font-black shadow-lg shadow-amber-400/30 border border-amber-600/40">
+            <div className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 rounded-2xl font-inter font-black shadow-lg shadow-amber-400/30 border border-amber-600/40">
               #{String(i + 1).padStart(2, "0")}
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold">Admin</p>
-              <h3 className="text-2xl font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
+              <h3 className="text-2xl font-inter text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
                 {data?.name || "Unnamed Admin"}
               </h3>
-              <p className="text-sm text-gray-400 font-playfair">{data?.role || "No role"}</p>
+              <p className="text-sm text-gray-400 font-poppins">{data?.role || "No role"}</p>
             </div>
           </div>
           <div className="text-right">
@@ -113,7 +113,7 @@ const Cards = ({ data, i, access, currentUserId }) => {
               type="email"
               {...register("email")}
               disabled={true}
-              className="w-full text-lg text-gray-200 font-playfair bg-transparent border-none outline-none"
+              className="w-full text-lg text-gray-200 font-poppins bg-transparent border-none outline-none"
             />
           </div>
           <div className="bg-gray-800/60 border border-amber-600/20 rounded-2xl p-4">
@@ -122,7 +122,7 @@ const Cards = ({ data, i, access, currentUserId }) => {
               type="text"
               {...register("role")}
               disabled={true}
-              className="w-full text-lg text-gray-200 font-playfair bg-transparent border-none outline-none"
+              className="w-full text-lg text-gray-200 font-poppins bg-transparent border-none outline-none"
             />
           </div>
         </div>
@@ -134,7 +134,7 @@ const Cards = ({ data, i, access, currentUserId }) => {
             type="text"
             {...register("name")}
             disabled={true}
-            className="w-full text-xl font-bold text-gray-100 bg-transparent border-none outline-none font-cinzel"
+            className="w-full text-xl font-bold text-gray-100 bg-transparent border-none outline-none font-inter"
           />
         </div>
 
@@ -149,7 +149,7 @@ const Cards = ({ data, i, access, currentUserId }) => {
                   setShowPasswordChange(!showPasswordChange);
                   resetPasswordForm({ ...defaultValues, oldPassword: "", newPassword: "", confirmPassword: "" });
                 }}
-                className="px-4 py-2 rounded-lg font-bold font-cinzel text-sm
+                className="px-4 py-2 rounded-lg font-bold font-inter text-sm
                            bg-gray-700 text-gray-300
                            hover:bg-gray-600 hover:scale-105 transition-all duration-300"
               >
@@ -193,7 +193,7 @@ const Cards = ({ data, i, access, currentUserId }) => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full px-4 py-2 rounded-lg font-bold font-cinzel text-sm
+                  className="w-full px-4 py-2 rounded-lg font-bold font-inter text-sm
                              bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900
                              hover:scale-105 transition-all duration-300"
                 >
@@ -216,7 +216,7 @@ const Cards = ({ data, i, access, currentUserId }) => {
             <button
               type="button"
               onClick={() => del_fnx(data._id)}
-              className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-cinzel text-gray-900
+              className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-inter text-gray-900
                          bg-gradient-to-r from-red-500 to-red-700
                          hover:from-red-600 hover:to-red-800
                          shadow-lg hover:shadow-2xl hover:shadow-red-400/30

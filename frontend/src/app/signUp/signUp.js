@@ -47,11 +47,11 @@ const SignUp = () => {
           
           {/* Header */}
           <div className="text-center pt-10 pb-6 px-6">
-            <h1 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 tracking-wide uppercase drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)] font-cinzel">
+            <h1 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 tracking-wide uppercase drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)] font-inter">
               Login
             </h1>
             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent rounded-full mx-auto mt-4" />
-            <p className="mt-4 text-gray-400 font-playfair">
+            <p className="mt-4 text-gray-400 font-poppins">
               Welcome back to our community
             </p>
           </div>

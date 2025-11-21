@@ -90,12 +90,12 @@ useEffect(()=>{console.log("msg from postings",msg)
         {/* Header */}
         <div className="flex flex-wrap items-start gap-6 justify-between border-b border-amber-600/20 pb-6">
           <div className="flex items-center gap-4">
-            <div className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 rounded-2xl font-cinzel font-black shadow-lg shadow-amber-400/30 border border-amber-600/40">
+            <div className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 rounded-2xl font-inter font-black shadow-lg shadow-amber-400/30 border border-amber-600/40">
               #{String(i + 1).padStart(2,"0")}
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold">Event</p>
-              <h3 className="text-2xl font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
+              <h3 className="text-2xl font-inter text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
                 {data?.title || data?.name || "Untitled Event"}
               </h3>
             </div>
@@ -113,7 +113,7 @@ useEffect(()=>{console.log("msg from postings",msg)
             <input
               type="text"
               {...register("location")}
-              className="w-full text-lg text-gray-200 font-playfair bg-transparent border-none outline-none"
+              className="w-full text-lg text-gray-200 font-poppins bg-transparent border-none outline-none"
               placeholder="Enter location"
             />
           </div>
@@ -122,7 +122,7 @@ useEffect(()=>{console.log("msg from postings",msg)
             <input
               type="text"
               {...register("date")}
-              className="w-full text-lg text-gray-200 font-playfair bg-transparent border-none outline-none"
+              className="w-full text-lg text-gray-200 font-poppins bg-transparent border-none outline-none"
               placeholder="Enter date"
             />
           </div>
@@ -134,7 +134,7 @@ useEffect(()=>{console.log("msg from postings",msg)
             <input
               type="text"
               {...register("category")}
-              className="w-full text-base text-gray-200 font-playfair bg-transparent border-none outline-none"
+              className="w-full text-base text-gray-200 font-poppins bg-transparent border-none outline-none"
               placeholder="Enter category"
             />
           </div>
@@ -149,7 +149,7 @@ useEffect(()=>{console.log("msg from postings",msg)
                          border border-amber-600/20 focus:border-amber-500/40 
                          outline-none transition-all duration-300
                          file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
-                         file:text-sm file:font-semibold file:font-cinzel
+                         file:text-sm file:font-semibold file:font-inter
                          file:bg-gradient-to-r file:from-[#d4af37] file:to-amber-500
                          file:text-gray-900 file:cursor-pointer
                          hover:file:scale-105 file:transition-all file:duration-300"
@@ -163,7 +163,7 @@ useEffect(()=>{console.log("msg from postings",msg)
           <input
             type="text"
             {...register("title")}
-            className="w-full text-xl font-bold text-gray-100 bg-transparent border-none outline-none font-cinzel"
+            className="w-full text-xl font-bold text-gray-100 bg-transparent border-none outline-none font-inter"
             placeholder="Enter event title"
           />
         </div>
@@ -173,7 +173,7 @@ useEffect(()=>{console.log("msg from postings",msg)
           <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold mb-2">Description</p>
           <textarea
             {...register("description")}
-            className="w-full text-base text-gray-300 bg-transparent border-none outline-none font-playfair
+            className="w-full text-base text-gray-300 bg-transparent border-none outline-none font-poppins
                        min-h-[120px] resize-y placeholder:text-gray-600"
             placeholder="Enter event description..."
           />
@@ -189,7 +189,7 @@ useEffect(()=>{console.log("msg from postings",msg)
                   key={idx}
                   defaultValue={item}
                   {...register(`featured.${idx}`)}
-                  className="text-sm text-gray-300 font-playfair
+                  className="text-sm text-gray-300 font-poppins
                              bg-gray-800/50 rounded-lg border border-gray-700 
                              focus:border-amber-500/40 outline-none 
                              transition-all duration-300 px-3 py-2"
@@ -212,7 +212,7 @@ useEffect(()=>{console.log("msg from postings",msg)
               type="submit"
               disabled={!canUpdate}
               className={`
-                w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-cinzel text-gray-900
+                w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-inter text-gray-900
                 bg-gradient-to-r from-[#d4af37] to-amber-500
                 hover:from-amber-500 hover:to-[#d4af37]
                 shadow-lg hover:shadow-2xl hover:shadow-amber-400/30
@@ -232,7 +232,7 @@ useEffect(()=>{console.log("msg from postings",msg)
               <button
                 type="button"
                 onClick={() => del_fnx(data._id)}
-                className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-cinzel text-gray-900
+                className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-inter text-gray-900
                            bg-gradient-to-r from-red-500 to-red-700
                            hover:from-red-600 hover:to-red-800
                            shadow-lg hover:shadow-2xl hover:shadow-red-400/30

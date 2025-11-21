@@ -16,12 +16,12 @@ export default async function HotelPage({ searchParams }) {
 
         {/* Page header - styled like team/updates pages */}
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h1 className='text-4xl sm:text-5xl lg:text-6xl m-auto max-w-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 tracking-wide uppercase drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)] font-cinzel'>
+          <h1 className='text-4xl sm:text-5xl lg:text-6xl m-auto max-w-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 tracking-wide uppercase drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)] font-inter'>
             {((type || '').toString().toUpperCase() === 'UPCOMING') ? 'Upcoming Events' : 'Past Events'}
           </h1>
 
           <div className='w-32 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent rounded-full mx-auto mt-4' />
-          <p className="mt-6 text-lg sm:text-xl text-gray-400 font-playfair">
+          <p className="mt-6 text-lg sm:text-xl text-gray-400 font-poppins">
             Browse our curated events — beautiful venues, thoughtful experiences.
           </p>
         </div>
