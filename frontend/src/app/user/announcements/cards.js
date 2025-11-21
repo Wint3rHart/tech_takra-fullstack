@@ -54,159 +54,141 @@ const Cards = ({ data, i, access }) => {
     setShowDeleteConfirm(false);
   };
 
-  const formatDate = (dateString) => {
-    if (!dateString) return 'Date not available';
-    const date = new Date(dateString);
-    const options = { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    };
-    return date.toLocaleDateString('en-US', options);
-  };
+  const formattedDate = data?.createdAt ? new Date(data.createdAt).toLocaleString("en-GB",{
+    day:"2-digit",
+    month:"short",
+    year:"numeric",
+    hour:"2-digit",
+    minute:"2-digit"
+  }) : "Not available";
+
+  const shortId = data?._id ? `${data._id.slice(0, 12)}...` : "N/A";
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="relative flex flex-col bg-gradient-to-br from-gray-800/90 via-gray-900/90 to-gray-800/90 
-                 rounded-3xl shadow-2xl border border-amber-600/20 
-                 hover:shadow-3xl hover:shadow-amber-400/10 transition-all duration-500
-                 p-6 sm:p-8 lg:p-10 group overflow-hidden"
-    >
-      {/* Ambient Light Effect */}
-      <div className="absolute w-full inset-0 bg-gradient-to-r from-transparent via-amber-400/5 to-transparent 
-                      -translate-x-full group-hover:translate-x-full transition-transform duration-2000 rounded-3xl" />
+    <article className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl border border-amber-600/20 shadow-2xl shadow-black/40 overflow-hidden relative group">
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-700"></div>
 
-      {/* Background Particles */}
-      <div className="absolute top-8 left-12 w-1 h-1 bg-amber-400/80 rounded-full animate-ping" />
-      <div className="absolute bottom-12 right-16 w-1.5 h-1.5 bg-amber-300/60 rounded-full animate-pulse" />
-
-      {/* Form Header */}
-      <div className="mb-6 relative z-10 flex items-center justify-between">
-        <div>
-          <h3 className="text-2xl sm:text-3xl font-bold font-cinzel text-transparent bg-clip-text 
-                         bg-gradient-to-r from-[#d4af37] to-amber-300 mb-1"
-              style={{textShadow: '2px 2px 4px rgba(212,175,55,0.3)'}}>
-            Edit Announcement
-          </h3>
-          <div className="w-16 h-1 bg-gradient-to-r from-[#d4af37] to-transparent rounded-full"></div>
-        </div>
-        {data.createdAt && (
-          <div className="text-xs text-amber-400/60 font-cinzel bg-gray-800/50 px-3 py-1 rounded-lg border border-amber-600/20 hidden sm:block">
-            Created: {formatDate(data.createdAt)}
+      <form onSubmit={handleSubmit(onSubmit)} className="relative z-10 p-6 sm:p-8 space-y-6">
+        {/* Header */}
+        <div className="flex flex-wrap items-start gap-6 justify-between border-b border-amber-600/20 pb-6">
+          <div className="flex items-center gap-4">
+            <div className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 rounded-2xl font-cinzel font-black shadow-lg shadow-amber-400/30 border border-amber-600/40">
+              #{String(i).padStart(2,"0")}
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold">Announcement</p>
+              <h3 className="text-2xl font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
+                {data?.title || "Untitled Announcement"}
+              </h3>
+            </div>
           </div>
-        )}
-      </div>
-
-      {/* TITLE */}
-      <div className="mb-6 relative z-10">
-        <label className="text-xs font-semibold text-amber-400/80 mb-2 block uppercase tracking-wider font-cinzel">
-          Announcement Title
-        </label>
-        <input
-          type="text"
-          {...register("title")}
-          className="w-full text-xl sm:text-2xl font-bold text-gray-100 bg-gray-900/50 
-                     border-b-2 border-amber-600/30 focus:border-amber-500/60 
-                     outline-none transition-all duration-300 pb-2 px-2 font-cinzel
-                     placeholder:text-gray-600"
-          placeholder="Enter announcement title"
-        />
-      </div>
-
-      {/* DESCRIPTION */}
-      <div className="mb-6 relative z-10">
-        <label className="text-xs font-semibold text-amber-400/70 mb-2 block uppercase tracking-wider font-cinzel">
-          Description
-        </label>
-        <textarea
-          {...register("description")}
-          className="w-full text-base sm:text-lg text-gray-300 bg-gray-900/50 
-                     border border-gray-700 focus:border-amber-500/40 
-                     outline-none transition-all duration-300 p-3 rounded-lg font-playfair
-                     min-h-[150px] resize-y placeholder:text-gray-600"
-          placeholder="Enter announcement description..."
-        />
-      </div>
-
-      {/* MESSAGE DISPLAY */}
-      {(msg || del_post.msg) && (
-        <div className="mb-6 p-4 rounded-xl border border-amber-600/20 bg-gray-800/50 relative z-10">
-          <p className="text-sm sm:text-base text-gray-300 font-playfair">{del_post.msg || msg}</p>
+          <div className="text-right">
+            <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold">Created</p>
+            <p className="text-base text-amber-200 font-semibold">{formattedDate}</p>
+          </div>
         </div>
-      )}
 
-      {/* BUTTON GROUP */}
-      <div className="space-y-3 mt-auto pt-4 relative z-10">
-        {/* UPDATE BUTTON */}
-        <button
-          type="submit"
-          disabled={!canUpdate}
-          className={`
-            w-full px-6 py-3 rounded-xl font-bold font-cinzel text-base sm:text-lg
-            bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 
-            shadow-lg border border-amber-600/30
-            transition-all duration-500 relative overflow-hidden group/btn
-            ${
-              !canUpdate
-                ? "opacity-40 cursor-not-allowed"
-                : "hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-400/30 cursor-pointer"
-            }
-          `}
-        >
-          <div className="absolute w-full inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
-                          -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 rounded-xl" />
-          <span className="relative z-10 flex items-center justify-center gap-2">
-            {canUpdate ? "Update Announcement →" : "No Changes to Save"}
-          </span>
-        </button>
+        {/* Title Input */}
+        <div className="bg-gray-800/60 border border-amber-600/20 rounded-2xl p-4">
+          <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold mb-2">Title</p>
+          <input
+            type="text"
+            {...register("title")}
+            className="w-full text-xl font-bold text-gray-100 bg-transparent border-none outline-none font-cinzel"
+            placeholder="Enter announcement title"
+          />
+        </div>
 
-        {/* DELETE BUTTON */}
-        {!showDeleteConfirm ? (
-          <button
-            type="button"
-            onClick={() => del_fnx(data._id)}
-            className="w-full cursor-pointer px-6 py-3 rounded-xl font-bold font-cinzel text-base sm:text-lg
-                       bg-gradient-to-r from-red-500 to-red-700 text-gray-100
-                       hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-400/30
-                       transition-all duration-500 shadow-lg
-                       relative overflow-hidden group/del"
-          >
-            <div className="absolute w-full inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
-                            -translate-x-full group-hover/del:translate-x-full transition-transform duration-1000 rounded-xl" />
-            <span className="relative z-10">Delete Announcement →</span>
-          </button>
-        ) : (
-          <div className="p-4 rounded-xl border-2 border-red-500/50 bg-red-900/20 relative z-10">
-            <p className="text-sm font-bold text-red-300 mb-3 font-cinzel">
-              Are you sure you want to delete <span className="text-amber-300">"{data.title}"</span>?
-            </p>
-            <div className="flex gap-3">
+        {/* Description Input */}
+        <div className="bg-gray-800/40 rounded-2xl border border-amber-600/20 p-4">
+          <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold mb-2">Description</p>
+          <textarea
+            {...register("description")}
+            className="w-full text-base text-gray-300 bg-transparent border-none outline-none font-playfair
+                       min-h-[150px] resize-y placeholder:text-gray-600"
+            placeholder="Enter announcement description..."
+          />
+        </div>
+
+        {/* Footer */}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-t border-amber-600/20 pt-6">
+          <p className="text-xs text-gray-500 font-mono">ID: {shortId}</p>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            {(msg || del_post.msg) && (
+              <div className="px-4 py-2 rounded-xl border border-amber-600/20 bg-gray-800/60 text-sm text-gray-200">
+                {del_post.msg || msg}
+              </div>
+            )}
+            <button
+              type="submit"
+              disabled={!canUpdate}
+              className={`
+                w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-cinzel text-gray-900
+                bg-gradient-to-r from-[#d4af37] to-amber-500
+                hover:from-amber-500 hover:to-[#d4af37]
+                shadow-lg hover:shadow-2xl hover:shadow-amber-400/30
+                hover:scale-[1.02] transition-all duration-500
+                border border-amber-600/30
+                relative overflow-hidden group/btn z-10
+                ${!canUpdate ? "opacity-40 cursor-not-allowed" : "cursor-pointer"}
+              `}
+            >
+              <div className='absolute w-full inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
+                              -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 rounded-xl'></div>
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                {canUpdate ? "Update Announcement →" : "No Changes"}
+              </span>
+            </button>
+            {!showDeleteConfirm ? (
               <button
                 type="button"
                 onClick={() => del_fnx(data._id)}
-                className="flex-1 px-4 py-2 rounded-lg font-bold font-cinzel text-sm
-                           bg-gradient-to-r from-red-600 to-red-700 text-white
-                           hover:scale-105 transition-all duration-300"
+                className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-cinzel text-gray-900
+                           bg-gradient-to-r from-red-500 to-red-700
+                           hover:from-red-600 hover:to-red-800
+                           shadow-lg hover:shadow-2xl hover:shadow-red-400/30
+                           hover:scale-[1.02] transition-all duration-500
+                           border border-red-600/30
+                           relative overflow-hidden group/btn z-10 cursor-pointer"
               >
-                Yes, Delete
+                <div className='absolute w-full inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
+                                -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 rounded-xl'></div>
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  Delete Announcement
+                  <span className="transition-transform group-hover/btn:translate-x-1 duration-300">→</span>
+                </span>
               </button>
-              <button
-                type="button"
-                onClick={cancelDelete}
-                className="flex-1 px-4 py-2 rounded-lg font-bold font-cinzel text-sm
-                           bg-gray-700 text-gray-300
-                           hover:bg-gray-600 hover:scale-105 transition-all duration-300"
-              >
-                Cancel
-              </button>
-            </div>
+            ) : (
+              <div className="p-4 rounded-xl border-2 border-red-500/50 bg-red-900/20">
+                <p className="text-sm font-bold text-red-300 mb-3 font-cinzel">
+                  Delete <span className="text-amber-300">"{data.title}"</span>?
+                </p>
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => del_fnx(data._id)}
+                    className="flex-1 px-4 py-2 rounded-lg font-bold font-cinzel text-sm
+                               bg-gradient-to-r from-red-600 to-red-700 text-white
+                               hover:scale-105 transition-all duration-300"
+                  >
+                    Yes, Delete
+                  </button>
+                  <button
+                    type="button"
+                    onClick={cancelDelete}
+                    className="flex-1 px-4 py-2 rounded-lg font-bold font-cinzel text-sm
+                               bg-gray-700 text-gray-300
+                               hover:bg-gray-600 hover:scale-105 transition-all duration-300"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </form>
+        </div>
+      </form>
+    </article>
   );
 };
 

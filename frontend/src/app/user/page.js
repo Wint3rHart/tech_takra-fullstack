@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import CryptoJS from "crypto-js";
 import Link from "next/link";
 import BgEffect from "@/util_comps/bg_effect";
+import { LogoutButton } from "./logout_button";
 // If you actually want to use the Ref_wrapper hero text component, uncomment & fix the path:
 // import Ref_wrapper from "@/util_comps/Ref_wrapper";
 
@@ -154,8 +155,8 @@ const User_header = ({ decrypt }) => {
 
   return (
     <div className="max-w-7xl mx-auto relative">
-      {/* Back Button */}
-      <div className="absolute top-2 left-0 md:top-4 md:left-2 z-40">
+      {/* Back Button and Logout */}
+      <div className="absolute top-2 left-0 md:top-4 md:left-2 z-40 flex items-center gap-3">
         <Link
           href="/"
           className="mt-6 px-5 py-2.5 rounded-full text-stone-900 font-bold text-sm sm:text-base
@@ -172,6 +173,9 @@ const User_header = ({ decrypt }) => {
           </span>
           <span className="relative z-10">Back</span>
         </Link>
+        <div className="mt-6">
+          <LogoutButton access={decrypt?.accessToken} />
+        </div>
       </div>
 
       {/* Top: hero title & user info */}
@@ -269,7 +273,7 @@ const User_header = ({ decrypt }) => {
           { label: "Events", href: "/user/events" },
           { label: "Team", href: "/user/team" },
           { label: "Announcements", href: "/user/announcements" },
-          ...(decrypt?.role === "SuperAdmin"
+          ...(decrypt?.role?.toUpperCase().trim() === "SUPERADMIN" || decrypt?.role === "super_admin"
             ? [{ label: "Admins", href: "/user/admins" }]
             : []),
         ].map((item, i) => (

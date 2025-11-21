@@ -177,6 +177,15 @@ case "create_admin":{ url=`http://localhost:4600/api/auth/admin/create`;
     break;}
 case "delete_admin":{ url=`http://localhost:4600/api/auth/admin/delete/${data.data_id}`;
     break;}
+case "change_password":{ 
+    url=`http://localhost:4600/api/auth/admin/change-password`;
+    if(data.error){
+        throw new Error(data.error);
+    }
+    break;}
+case "logout_admin":{ 
+    url=`http://localhost:4600/api/auth/admin/logout`;
+    break;}
 
 
 
@@ -205,7 +214,7 @@ finally{clearTimeout(timer)};
         if(type==="delete_event"||type==="update_event"||type==="create_event"){client.invalidateQueries("events")};
          if(type==="delete_team"||type==="update_team"||type==="create_team"){client.invalidateQueries("team")};
           if(type==="delete_notification"||type==="update_notification"||type==="create_notification"){client.invalidateQueries("notice")};
-if(type==="delete_admin"||type==="create_admin"){client.invalidateQueries("admin")};
+if(type==="delete_admin"||type==="create_admin"||type==="change_password"){client.invalidateQueries("admin")};
 
 
     let timer=    setTimeout(() => {

@@ -6,9 +6,9 @@ import { isLoggedIn, isSuperAdmin } from "../middlewares/auth.js"; // Import the
 const router = Router();
 
 router.get("/", getAllEvents); // Public route
-router.post("/create",  upload.array("images", 5), createEvent); // Protect createEvent
-router.patch("/update/:id", upload.array("images", 5), updateEvent); // Protect updateEvent
-router.delete("/delete/:id",  isSuperAdmin, deleteEvent); // Protect deleteEvent
+router.post("/create", isLoggedIn, upload.array("images", 5), createEvent); // Protect createEvent
+router.patch("/update/:id", isLoggedIn, upload.array("images", 5), updateEvent); // Protect updateEvent
+router.delete("/delete/:id", isLoggedIn, isSuperAdmin, deleteEvent); // Protect deleteEvent
 router.get("/upcoming", upcomingEvents); // Public route
 router.get("/past", pastEvents); // Public route
 router.get("/:id", singleEvent); // Public route

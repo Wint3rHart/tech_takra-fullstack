@@ -9,7 +9,6 @@ import { Admin } from './admin';
 
 const Page = async() => {
     try {
-   return <Admin  />
         const cookieStore=await cookies();
 
         const user=cookieStore.get('User-data')?.value;
@@ -21,8 +20,8 @@ if(parsed){
     if(new Date(parsed.expiry)>new Date()){
 
 
-       if( parsed.role.toUpperCase().trim() === "SUPERADMIN" ){return     <div className="min-h-screen relative  py-8 px-4"> <Admin user={parsed} access={parsed.accessToken} /> </div>}
-else{  throw new Error("User Not Authorized")}
+       if( parsed.role.toUpperCase().trim() === "SUPERADMIN" || parsed.role === "super_admin" ){return     <div className="min-h-screen relative  py-8 px-4"> <Admin user={parsed} access={parsed.accessToken} role={parsed.role} /> </div>}
+else{  throw new Error("User Not Authorized - SuperAdmin Access Required")}
 
        
 
