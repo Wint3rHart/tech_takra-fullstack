@@ -69,7 +69,7 @@ const DisplayCards = ({ scroll, ind, x, nav_url, isMobile }) => {
           {formattedDate && (
             <div className="absolute top-3 right-3 z-10">
               <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-600/20 border border-amber-500/30 backdrop-blur-sm">
-                <p className="text-xs font-semibold text-amber-300 font-cinzel">{formattedDate}</p>
+                <p className="text-xs font-semibold text-amber-300 font-inter">{formattedDate}</p>
               </div>
             </div>
           )}
@@ -143,7 +143,7 @@ const DisplayCards = ({ scroll, ind, x, nav_url, isMobile }) => {
           {formattedDate && (
             <div className="inline-block mb-4">
               <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-600/20 border border-amber-500/30 backdrop-blur-sm">
-                <p className="text-xs font-semibold text-amber-300 font-cinzel">{formattedDate}</p>
+                <p className="text-xs font-semibold text-amber-300 font-inter">{formattedDate}</p>
               </div>
             </div>
           )}

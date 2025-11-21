@@ -20,7 +20,7 @@ const [isSigned,setSigned]=useState({status:false,data:null});
 const sign_display=useMemo(()=>{
  return <div className=" md:block  relative h-full mt-10 group">
             <button className="relative   bg-gradient-to-r from-amber-300/50 to-amber-400/50 hover:from-amber-400/70 hover:to-amber-500/70 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-400/40 hover:scale-105">
-{data?.status&&            <Link  href='/user' className='absolute hidden w-[10vw] font-playfair text-sm group-hover:block z-90 border rounded-xl mt-2 border-amber-400 p-4 left-10  sm:top-12 sm:-translate-x-8 md:top-11 md:-translate-x-12 text-amber-300 text-lg'>
+{data?.status&&            <Link  href='/user' className='absolute hidden w-[10vw] font-poppins text-sm group-hover:block z-90 border rounded-xl mt-2 border-amber-400 p-4 left-10  sm:top-12 sm:-translate-x-8 md:top-11 md:-translate-x-12 text-amber-300 text-lg'>
 Open Admin Panel
             </Link>}
              

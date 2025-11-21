@@ -84,14 +84,14 @@ else{  throw new Error("User Not Authorized - SuperAdmin Access Required")}
         </div>
         
         {/* Error Title */}
-        <h1 className={`font-cinzel text-5xl font-black mb-4
+        <h1 className={`font-inter text-5xl font-black mb-4
                       text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-300
                       drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]`}>
           Oops! Something Went Wrong
         </h1>
         
         {/* Error Message */}
-        <div className={`font-playfair text-xl text-gray-300 mb-8 font-semibold
+        <div className={`font-poppins text-xl text-gray-300 mb-8 font-semibold
                        bg-gray-800/50 p-6 rounded-2xl border border-amber-600/10`}>
           <p className="leading-relaxed">{error.message}</p>
         </div>
@@ -104,7 +104,7 @@ else{  throw new Error("User Not Authorized - SuperAdmin Access Required")}
         </div>
         
         {/* Helpful Message */}
-        <p className={`font-playfair text-gray-400 text-sm`}>
+        <p className={`font-poppins text-gray-400 text-sm`}>
           Don't worry, your journey continues. Let's get you back on track.
         </p>
       </div>

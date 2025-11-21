@@ -30,7 +30,7 @@ let Comp=motion[children?.[0]?.type];
 // console.log(children);
 
 return (
-<motion.div className='text-4xl sm:text-5xl lg:text-6xl m-auto max-w-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 tracking-wide uppercase drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)] font-cinzel' variants={parent_One_after_one} initial="initial" whileInView="animate" viewport={{amount:.8}}>
+<motion.div className='text-4xl sm:text-5xl lg:text-6xl m-auto max-w-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 tracking-wide uppercase drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)] font-inter' variants={parent_One_after_one} initial="initial" whileInView="animate" viewport={{amount:.8}}>
 {
    React.Children.toArray(children).map((x,i)=>{
     ;return    <Comp key={i}  variants={child_one_after_one}>{x.props.children}</Comp>})

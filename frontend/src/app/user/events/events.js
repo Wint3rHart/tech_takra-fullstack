@@ -52,7 +52,7 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
               <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce delay-200"></div>
             </div>
             
-            <p className={`font-cinzel text-[#d4af37] text-2xl font-bold 
+            <p className={`font-inter text-[#d4af37] text-2xl font-bold 
                           drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]`}>
               Loading Your Journey...
             </p>
@@ -83,14 +83,14 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
         </div>
         
         {/* Error Title */}
-        <h1 className={`font-cinzel  text-5xl font-black mb-4
+        <h1 className={`font-inter  text-5xl font-black mb-4
                       text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-300
                       drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]`}>
           Oops! Something Went Wrong
         </h1>
         
         {/* Error Message */}
-        <div className={`font-playfair  text-xl text-gray-300 mb-8 font-semibold
+        <div className={`font-poppins  text-xl text-gray-300 mb-8 font-semibold
                        bg-gray-800/50 p-6 rounded-2xl border border-amber-600/10`}>
           <p className="leading-relaxed">{error.message}</p>
         </div>
@@ -103,7 +103,7 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
         </div>
         
         {/* Helpful Message */}
-        <p className={`font-playfair  text-gray-400 text-sm`}>
+        <p className={`font-poppins  text-gray-400 text-sm`}>
           Don't worry, your journey continues. Let's get you back on track.
         </p>
       </div>
@@ -122,7 +122,7 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
         <div className='max-w-7xl mx-auto relative z-10'>
           {/* Header Section */}
           <div className="text-center mb-8 sm:mb-12">
-            <h1 className='font-cinzel text-[#d4af37] text-4xl sm:text-5xl lg:text-6xl font-bold mb-4
+            <h1 className='font-inter text-[#d4af37] text-4xl sm:text-5xl lg:text-6xl font-bold mb-4
                           drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]'>
               Events Management
             </h1>
@@ -135,7 +135,7 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
             <button
               onClick={() => { setCreate(false) }}
               type="button"
-              className={`w-full sm:w-auto px-8 py-3 rounded-xl font-bold font-cinzel text-sm sm:text-base
+              className={`w-full sm:w-auto px-8 py-3 rounded-xl font-bold font-inter text-sm sm:text-base
                          transition-all duration-500 relative overflow-hidden group
                          ${!create 
                            ? 'bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 shadow-lg shadow-amber-400/30 hover:shadow-2xl hover:shadow-amber-400/50 scale-105' 
@@ -153,7 +153,7 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
             <button
               onClick={() => { setCreate(true) }}
               type="button"
-              className={`w-full sm:w-auto px-8 py-3 rounded-xl font-bold font-cinzel text-sm sm:text-base
+              className={`w-full sm:w-auto px-8 py-3 rounded-xl font-bold font-inter text-sm sm:text-base
                          transition-all duration-500 relative overflow-hidden group
                          ${create 
                            ? 'bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 shadow-lg shadow-amber-400/30 hover:shadow-2xl hover:shadow-amber-400/50 scale-105' 
@@ -181,7 +181,7 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
                   ))
                 ) : (
                   <div className="text-center py-16 bg-gray-800/50 rounded-2xl border border-amber-600/20">
-                    <p className="text-xl text-gray-400 font-cinzel">No events found</p>
+                    <p className="text-xl text-gray-400 font-inter">No events found</p>
                     <p className="text-sm text-gray-500 mt-2">Click "Create New Event" to get started</p>
                   </div>
                 )}

@@ -44,7 +44,7 @@ export const Form = ({access}) => {
         <div className="flex flex-wrap items-start gap-6 justify-between border-b border-amber-600/20 pb-6">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold">Create Event</p>
-            <h3 className="text-2xl font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
+            <h3 className="text-2xl font-inter text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
               New Event Form
             </h3>
           </div>
@@ -59,11 +59,11 @@ export const Form = ({access}) => {
               required: "Title is required",
               minLength: { value: 3, message: "At least 3 characters" }
             })}
-            className="w-full text-xl font-bold text-gray-100 bg-transparent border-none outline-none font-cinzel"
+            className="w-full text-xl font-bold text-gray-100 bg-transparent border-none outline-none font-inter"
             placeholder="Enter event title"
           />
           {errors.title && (
-            <p className="mt-2 text-xs text-red-400 font-playfair">{errors.title.message}</p>
+            <p className="mt-2 text-xs text-red-400 font-poppins">{errors.title.message}</p>
           )}
         </div>
 
@@ -77,11 +77,11 @@ export const Form = ({access}) => {
                 required: "Location is required",
                 minLength: { value: 3, message: "At least 3 characters" }
               })}
-              className="w-full text-lg text-gray-200 font-playfair bg-transparent border-none outline-none"
+              className="w-full text-lg text-gray-200 font-poppins bg-transparent border-none outline-none"
               placeholder="Enter location"
             />
             {errors.location && (
-              <p className="mt-2 text-xs text-red-400 font-playfair">{errors.location.message}</p>
+              <p className="mt-2 text-xs text-red-400 font-poppins">{errors.location.message}</p>
             )}
           </div>
           <div className="bg-gray-800/60 border border-amber-600/20 rounded-2xl p-4">
@@ -89,10 +89,10 @@ export const Form = ({access}) => {
             <input
               type="date"
               {...register("date", { required: "Date is required" })}
-              className="w-full text-lg text-gray-200 font-playfair bg-transparent border-none outline-none"
+              className="w-full text-lg text-gray-200 font-poppins bg-transparent border-none outline-none"
             />
             {errors.date && (
-              <p className="mt-2 text-xs text-red-400 font-playfair">{errors.date.message}</p>
+              <p className="mt-2 text-xs text-red-400 font-poppins">{errors.date.message}</p>
             )}
           </div>
         </div>
@@ -105,11 +105,11 @@ export const Form = ({access}) => {
               {...register("category", {
                 required: false
               })}
-              className="w-full text-base text-gray-200 font-playfair bg-transparent border-none outline-none"
+              className="w-full text-base text-gray-200 font-poppins bg-transparent border-none outline-none"
               placeholder="Enter category (optional)"
             />
             {errors.category && (
-              <p className="mt-2 text-xs text-red-400 font-playfair">{errors.category.message}</p>
+              <p className="mt-2 text-xs text-red-400 font-poppins">{errors.category.message}</p>
             )}
           </div>
           <div className="bg-gray-800/40 rounded-2xl border border-amber-600/20 p-4">
@@ -123,7 +123,7 @@ export const Form = ({access}) => {
                          border border-amber-600/20 focus:border-amber-500/40 
                          outline-none transition-all duration-300
                          file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
-                         file:text-sm file:font-semibold file:font-cinzel
+                         file:text-sm file:font-semibold file:font-inter
                          file:bg-gradient-to-r file:from-[#d4af37] file:to-amber-500
                          file:text-gray-900 file:cursor-pointer
                          hover:file:scale-105 file:transition-all file:duration-300"
@@ -139,12 +139,12 @@ export const Form = ({access}) => {
               required: "Description is required",
               minLength: { value: 10, message: "At least 10 characters" }
             })}
-            className="w-full text-base text-gray-300 bg-transparent border-none outline-none font-playfair
+            className="w-full text-base text-gray-300 bg-transparent border-none outline-none font-poppins
                        min-h-[150px] resize-y placeholder:text-gray-600"
             placeholder="Enter event description..."
           />
           {errors.description && (
-            <p className="mt-2 text-xs text-red-400 font-playfair">{errors.description.message}</p>
+            <p className="mt-2 text-xs text-red-400 font-poppins">{errors.description.message}</p>
           )}
         </div>
 
@@ -161,7 +161,7 @@ export const Form = ({access}) => {
               type="submit"
               disabled={!isDirty}
               className={`
-                w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-cinzel text-gray-900
+                w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-inter text-gray-900
                 bg-gradient-to-r from-[#d4af37] to-amber-500
                 hover:from-amber-500 hover:to-[#d4af37]
                 shadow-lg hover:shadow-2xl hover:shadow-amber-400/30

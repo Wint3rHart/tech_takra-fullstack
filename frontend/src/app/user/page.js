@@ -99,7 +99,7 @@ console.log(parsed,"decrypted user data");
 
             {/* Error Title */}
             <h1
-              className={`font-cinzel text-3xl sm:text-4xl md:text-5xl font-black mb-4
+              className={`font-inter text-3xl sm:text-4xl md:text-5xl font-black mb-4
                       text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-300
                       drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]`}
             >
@@ -108,7 +108,7 @@ console.log(parsed,"decrypted user data");
 
             {/* Error Message */}
             <div
-              className={`font-playfair text-base sm:text-lg text-gray-200 mb-6 sm:mb-8 font-semibold
+              className={`font-poppins text-base sm:text-lg text-gray-200 mb-6 sm:mb-8 font-semibold
                        bg-gray-900/60 p-4 sm:p-6 rounded-2xl border border-amber-600/20`}
             >
               <p className="leading-relaxed">{error.message}</p>
@@ -122,7 +122,7 @@ console.log(parsed,"decrypted user data");
             </div>
 
             {/* Helpful Message / CTA */}
-            <p className={`font-playfair text-gray-300 text-xs sm:text-sm mb-4`}>
+            <p className={`font-poppins text-gray-300 text-xs sm:text-sm mb-4`}>
               Don&apos;t worry, you can continue your journey in a moment.
             </p>
 
@@ -182,17 +182,17 @@ const User_header = ({ decrypt }) => {
       <div className="pt-24 md:pt-32 lg:pt-36 pb-10">
         {/* Main heading in hero style */}
         <div className="text-center mb-10">
-          <p className="font-cinzel text-sm sm:text-base tracking-[0.35em] text-amber-200/70 uppercase mb-2">
+          <p className="font-inter text-sm sm:text-base tracking-[0.35em] text-amber-200/70 uppercase mb-2">
             GCU Computer Science Society
           </p>
           <h1
-            className="font-cinzel text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black 
+            className="font-inter text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black 
                        text-[#d4af37]
                        "
           >
             Member Dashboard
           </h1>
-          <p className="mt-4 text-sm sm:text-base text-amber-100/80 font-playfair">
+          <p className="mt-4 text-sm sm:text-base text-amber-100/80 font-poppins">
             “Empowering students through technology, innovation, and community.”
           </p>
         </div>
@@ -217,7 +217,7 @@ const User_header = ({ decrypt }) => {
                          flex items-center justify-center relative overflow-hidden group/avatar"
             >
               <div className="absolute w-full inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/avatar:translate-x-full transition-transform duration-1000" />
-              <span className="font-cinzel text-4xl sm:text-5xl md:text-5xl font-black text-gray-900 relative z-10 drop-shadow-lg">
+              <span className="font-inter text-4xl sm:text-5xl md:text-5xl font-black text-gray-900 relative z-10 drop-shadow-lg">
                 {decrypt?.name?.charAt(0)?.toUpperCase() || "U"}
               </span>
             </div>
@@ -225,14 +225,14 @@ const User_header = ({ decrypt }) => {
             {/* Name / email / role */}
             <div className="space-y-2 sm:space-y-3">
               <h2
-                className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-black text-transparent bg-clip-text 
+                className="font-inter text-3xl sm:text-4xl md:text-5xl font-black text-transparent bg-clip-text 
                               bg-gradient-to-r from-[#d4af37] to-amber-200
                               drop-shadow-[2px_2px_4px_rgba(212,175,55,0.4)]"
               >
                 {decrypt?.name}
               </h2>
 
-              <div className="flex flex-wrap items-center gap-3 text-sm sm:text-base text-gray-200 font-playfair">
+              <div className="flex flex-wrap items-center gap-3 text-sm sm:text-base text-gray-200 font-poppins">
                 <span className="inline-flex items-center gap-2">
                   <svg
                     className="w-5 h-5 text-amber-400"
@@ -295,14 +295,14 @@ const User_header = ({ decrypt }) => {
             <div className="absolute bottom-7 right-9 w-2 h-2 rounded-full bg-amber-500/70 animate-pulse" />
 
             <h2
-              className="text-2xl sm:text-3xl font-cinzel font-bold 
+              className="text-2xl sm:text-3xl font-inter font-bold 
                           bg-gradient-to-r from-[#d4af37] to-amber-300 text-transparent bg-clip-text
                           drop-shadow-[2px_2px_3px_rgba(212,175,55,0.35)]"
             >
               {item.label}
             </h2>
 
-            <p className="text-gray-300/90 mt-3 font-playfair text-sm sm:text-base">
+            <p className="text-gray-300/90 mt-3 font-poppins text-sm sm:text-base">
               Go to {item.label.toLowerCase()} section →
             </p>
           </Link>

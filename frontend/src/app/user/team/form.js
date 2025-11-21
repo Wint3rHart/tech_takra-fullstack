@@ -52,7 +52,7 @@ export const TeamForm = ({access}) => {
 
         {/* Form Header */}
         <div className="mb-8 relative z-10">
-          <h2 className="text-3xl sm:text-4xl font-bold font-cinzel text-transparent bg-clip-text 
+          <h2 className="text-3xl sm:text-4xl font-bold font-inter text-transparent bg-clip-text 
                          bg-gradient-to-r from-[#d4af37] to-amber-300 mb-2"
               style={{textShadow: '2px 2px 4px rgba(212,175,55,0.3)'}}>
             Add New Team Member
@@ -62,7 +62,7 @@ export const TeamForm = ({access}) => {
 
         {/* NAME */}
         <div className="mb-6 relative z-10">
-          <label className="text-xs font-semibold text-amber-400/80 mb-2 block uppercase tracking-wider font-cinzel">
+          <label className="text-xs font-semibold text-amber-400/80 mb-2 block uppercase tracking-wider font-inter">
             Member Name *
           </label>
           <input
@@ -74,18 +74,18 @@ export const TeamForm = ({access}) => {
             })}
             className="w-full text-xl sm:text-2xl font-bold text-gray-100 bg-gray-900/50 
                        border-b-2 border-amber-600/30 focus:border-amber-500/60 
-                       outline-none transition-all duration-300 pb-2 px-2 font-cinzel
+                       outline-none transition-all duration-300 pb-2 px-2 font-inter
                        placeholder:text-gray-600"
             placeholder="Enter full name"
           />
           {errors.name && (
-            <p className="mt-2 text-red-400 text-xs sm:text-sm font-playfair">{errors.name.message}</p>
+            <p className="mt-2 text-red-400 text-xs sm:text-sm font-poppins">{errors.name.message}</p>
           )}
         </div>
 
         {/* POSITION */}
         <div className="mb-6 relative z-10">
-          <label className="text-xs font-semibold text-amber-400/70 mb-2 block uppercase tracking-wider font-cinzel">
+          <label className="text-xs font-semibold text-amber-400/70 mb-2 block uppercase tracking-wider font-inter">
             Position *
           </label>
           <input
@@ -97,19 +97,19 @@ export const TeamForm = ({access}) => {
             })}
             className="w-full text-base sm:text-lg text-gray-300 bg-gray-900/50 
                        border-b border-gray-700 focus:border-amber-500/40 
-                       outline-none transition-all duration-300 pb-2 px-2 font-playfair
+                       outline-none transition-all duration-300 pb-2 px-2 font-poppins
                        placeholder:text-gray-600"
             placeholder="Enter position (e.g., President, Media Head)"
           />
           {errors.position && (
-            <p className="mt-2 text-red-400 text-xs sm:text-sm font-playfair">{errors.position.message}</p>
+            <p className="mt-2 text-red-400 text-xs sm:text-sm font-poppins">{errors.position.message}</p>
           )}
         </div>
 
         {/* ORDER/RANK */}
         <div className="mb-6 relative z-10">
-          <label className="text-xs font-semibold text-amber-400/70 mb-2 block uppercase tracking-wider font-cinzel">
-            Display Order <span className="text-amber-400/60 normal-case font-playfair">(Lower = appears first)</span>
+          <label className="text-xs font-semibold text-amber-400/70 mb-2 block uppercase tracking-wider font-inter">
+            Display Order <span className="text-amber-400/60 normal-case font-poppins">(Lower = appears first)</span>
           </label>
           <input
             type="number"
@@ -119,22 +119,22 @@ export const TeamForm = ({access}) => {
             })}
             className="w-full text-base sm:text-lg text-gray-300 bg-gray-900/50 
                        border-b border-gray-700 focus:border-amber-500/40 
-                       outline-none transition-all duration-300 pb-2 px-2 font-playfair
+                       outline-none transition-all duration-300 pb-2 px-2 font-poppins
                        placeholder:text-gray-600"
             placeholder="999"
             defaultValue="999"
           />
           {errors.order && (
-            <p className="mt-2 text-red-400 text-xs sm:text-sm font-playfair">{errors.order.message}</p>
+            <p className="mt-2 text-red-400 text-xs sm:text-sm font-poppins">{errors.order.message}</p>
           )}
-          <p className="mt-2 text-xs text-amber-400/60 font-playfair">
+          <p className="mt-2 text-xs text-amber-400/60 font-poppins">
             Tip: Use 1 for President, 2 for Vice President, etc. Higher numbers appear later.
           </p>
         </div>
 
         {/* IMAGE */}
         <div className="mb-6 relative z-10">
-          <label className="text-xs font-semibold text-amber-400/70 mb-2 block uppercase tracking-wider font-cinzel">
+          <label className="text-xs font-semibold text-amber-400/70 mb-2 block uppercase tracking-wider font-inter">
             Profile Image *
           </label>
           <div className="relative">
@@ -148,21 +148,21 @@ export const TeamForm = ({access}) => {
                          border border-amber-600/20 focus:border-amber-500/40 
                          outline-none transition-all duration-300
                          file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
-                         file:text-sm file:font-semibold file:font-cinzel
+                         file:text-sm file:font-semibold file:font-inter
                          file:bg-gradient-to-r file:from-[#d4af37] file:to-amber-500
                          file:text-gray-900 file:cursor-pointer
                          hover:file:scale-105 file:transition-all file:duration-300"
             />
           </div>
           {errors.image && (
-            <p className="mt-2 text-red-400 text-xs sm:text-sm font-playfair">{errors.image.message}</p>
+            <p className="mt-2 text-red-400 text-xs sm:text-sm font-poppins">{errors.image.message}</p>
           )}
         </div>
 
         {/* Success/Error message */}
         {msg && (
           <div className="mb-6 p-4 rounded-xl border border-amber-600/20 bg-gray-800/50 relative z-10">
-            <p className="text-sm sm:text-base text-gray-300 font-playfair">{msg}</p>
+            <p className="text-sm sm:text-base text-gray-300 font-poppins">{msg}</p>
           </div>
         )}
 
@@ -170,7 +170,7 @@ export const TeamForm = ({access}) => {
         <button
           type="submit"
           disabled={!isDirty}
-          className={`w-full font-bold font-cinzel text-base sm:text-lg py-3 sm:py-4 px-6 rounded-xl transition-all duration-500 shadow-lg relative overflow-hidden group/btn z-10 ${isDirty ? 'bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-400/30 cursor-pointer' : 'bg-gray-700 text-gray-500 cursor-not-allowed opacity-50'}`}
+          className={`w-full font-bold font-inter text-base sm:text-lg py-3 sm:py-4 px-6 rounded-xl transition-all duration-500 shadow-lg relative overflow-hidden group/btn z-10 ${isDirty ? 'bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-400/30 cursor-pointer' : 'bg-gray-700 text-gray-500 cursor-not-allowed opacity-50'}`}
         >
           <div className="absolute w-full inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
                           -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 rounded-xl" />

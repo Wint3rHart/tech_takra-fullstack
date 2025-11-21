@@ -72,12 +72,12 @@ const Cards = ({ data, i, access }) => {
         {/* Header */}
         <div className="flex flex-wrap items-start gap-6 justify-between border-b border-amber-600/20 pb-6">
           <div className="flex items-center gap-4">
-            <div className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 rounded-2xl font-cinzel font-black shadow-lg shadow-amber-400/30 border border-amber-600/40">
+            <div className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 rounded-2xl font-inter font-black shadow-lg shadow-amber-400/30 border border-amber-600/40">
               #{String(i).padStart(2,"0")}
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold">Announcement</p>
-              <h3 className="text-2xl font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
+              <h3 className="text-2xl font-inter text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
                 {data?.title || "Untitled Announcement"}
               </h3>
             </div>
@@ -94,7 +94,7 @@ const Cards = ({ data, i, access }) => {
           <input
             type="text"
             {...register("title")}
-            className="w-full text-xl font-bold text-gray-100 bg-transparent border-none outline-none font-cinzel"
+            className="w-full text-xl font-bold text-gray-100 bg-transparent border-none outline-none font-inter"
             placeholder="Enter announcement title"
           />
         </div>
@@ -104,7 +104,7 @@ const Cards = ({ data, i, access }) => {
           <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold mb-2">Description</p>
           <textarea
             {...register("description")}
-            className="w-full text-base text-gray-300 bg-transparent border-none outline-none font-playfair
+            className="w-full text-base text-gray-300 bg-transparent border-none outline-none font-poppins
                        min-h-[150px] resize-y placeholder:text-gray-600"
             placeholder="Enter announcement description..."
           />
@@ -123,7 +123,7 @@ const Cards = ({ data, i, access }) => {
               type="submit"
               disabled={!canUpdate}
               className={`
-                w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-cinzel text-gray-900
+                w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-inter text-gray-900
                 bg-gradient-to-r from-[#d4af37] to-amber-500
                 hover:from-amber-500 hover:to-[#d4af37]
                 shadow-lg hover:shadow-2xl hover:shadow-amber-400/30
@@ -143,7 +143,7 @@ const Cards = ({ data, i, access }) => {
               <button
                 type="button"
                 onClick={() => del_fnx(data._id)}
-                className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-cinzel text-gray-900
+                className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold font-inter text-gray-900
                            bg-gradient-to-r from-red-500 to-red-700
                            hover:from-red-600 hover:to-red-800
                            shadow-lg hover:shadow-2xl hover:shadow-red-400/30
@@ -160,14 +160,14 @@ const Cards = ({ data, i, access }) => {
               </button>
             ) : (
               <div className="p-4 rounded-xl border-2 border-red-500/50 bg-red-900/20">
-                <p className="text-sm font-bold text-red-300 mb-3 font-cinzel">
+                <p className="text-sm font-bold text-red-300 mb-3 font-inter">
                   Delete <span className="text-amber-300">"{data.title}"</span>?
                 </p>
                 <div className="flex gap-3">
                   <button
                     type="button"
                     onClick={() => del_fnx(data._id)}
-                    className="flex-1 px-4 py-2 rounded-lg font-bold font-cinzel text-sm
+                    className="flex-1 px-4 py-2 rounded-lg font-bold font-inter text-sm
                                bg-gradient-to-r from-red-600 to-red-700 text-white
                                hover:scale-105 transition-all duration-300"
                   >
@@ -176,7 +176,7 @@ const Cards = ({ data, i, access }) => {
                   <button
                     type="button"
                     onClick={cancelDelete}
-                    className="flex-1 px-4 py-2 rounded-lg font-bold font-cinzel text-sm
+                    className="flex-1 px-4 py-2 rounded-lg font-bold font-inter text-sm
                                bg-gray-700 text-gray-300
                                hover:bg-gray-600 hover:scale-105 transition-all duration-300"
                   >

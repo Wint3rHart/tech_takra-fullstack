@@ -11,7 +11,7 @@ let {opacityVar}=UseVariants();
         
   <motion.div   className='text-white  mt-64 relative sm:h-[60vh] w-[98vw] flex flex-col items-center justify-center'>
 <div className='z-10'>
-<motion.h1 className='text-6xl font-semibold font-cinzel ' initial={{opacity:0,x:-20}}
+<motion.h1 className='text-6xl font-semibold font-inter ' initial={{opacity:0,x:-20}}
 whileInView={{x:0,opacity:1}} transition={{duration:.2,ease:"easeIn",delay:.3}} viewport={{amount:.8,once:false,offset:"start start"}}>WHO ARE WE <span>?</span> </motion.h1>
 
 

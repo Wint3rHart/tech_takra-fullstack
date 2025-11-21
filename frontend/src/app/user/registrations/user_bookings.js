@@ -2,15 +2,10 @@
 
 import useData from '@/client_hooks/useData';
 import React, { useEffect, useMemo } from 'react';
-import { Cinzel, Work_Sans } from 'next/font/google';
 import Link from 'next/link';
 import Cards from './cards';
 import BgEffect from '@/util_comps/bg_effect';
 import { useSearchParams } from 'next/navigation';
-
-
-const tangerine = Cinzel({ subsets: ["latin"], weight: ["400", "700"] });
-const cormotant = Work_Sans({ subsets: ["latin"], weight: ["400", "700"] });
 
 
 
@@ -58,7 +53,7 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
               <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce delay-200"></div>
             </div>
             
-            <p className={`font-cinzel text-[#d4af37] text-2xl font-bold 
+            <p className={`font-inter text-[#d4af37] text-2xl font-bold 
                           drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]`}>
               Loading Your Journey...
             </p>
@@ -89,14 +84,14 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
         </div>
         
         {/* Error Title */}
-        <h1 className={`${tangerine.className} text-5xl font-black mb-4
+        <h1 className={`font-inter text-5xl font-black mb-4
                       text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-300
                       drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]`}>
           Oops! Something Went Wrong
         </h1>
         
         {/* Error Message */}
-        <div className={`${cormotant.className} text-xl text-gray-300 mb-8 font-semibold
+        <div className={`font-poppins text-xl text-gray-300 mb-8 font-semibold
                        bg-gray-800/50 p-6 rounded-2xl border border-amber-600/10`}>
           <p className="leading-relaxed">{error.message}</p>
         </div>
@@ -109,7 +104,7 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
         </div>
         
         {/* Helpful Message */}
-        <p className={`${cormotant.className} text-gray-400 text-sm`}>
+        <p className={`font-poppins text-gray-400 text-sm`}>
           Don't worry, your journey continues. Let's get you back on track.
         </p>
       </div>
@@ -128,27 +123,27 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
             <div className='flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between'>
               <div>
                 <p className='text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold mb-2'>Admin Panel</p>
-                <h1 className='font-cinzel text-[#d4af37] text-4xl sm:text-5xl font-bold drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)] mb-3'>Registration Submissions</h1>
-                <p className='text-gray-400 text-base max-w-2xl'>Review every registration with the same premium surface used across Team and Announcements. Latest entries stay on top so you can act quickly.</p>
+                <h1 className='font-inter text-[#d4af37] text-4xl sm:text-5xl font-bold drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)] mb-3'>Registration Submissions</h1>
+                <p className='text-gray-400 text-base max-w-2xl font-inter'>Review every registration with the same premium surface used across Team and Announcements. Latest entries stay on top so you can act quickly.</p>
               </div>
               <div className='flex flex-wrap gap-3'>
-                <Link href="/user" className='px-6 py-3 rounded-xl font-cinzel font-bold text-sm bg-gray-800 text-gray-200 border border-amber-600/20 hover:border-amber-500/50 hover:text-amber-300 transition-all duration-300'>Back to Admin Home</Link>
-                <Link href="/register" className='px-6 py-3 rounded-xl font-cinzel font-bold text-sm bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 shadow-lg shadow-amber-400/30 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300'>Open Registration Form</Link>
+                <Link href="/user" className='px-6 py-3 rounded-xl font-inter font-bold text-sm bg-gray-800 text-gray-200 border border-amber-600/20 hover:border-amber-500/50 hover:text-amber-300 transition-all duration-300'>Back to Admin Home</Link>
+                <Link href="/register" className='px-6 py-3 rounded-xl font-inter font-bold text-sm bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 shadow-lg shadow-amber-400/30 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300'>Open Registration Form</Link>
               </div>
             </div>
 
             <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
               <div className='bg-gray-800/60 border border-amber-600/20 rounded-2xl p-5'>
-                <p className='text-xs tracking-wide text-amber-400/70 font-semibold uppercase mb-1'>Total submissions</p>
-                <p className='text-3xl font-cinzel text-white'>{sortedForms.length}</p>
+                <p className='text-xs tracking-wide text-amber-400/70 font-semibold uppercase mb-1 font-poppins'>Total submissions</p>
+                <p className='text-3xl font-inter font-bold text-white'>{sortedForms.length}</p>
               </div>
               <div className='bg-gray-800/60 border border-amber-600/20 rounded-2xl p-5'>
-                <p className='text-xs tracking-wide text-amber-400/70 font-semibold uppercase mb-1'>Latest submission</p>
-                <p className='text-lg text-gray-100'>{latestSubmission}</p>
+                <p className='text-xs tracking-wide text-amber-400/70 font-semibold uppercase mb-1 font-poppins'>Latest submission</p>
+                <p className='text-lg text-gray-100 font-inter'>{latestSubmission}</p>
               </div>
               <div className='bg-gray-800/60 border border-amber-600/20 rounded-2xl p-5'>
-                <p className='text-xs tracking-wide text-amber-400/70 font-semibold uppercase mb-1'>Source</p>
-                <p className='text-lg text-gray-100'>All Registrations</p>
+                <p className='text-xs tracking-wide text-amber-400/70 font-semibold uppercase mb-1 font-poppins'>Source</p>
+                <p className='text-lg text-gray-100 font-inter'>All Registrations</p>
               </div>
             </div>
 
@@ -157,8 +152,8 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
                 <Cards key={x._id} data={x} i={index+1} access={access}/>
               )):(
                 <div className='text-center py-16 bg-gray-800/50 rounded-2xl border border-amber-600/20'>
-                  <p className='text-xl text-gray-400 font-cinzel'>No registrations found</p>
-                  <p className='text-sm text-gray-500 mt-2'>Once applicants submit a form, it will appear here instantly.</p>
+                  <p className='text-xl text-gray-400 font-inter font-bold'>No registrations found</p>
+                  <p className='text-sm text-gray-500 mt-2 font-inter'>Once applicants submit a form, it will appear here instantly.</p>
                 </div>
               )}
             </div>

@@ -36,16 +36,8 @@
   font-family: var(--font-inter);
 }
 
-.font-cormorant {
-  font-family: var(--font-cormorant);
-}
-
-.font-cinzel {
-  font-family: var(--font-cinzel);
-}
-
-.font-playfair {
-  font-family: var(--font-playfair);
+.font-poppins {
+  font-family: var(--font-poppins);
 }
 
 @keyframes starPulse1 {

@@ -47,7 +47,7 @@ export const Form = ({access}) => {
 
         {/* Form Header */}
         <div className="mb-8 relative z-10">
-          <h2 className="text-3xl sm:text-4xl font-bold font-cinzel text-transparent bg-clip-text 
+          <h2 className="text-3xl sm:text-4xl font-bold font-inter text-transparent bg-clip-text 
                          bg-gradient-to-r from-[#d4af37] to-amber-300 mb-2"
               style={{textShadow: '2px 2px 4px rgba(212,175,55,0.3)'}}>
             Create New Announcement
@@ -57,7 +57,7 @@ export const Form = ({access}) => {
 
         {/* TITLE */}
         <div className="mb-6 relative z-10">
-          <label className="text-xs font-semibold text-amber-400/80 mb-2 block uppercase tracking-wider font-cinzel">
+          <label className="text-xs font-semibold text-amber-400/80 mb-2 block uppercase tracking-wider font-inter">
             Announcement Title *
           </label>
           <input
@@ -68,18 +68,18 @@ export const Form = ({access}) => {
             })}
             className="w-full text-xl sm:text-2xl font-bold text-gray-100 bg-gray-900/50 
                        border-b-2 border-amber-600/30 focus:border-amber-500/60 
-                       outline-none transition-all duration-300 pb-2 px-2 font-cinzel
+                       outline-none transition-all duration-300 pb-2 px-2 font-inter
                        placeholder:text-gray-600"
             placeholder="Enter announcement title"
           />
           {errors.title && (
-            <p className="mt-2 text-red-400 text-xs sm:text-sm font-playfair">{errors.title.message}</p>
+            <p className="mt-2 text-red-400 text-xs sm:text-sm font-poppins">{errors.title.message}</p>
           )}
         </div>
 
         {/* DESCRIPTION */}
         <div className="mb-6 relative z-10">
-          <label className="text-xs font-semibold text-amber-400/70 mb-2 block uppercase tracking-wider font-cinzel">
+          <label className="text-xs font-semibold text-amber-400/70 mb-2 block uppercase tracking-wider font-inter">
             Description *
           </label>
           <textarea
@@ -89,19 +89,19 @@ export const Form = ({access}) => {
             })}
             className="w-full text-base sm:text-lg text-gray-300 bg-gray-900/50 
                        border border-gray-700 focus:border-amber-500/40 
-                       outline-none transition-all duration-300 p-3 rounded-lg font-playfair
+                       outline-none transition-all duration-300 p-3 rounded-lg font-poppins
                        min-h-[120px] resize-y placeholder:text-gray-600"
             placeholder="Enter announcement description..."
           />
           {errors.description && (
-            <p className="mt-2 text-red-400 text-xs sm:text-sm font-playfair">{errors.description.message}</p>
+            <p className="mt-2 text-red-400 text-xs sm:text-sm font-poppins">{errors.description.message}</p>
           )}
         </div>
 
         {/* Success/Error message */}
         {msg && (
           <div className="mb-6 p-4 rounded-xl border border-amber-600/20 bg-gray-800/50 relative z-10">
-            <p className="text-sm sm:text-base text-gray-300 font-playfair">{msg}</p>
+            <p className="text-sm sm:text-base text-gray-300 font-poppins">{msg}</p>
           </div>
         )}
 
@@ -109,7 +109,7 @@ export const Form = ({access}) => {
         <button
           type="submit"
           disabled={!isDirty}
-          className={`w-full font-bold font-cinzel text-base sm:text-lg py-3 sm:py-4 px-6 rounded-xl transition-all duration-500 shadow-lg relative overflow-hidden group/btn z-10 ${isDirty ? 'bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-400/30 cursor-pointer' : 'bg-gray-700 text-gray-500 cursor-not-allowed opacity-50'}`}
+          className={`w-full font-bold font-inter text-base sm:text-lg py-3 sm:py-4 px-6 rounded-xl transition-all duration-500 shadow-lg relative overflow-hidden group/btn z-10 ${isDirty ? 'bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-400/30 cursor-pointer' : 'bg-gray-700 text-gray-500 cursor-not-allowed opacity-50'}`}
         >
           <div className="absolute w-full inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
                           -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 rounded-xl" />
