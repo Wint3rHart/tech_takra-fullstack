@@ -21,8 +21,18 @@ import Link from "next/link";
 export default async function Home() {
   console.log("home rendering");
   
-let   past_events= get_fetch("events","past");
-  let  upcoming_events= get_fetch("events","upcoming");
+  // Components use use() hook which expects promises, so we always return promises
+  // Wrap in catch to handle errors gracefully during build
+  let past_events = get_fetch("events", "past").catch((error) => {
+    console.log("Failed to fetch past events:", error.message);
+    return [];
+  });
+  
+  let upcoming_events = get_fetch("events", "upcoming").catch((error) => {
+    console.log("Failed to fetch upcoming events:", error.message);
+    return [];
+  });
+  
   // let top_hotels=get_fetch("top_hotels");
 
 
