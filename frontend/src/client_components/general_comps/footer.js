@@ -10,9 +10,7 @@ const Footer = () => {
       <div className="md:ps-[25px] lg:ps-0">
         <h6 className="text-2xl font-bold font-orbitron text-[#A89E4F] mb-4">About Us</h6>
         <p className="text-gray-400 text-sm leading-relaxed font-semibold">
-          Engine Finders is the UK's top price comparison website for Used &amp; Reconditioned Car Engines. We
-          can help you save up to 60% on engine replacement cost by instantly connecting you with hundreds
-          of verified suppliers nationwide.
+          The Computer Science Society (CSS) at Government College University is committed to creating a collaborative, innovative, and inspiring environment for tech enthusiasts. We bring together students passionate about programming, research, development, and emerging technologies, helping them grow through events, workshops, competitions, and mentorship.
         </p>
       </div>
 
@@ -20,7 +18,7 @@ const Footer = () => {
       <div className="md:ps-[25px] lg:flex lg:flex-col lg:items-center">
         <h6 className="text-2xl font-bold font-orbitron text-[#A89E4F] mb-4 lg:ms-[-80px]">Quick Links</h6>
         <ul className="space-y-2 text-sm font-semibold">
-          {["Blog", "Reviews", "Sitemap", "Frequently Asked Questions", "Newsletter"].map((label) => (
+          {["Events", "Projects", "Team", "Join CSS", "Gallery"].map((label) => (
             <li key={label}>
               <a
                 href={`./${label.toLowerCase().replace(/\s+/g, "-")}`}
@@ -40,34 +38,34 @@ const Footer = () => {
         <p className="text-gray-400 text-sm font-semibold">
           <i className="fa fa-envelope me-2" style={{ color: "#2D567C" }}></i>
           <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=Info@enginefinders.co.uk"
+            href="mailto:gcu.css.official@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Info@enginefinders.co.uk
+            gcu.css.official@gmail.com
           </a>
         </p>
 
         <p className="text-gray-400 text-sm font-semibold">
           <i className="fa-solid fa-phone me-2" style={{ color: "#2D567C" }}></i>
-          <a href="tel:+442034884649">020 3488 4649</a>
+          <a href="tel:+923000000000">+92 300 0000000</a>
         </p>
 
         <p className="text-gray-400 text-sm font-semibold">
           <i className="fa-brands fa-whatsapp me-2 text-[18px]" style={{ color: "#2D567C" }}></i>
-          <a href="https://wa.me/447311343662" target="_blank" rel="noopener noreferrer">
-            07311 343662
+          <a target="_blank" rel="noopener noreferrer">
+            +92 300 0000000
           </a>
         </p>
 
         <p className="text-gray-400 text-sm font-semibold">
           <i className="fa-regular fa-comments text-[#2D567C] me-2 text-[15px]"></i>
-          <a href="./contact-us">Contact us</a>
+          <a href="./contact-us">Reach Out</a>
         </p>
 
         <p className="text-gray-400 text-sm font-semibold">
           <i className="fa-solid fa-headset text-[#2D567C] me-2 text-[18px]"></i>
-          <a href="./live-chat">Live Chat</a>
+          <a href="./support">Student Support</a>
         </p>
       </div>
 
@@ -76,11 +74,11 @@ const Footer = () => {
         <h6 className="text-2xl font-bold font-orbitron text-[#A89E4F] mb-4 lg:ms-[-80px]">Legal</h6>
         <ul className="space-y-2 text-sm font-semibold">
           {[
-            { href: "./about-us", label: "About Us" },
+            { href: "./about", label: "About CSS" },
             { href: "./privacy-policy", label: "Privacy Policy" },
-            { href: "./terms-and-condition", label: "Terms & Conditions" },
-            { href: "./cookies-policy", label: "Cookies Policy" },
-            { href: "./legal-disclaimer", label: "Legal Disclaimers" },
+            { href: "./terms", label: "Terms & Conditions" },
+            { href: "./code-of-conduct", label: "Code of Conduct" },
+            { href: "./policies", label: "General Policies" },
           ].map((link) => (
             <li key={link.href}>
               <a href={link.href} className="text-gray-400 hover:text-white transition">
@@ -97,12 +95,11 @@ const Footer = () => {
   <div className="space-y-2 text-center border-t border-gray-700 mt-6 pt-4 container mx-auto flex flex-col items-center font-cormorant">
     <div className="flex space-x-4">
       {[
-        { href: "https://www.facebook.com/EngineFinders", icon: "fab fa-facebook-f" },
-        { href: "https://www.instagram.com/enginefinders/", icon: "fab fa-instagram" },
-        { href: "https://x.com/enginefinders", icon: "fa-brands fa-x-twitter" },
-        { href: "https://www.linkedin.com/company/engine-finders/", icon: "fab fa-linkedin-in" },
-        { href: "https://www.youtube.com/@EngineFinders", icon: "fa-brands fa-youtube" },
-        { href: "https://www.tiktok.com/@enginefinders", icon: "fa-brands fa-tiktok" },
+        { href: "https://www.instagram.com/gcu.css", icon: "fab fa-instagram" },
+        { href: "https://www.facebook.com", icon: "fab fa-facebook-f" },
+        { href: "https://www.linkedin.com", icon: "fab fa-linkedin-in" },
+        { href: "https://x.com", icon: "fa-brands fa-x-twitter" },
+        { href: "https://www.youtube.com", icon: "fa-brands fa-youtube" },
       ].map((social) => (
         <a
           key={social.href}
@@ -115,7 +112,7 @@ const Footer = () => {
         </a>
       ))}
     </div>
-    <p className="text-gray-500 text-sm font-normal">© 2025 Engine Finders. All rights reserved.</p>
+    <p className="text-gray-500 text-sm font-normal">Made With Love By Hassan Nadeem & M.ALi Iqbal</p>
   </div>
 </footer>
 

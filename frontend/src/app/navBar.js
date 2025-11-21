@@ -61,19 +61,20 @@ Open Admin Panel
           
           {/* Logo */}
           <div className="flex-shrink-0 group cursor-pointer">
-            <div className="relative">
-              {/* Logo background glow */}
-              <div className="absolute  inset-0 bg-amber-400/20 rounded-full blur-lg group-hover:bg-amber-400/30 transition-all duration-300"></div>
-              
-              <h1 className="relative border p-2 border-amber-200 rounded-full text-2xl md:text-xl flex font-bold text-white group-hover:text-amber-300 transition-colors duration-300">
-                <span className="text-white drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]">T</span>
-                <br />
-                <span className=" text-amber-200 drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]  tracking-wide">W</span>
-                <br />
-                <span className="text-white drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]">H</span>
-              </h1>
-            </div>
-          </div>
+  <div className="relative">
+    
+    {/* Logo background glow */}
+    <div className="absolute inset-0 bg-amber-400/20 rounded-full blur-lg group-hover:bg-amber-400/30 transition-all duration-300"></div>
+
+    {/* Logo Image */}
+    <img
+      src="/ddddd.jpg"     // <-- change to your image path
+      alt="CSS Logo"
+      className="relative w-16 h-16 md:w-14 md:h-14 rounded-full object-cover border border-amber-200 group-hover:border-amber-300 transition-all duration-300"
+    />
+  </div>
+</div>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
