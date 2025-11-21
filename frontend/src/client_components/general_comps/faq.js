@@ -11,7 +11,7 @@ const FAQs = () => {
         <div className="overflow-y-auto max-h-[500px] space-y-4 mt-12 pr-2 scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-400 scrollbar-track-transparent">
 
           <details className="bg-blue-800/25 shadow rounded-lg p-4">
-            <summary className="cursor-pointer w-full font-playfair text-[#C5B358] sm:text-[20px] leading-[38px] sm:leading-[32px] md:leading-[40px] text-lg sm:text-xl lg:leading-[48px]">
+            <summary className="cursor-pointer w-full font-poppins text-[#C5B358] sm:text-[20px] leading-[38px] sm:leading-[32px] md:leading-[40px] text-lg sm:text-xl lg:leading-[48px]">
               How do I book a trip on Wandering Hart?
             </summary>
             <p className="mt-2 font-raleway text-lg font-normal text-white">
@@ -20,7 +20,7 @@ const FAQs = () => {
           </details>
 
           <details className="bg-blue-800/25 shadow rounded-lg p-4">
-            <summary className="cursor-pointer w-full font-playfair text-[#C5B358] sm:text-[20px] leading-[38px] sm:leading-[32px] md:leading-[40px] text-lg sm:text-xl lg:leading-[48px]">
+            <summary className="cursor-pointer w-full font-poppins text-[#C5B358] sm:text-[20px] leading-[38px] sm:leading-[32px] md:leading-[40px] text-lg sm:text-xl lg:leading-[48px]">
               Do you offer travel packages?
             </summary>
             <p className="mt-2 font-raleway text-lg font-normal text-white">
@@ -29,7 +29,7 @@ const FAQs = () => {
           </details>
 
           <details className="bg-blue-800/25 shadow rounded-lg p-4">
-            <summary className="cursor-pointer w-full font-playfair text-[#C5B358] sm:text-[20px] leading-[38px] sm:leading-[32px] md:leading-[40px] text-lg sm:text-xl lg:leading-[48px]">
+            <summary className="cursor-pointer w-full font-poppins text-[#C5B358] sm:text-[20px] leading-[38px] sm:leading-[32px] md:leading-[40px] text-lg sm:text-xl lg:leading-[48px]">
               Can I cancel or change my booking?
             </summary>
             <p className="mt-2 font-raleway text-lg font-normal text-white">
@@ -38,7 +38,7 @@ const FAQs = () => {
           </details>
 
           <details className="bg-blue-800/25 shadow rounded-lg p-4">
-            <summary className="cursor-pointer w-full font-playfair text-[#C5B358] sm:text-[20px] leading-[38px] sm:leading-[32px] md:leading-[40px] text-lg sm:text-xl lg:leading-[48px]">
+            <summary className="cursor-pointer w-full font-poppins text-[#C5B358] sm:text-[20px] leading-[38px] sm:leading-[32px] md:leading-[40px] text-lg sm:text-xl lg:leading-[48px]">
               Do you provide travel insurance?
             </summary>
             <p className="mt-2 font-raleway text-lg font-normal text-white">
@@ -47,7 +47,7 @@ const FAQs = () => {
           </details>
 
           <details className="bg-blue-800/25 shadow rounded-lg p-4">
-            <summary className="cursor-pointer w-full font-playfair text-[#C5B358] sm:text-[20px] leading-[38px] sm:leading-[32px] md:leading-[40px] text-lg sm:text-xl lg:leading-[48px]">
+            <summary className="cursor-pointer w-full font-poppins text-[#C5B358] sm:text-[20px] leading-[38px] sm:leading-[32px] md:leading-[40px] text-lg sm:text-xl lg:leading-[48px]">
               How can I find the best travel deals?
             </summary>
             <p className="mt-2 font-raleway text-lg font-normal text-white">

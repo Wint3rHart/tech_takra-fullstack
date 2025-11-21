@@ -8,6 +8,7 @@ const teamMemberSchema = new mongoose.Schema({
     },
     position: { type: String, required: true },
     description: { type: String, required: false },
+    order: { type: Number, required: false, default: 999 }, // Lower numbers appear first (e.g., President = 1)
 }, {timestamps: true});
 const teamMember = mongoose.model("teamMember", teamMemberSchema);
 export default teamMember;

@@ -7,7 +7,7 @@ export const getAllEvents = async (req, res) => {
         const allEvents = await events.find({}).sort({ createdAt: -1 });
         res.status(200).json(allEvents);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ msg: error.message });
     }
 };
 export const createEvent = async (req, res) => {
@@ -36,7 +36,7 @@ export const createEvent = async (req, res) => {
 
     res.status(201).json(newEvent);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ msg: error.message });
   }
 };
 
@@ -45,7 +45,7 @@ export const updateEvent = async (req, res) => {
         const { id } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: "Invalid event ID" });
+            return res.status(400).json({ msg: "Invalid event ID" });
         }
 
         const { title, description, date, location, category, isFeatured } = req.body;
@@ -77,7 +77,7 @@ export const updateEvent = async (req, res) => {
         res.status(200).json(updatedEvent);
 
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ msg: error.message });
     }
 };
 
@@ -86,11 +86,11 @@ export const deleteEvent = async (req, res) => {
     try {
         const { id } = req.params;
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: "Invalid event ID" });
+            return res.status(400).json({ msg: "Invalid event ID" });
         }
         const deletedEvent = await events.findByIdAndDelete(id);
         if(!deletedEvent) {
-            return res.status(404).json({ message: "Event not found" });
+            return res.status(404).json({ msg: "Event not found" });
         }
         if (deletedEvent.images && deletedEvent.images.length > 0) {
         for (const img of deletedEvent.images) {
@@ -99,10 +99,10 @@ export const deleteEvent = async (req, res) => {
                   }
             }
         }
-        res.status(200).json({ message: "Event deleted successfully" });
+        res.status(200).json({ msg: "Event deleted successfully" });
 
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ msg: error.message });
     }
 }
 
@@ -118,7 +118,7 @@ export const upcomingEvents = async (req, res) => {
         res.status(200).json(upcomingEventsList);
 
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ msg: error.message });
     }
 };
 
@@ -130,7 +130,7 @@ export const pastEvents = async (req, res) => {
         const pastEvents = await events.find({ date: { $lt: new Date() } }).sort({ date: -1 });
         res.status(200).json(pastEvents);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ msg: error.message });
     }
 }
 export const singleEvent = async (req, res) => {
@@ -138,18 +138,18 @@ export const singleEvent = async (req, res) => {
         const { id } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: "Invalid event ID" });
+            return res.status(400).json({ msg: "Invalid event ID" });
         }
 
         const singleEvent = await events.findById(id);
 
         if (!singleEvent) {
-            return res.status(404).json({ message: "Event not found" });
+            return res.status(404).json({ msg: "Event not found" });
         }
 
         res.status(200).json(singleEvent);
 
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ msg: error.message });
     }
 }

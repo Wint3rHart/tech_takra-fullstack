@@ -4,12 +4,7 @@
 import React, { useRef ,useMemo} from 'react';
 import { motion,useTransform,useScroll } from 'framer-motion';
 import UseVariants from '../../client_hooks/useVariants';
-import {Cormorant_Garamond, Cinzel, Playfair_Display,Tangerine, Playfair_Display_SC ,Merriweather,Work_Sans,Lobster_Two,Righteous} from 'next/font/google';
 
-const tangerine=Cinzel({subsets: ["latin"],
-  weight: ["400", "700"],})
-const cormotant=Work_Sans({subsets: ["latin"],
-  weight: ["400", "700"],})
 const Ref_wrapper=({children})=>{
 
 // console.log(children);
@@ -56,11 +51,11 @@ let opacityTrans=useTransform(scrollYProgress,[0,.1,1],[1,0,0]);
     return (
         <motion.div style={{y:y0}} className='h-full' variants={parent_One_after_one} initial="initial" animate="animate" >
 
-<motion.div  variants={parentVar}  className='mt-44 sm:mt-56 px-4 w-full max-w-5xl mx-auto text-center flex flex-row flex-nowrap items-center justify-center gap-2 sm:gap-4 text-stone-300'>
+<motion.div  variants={parentVar}  className='mt-44  sm:mt-56 px-4 w-full max-w-5xl mx-auto text-center flex flex-row flex-nowrap items-center justify-center gap-2 sm:gap-4 text-stone-300'>
  
-<motion.p variants={childVar} className={`text-5xl sm:text-5xl md:text-6xl [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)] font-semibold font-cinzel`}>{React.Children.toArray(x)[0].props.children}</motion.p>
+<motion.p variants={childVar} className={`text-5xl sm:text-5xl md:text-6xl [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)] font-semibold font-cinzel `}>{React.Children.toArray(x)[0].props.children}</motion.p>
 
-<motion.div style={{y:yC}} variants={childVar} className={`font-playfair text-6xl sm:text-6xl md:text-8xl font-bold mb-4 sm:mb-6  text-[#d4af37] [text-shadow:2px_4px_5px_rgba(0,0,0,0.6),0_0_10px_rgba(255,255,255,0.4)] font-black flex`}>
+<motion.div style={{y:yC}} variants={childVar} className={`font-cinzel  text-5xl sm:text-6xl md:text-6xl font-bold  text-[#d4af37] [text-shadow:2px_4px_5px_rgba(0,0,0,0.6),0_0_10px_rgba(255,255,255,0.4)] font-black flex`}>
   <motion.p  variants={grandChildVar} >{x?.[1]?.props?.children}</motion.p>
 </motion.div>
 

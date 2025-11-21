@@ -2,9 +2,10 @@ import announcement from "../models/announcements.js";
 import mongoose from "mongoose";
 export const getAllAnnouncements = async (req, res) => {
     try {
-        const announcements = await announcement.find();
+        // Sort by createdAt descending (newest first), then by updatedAt as fallback
+        const announcements = await announcement.find().sort({ createdAt: -1, updatedAt: -1 });
         if(!announcements) {
-            return res.status(404).json({ message: "No announcements found" });
+            return res.status(404).json({ msg: "No announcements found" });
         }
         res.status(200).json(announcements);
     } catch (error) {
@@ -26,11 +27,11 @@ export const getSingleAnnouncement = async (req, res) => {
     try {
         const { id } = req.params;
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: "Invalid announcement ID" });
+            return res.status(400).json({ msg: "Invalid announcement ID" });
         }
         const singleAnnouncement = await announcement.findById(id);
         if(!singleAnnouncement) {
-            return res.status(404).json({ message: "Announcement not found" });
+            return res.status(404).json({ msg: "Announcement not found" });
         }
         res.status(200).json(singleAnnouncement);
     } catch (error) {
@@ -42,11 +43,11 @@ export const updateAnnouncement = async (req, res) => {
     try {
         const { id } = req.params;
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: "Invalid announcement ID" });
+            return res.status(400).json({ msg: "Invalid announcement ID" });
         }
         const updatedAnnouncement = await announcement.findByIdAndUpdate(id, req.body, { new: true });
         if(!updatedAnnouncement) {
-            return res.status(404).json({ message: "Announcement not found" });
+            return res.status(404).json({ msg: "Announcement not found" });
         }
         res.status(200).json(updatedAnnouncement);
     } catch (error) {
@@ -58,13 +59,13 @@ export const  deleteAnnouncement = async (req, res) => {
     try {
         const { id } = req.params;
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: "Invalid announcement ID" });
+            return res.status(400).json({ msg: "Invalid announcement ID" });
         }
         const deletedAnnouncement = await announcement.findByIdAndDelete(id);
         if(!deletedAnnouncement) {
-            return res.status(404).json({ message: "Announcement not found" });
+            return res.status(404).json({ msg: "Announcement not found" });
         }
-        res.status(200).json({ message: "Announcement deleted successfully" });
+        res.status(200).json({ msg: "Announcement deleted successfully" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

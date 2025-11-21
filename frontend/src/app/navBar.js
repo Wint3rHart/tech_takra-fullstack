@@ -18,16 +18,16 @@ const [isSigned,setSigned]=useState({status:false,data:null});
   //   return () => window.removeEventListener('scroll', handleScroll);
   // }, []);
 const sign_display=useMemo(()=>{
- return <div className=" md:block relative h-full mt-10 group">
+ return <div className=" md:block  relative h-full mt-10 group">
             <button className="relative   bg-gradient-to-r from-amber-300/50 to-amber-400/50 hover:from-amber-400/70 hover:to-amber-500/70 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-400/40 hover:scale-105">
-{data?.status&&            <ul className='absolute hidden group-hover:block z-90 border rounded-xl mt-2 border-amber-400 p-4 left-10  sm:top-12 sm:-translate-x-3 md:top-12 md:-translate-x-6 text-white text-lg'>
-<li>{data?.data?.name}</li>
-            </ul>}
+{data?.status&&            <Link  href='/user' className='absolute hidden w-[10vw] font-poppins text-sm group-hover:block z-90 border rounded-xl mt-2 border-amber-400 p-4 left-10  sm:top-12 sm:-translate-x-8 md:top-11 md:-translate-x-12 text-amber-300 text-lg'>
+Open Admin Panel
+            </Link>}
              
               
-              <span className="relative z-10 flex items-center text-white gap-2">
-          {data?.status?"Signed In":"Not Signed In"}
-              </span>
+              <Link href='/signUp' className="relative z-10 font-inter flex items-center text-white gap-2">
+          {data?.status?"Signed In":"Sign In for Admins"}
+              </Link>
               
               {/* Glowing border */}
               <div className="absolute inset-0 rounded-full border border-amber-300/30 group-hover:border-amber-200/50 transition-colors duration-300"></div>
@@ -38,7 +38,7 @@ const sign_display=useMemo(()=>{
   
     
     { name: 'Team', href: '/team' },
-    { name: 'Updates', href: '/updates' }
+    { name: 'Updates', href: '/updates' },{name:"Join Now",href:"/register"}
   ];
 
   return (
@@ -61,19 +61,20 @@ const sign_display=useMemo(()=>{
           
           {/* Logo */}
           <div className="flex-shrink-0 group cursor-pointer">
-            <div className="relative">
-              {/* Logo background glow */}
-              <div className="absolute  inset-0 bg-amber-400/20 rounded-full blur-lg group-hover:bg-amber-400/30 transition-all duration-300"></div>
-              
-              <h1 className="relative border p-2 border-amber-200 rounded-full text-2xl md:text-xl flex font-bold text-white group-hover:text-amber-300 transition-colors duration-300">
-                <span className="text-white drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]">T</span>
-                <br />
-                <span className=" text-amber-200 drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]  tracking-wide">W</span>
-                <br />
-                <span className="text-white drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]">H</span>
-              </h1>
-            </div>
-          </div>
+  <div className="relative">
+    
+    {/* Logo background glow */}
+    <div className="absolute inset-0 bg-amber-400/20 rounded-full blur-lg group-hover:bg-amber-400/30 transition-all duration-300"></div>
+
+    {/* Logo Image */}
+    <img
+      src="/ddddd.jpg"     // <-- change to your image path
+      alt="CSS Logo"
+      className="relative w-16 h-16 md:w-14 md:h-14 rounded-full object-cover border border-amber-200 group-hover:border-amber-300 transition-all duration-300"
+    />
+  </div>
+</div>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">

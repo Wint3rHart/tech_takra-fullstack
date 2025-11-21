@@ -31,17 +31,17 @@ export const loginAdmin = async (req, res) => {
     const admin = await Admin.findOne({ email: emailNorm });
 
     if (!admin)
-      return res.status(404).json({ message: "Admin not found" });
+      return res.status(404).json({ msg: "Admin not found" });
 
     const isMatch = await admin.comparePassword(password);
 
     if (!isMatch)
-      return res.status(400).json({ message: "Incorrect password" });
+      return res.status(400).json({ msg: "Incorrect password" });
 
     sendToken(admin, res);
 
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ msg: error.message });
   }
 };
 
@@ -53,7 +53,7 @@ export const createAdmin = async (req, res) => {
     // Prevent duplicates
     const exists = await Admin.findOne({ email: emailNorm });
     if (exists)
-      return res.status(400).json({ message: "Email already in use" });
+      return res.status(400).json({ msg: "Email already in use" });
 
     const newAdmin = await Admin.create({
       name,
@@ -66,12 +66,12 @@ export const createAdmin = async (req, res) => {
     delete adminObj.password;
     res.status(201).json({
       success: true,
-      message: "Admin created successfully",
+      msg: "Admin created successfully",
       admin: adminObj
     });
 
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ msg: error.message });
   }
 };
 
@@ -81,17 +81,17 @@ export const deleteAdmin = async (req, res) => {
 
     const admin = await Admin.findById(id);
     if (!admin)
-      return res.status(404).json({ message: "Admin not found" });
+      return res.status(404).json({ msg: "Admin not found" });
 
     if (admin.role === "superadmin")
-      return res.status(400).json({ message: "Cannot delete superadmin" });
+      return res.status(400).json({ msg: "Cannot delete superadmin" });
 
     await admin.deleteOne();
 
-    res.status(200).json({ success: true, message: "Admin deleted successfully" });
+    res.status(200).json({ success: true, msg: "Admin deleted successfully" });
 
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ msg: error.message });
   }
 };
 
@@ -105,7 +105,7 @@ export const getAllAdmins = async (req, res) => {
     });
 
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ msg: error.message });
   }
 };
 
@@ -119,7 +119,7 @@ export const getMyProfile = async (req, res) => {
     });
 
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ msg: error.message });
   }
 };
 
@@ -127,7 +127,7 @@ export const refreshAccessToken = async (req, res) => {
   const { refreshToken } = req.body;
 
   if (!refreshToken) {
-    return res.status(401).json({ message: "Refresh token is required" });
+    return res.status(401).json({ msg: "Refresh token is required" });
   }
 
   try {
@@ -135,18 +135,18 @@ export const refreshAccessToken = async (req, res) => {
     const admin = await Admin.findById(decoded.id);
 
     if (!admin || !admin.refreshToken) {
-      return res.status(403).json({ message: "Invalid refresh token" });
+      return res.status(403).json({ msg: "Invalid refresh token" });
     }
 
     const isMatch = await bcrypt.compare(refreshToken, admin.refreshToken);
     if (!isMatch) {
-      return res.status(403).json({ message: "Invalid refresh token" });
+      return res.status(403).json({ msg: "Invalid refresh token" });
     }
 
     const newAccessToken = admin.generateToken();
     res.status(200).json({ accessToken: newAccessToken });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ msg: error.message });
   }
 };
 
@@ -159,16 +159,16 @@ export const changePassword = async (req, res) => {
 
   const isMatch = await admin.comparePassword(oldPassword);
   if (!isMatch) {
-    return res.status(400).json({ message: "Old password incorrect" });
+    return res.status(400).json({ msg: "Old password incorrect" });
   }
 
   admin.password = newPassword;
   await admin.save();
 
-  res.status(200).json({ success: true, message: "Password updated" });
+  res.status(200).json({ success: true, msg: "Password updated" });
 }
 catch (error) {
-  res.status(500).json({ message: error.message });
+  res.status(500).json({ msg: error.msg });
 }
 };
 
@@ -177,8 +177,8 @@ export const logoutAdmin = async (req, res) => {
     const admin = await Admin.findById(req.admin.id);
     admin.refreshToken = null;
     await admin.save();
-    res.status(200).json({ success: true, message: "Logged out successfully" });
+    res.status(200).json({ success: true, msg: "Logged out successfully" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ msg: error.message });
   }
 };

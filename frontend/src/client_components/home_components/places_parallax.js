@@ -1,9 +1,13 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { use, useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-export const Places = () => {
+export const Places = ({ data }) => {
+    
+    let past_events = use(data);
+    console.log(past_events);
+    
     const demoData = [
         [
             { city_name: 'Seoul', name: 'Gyeongbokgung', description: 'Historic palace with scenic gardens and cultural performances.' },
@@ -69,17 +73,13 @@ export const Places = () => {
 
         useEffect(() => {
             if (isClient) {
-                // Generate random multiplier for this row (similar to desktop's h * rand)
-                rand_ref.current = Math.random() * (.6 - .1) +.4;
+                rand_ref.current = Math.random() * (.6 - .1) + .4;
                 setRand(rand_ref.current);
             }
         }, [isClient]);
 
-        // Alternate direction: row 0 -> right to left, row 1 -> left to right, row 2 -> right to left
         const direction = rowIndex === 1 ? -2 : -1;
         
-        // Calculate horizontal transform using innerWidth (similar to desktop's innerHeight approach)
-        // Keep movement within bounds so cards don't all disappear
         const x = useTransform(
             scroll.scrollYProgress,
             [0, 1],
@@ -93,24 +93,7 @@ export const Places = () => {
             >
                 <div className="flex gap-4 px-2">
                     {items.map((item, idx) => (
-                        <div key={idx} className="w-[65vw] sm:w-[35vw] flex-shrink-0">
-                            <div className="group border border-amber-200 relative h-52 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 cursor-pointer">
-                                <div className='absolute z-10 inset-0 rounded-2xl bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/70 transition-all duration-500' />
-                                <div className="absolute inset-0 rounded-2xl border-2 border-amber-400/0 group-hover:border-amber-400/30 transition-all duration-500"></div>
-                                <div className='absolute bottom-0 left-0 right-0 p-6 text-white z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300'>
-                                    <div className="inline-flex items-center gap-2 bg-amber-300/20 border border-amber-400/30 px-3 py-1 rounded-full text-xs font-medium text-amber-300 mb-2">
-                                        <span className="w-2 h-2 bg-amber-200 rounded-full"></span>
-                                        {item.city_name}
-                                    </div>
-                                    <h3 className='text-xl font-bold mb-2 text-white drop-shadow-[2px_2px_4px_rgba(0,0,0,0.8)] group-hover:text-amber-100 transition-colors duration-300'>
-                                        {item.name}
-                                    </h3>
-                                    <p className='text-sm text-gray-300 line-clamp-3 group-hover:text-white transition-colors duration-300 leading-relaxed'>
-                                        {item.description}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        <PlaceCard key={idx} item={item} size="mobile" />
                     ))}
                 </div>
             </motion.div>
@@ -118,20 +101,22 @@ export const Places = () => {
     };
 
     return (
-        <div ref={ref} className='relative rounded-xl bg-gradient-to-br from-gray-900/90 via-black/80 to-gray-800/90 border-2 border-amber-500 overflow-hidden min-h-[600px]'>
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-400/3 via-transparent to-amber-400/3"></div>
+        <div ref={ref} className="relative rounded-2xl bg-gradient-to-br from-gray-800/80 via-gray-900/90 to-gray-800/80 border border-amber-600/20 overflow-hidden min-h-[600px] backdrop-blur-sm">
             
-            <div className="absolute top-10 left-20 w-1 h-1 bg-amber-400/40 rounded-full"></div>
-            <div className="absolute bottom-40 right-24 w-1 h-1 bg-white/30 rounded-full"></div>
-            <div className="absolute top-1/3 left-1/4 w-1 h-1 bg-amber-300/30 rounded-full"></div>
+            {/* Subtle ambient glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-400/5 via-transparent to-amber-400/5 opacity-50" />
 
-            <div className="relative pt-8 pb-8 shadow-[inset_2px_5px_15px_5px_rgba(0,0,0,.8)] scrollbar-hide scroll-smooth px-2">
+            {/* Corner accents */}
+            <div className="absolute top-4 right-4 w-2 h-2 bg-amber-400/40 rounded-full" />
+            <div className="absolute bottom-4 left-4 w-2 h-2 bg-amber-400/40 rounded-full" />
+
+            <div className="relative pt-8 pb-8 shadow-[inset_0_4px_20px_rgba(0,0,0,0.4)] scrollbar-hide scroll-smooth px-2">
                 {!isMobile && (
                     <div className="flex h-full relative overflow-x-auto md:overflow-x-hidden overflow-y-hidden justify-between">
                         {get?.data.map((x, i) => {
                             const colTransform = 'translateY(-30%)';
                             return (
-                                <div className='w-[84vw] sm:w-[66vw] md:w-1/3 flex-shrink-0 px-2 md:px-4' style={{ transform: colTransform, willChange: "transform" }} key={i}>
+                                <div className="w-[84vw] sm:w-[66vw] md:w-1/3 flex-shrink-0 px-2 md:px-4" style={{ transform: colTransform, willChange: "transform" }} key={i}>
                                     <PlacesCards x={x} scroll={scroll.scrollYProgress} i={i} />
                                 </div>
                             )
@@ -151,6 +136,58 @@ export const Places = () => {
         </div>
     );
 }
+
+const PlaceCard = ({ item, size = "desktop" }) => {
+    const isMobile = size === "mobile";
+    
+    return (
+        <div className={`${isMobile ? 'w-[65vw] sm:w-[35vw]' : ''} flex-shrink-0`}>
+            <div className={`group relative ${isMobile ? 'h-52' : 'h-44 sm:h-64 lg:h-96'} rounded-2xl overflow-hidden 
+                           bg-gradient-to-br from-gray-800/80 via-gray-900/90 to-gray-800/80
+                           border border-amber-600/20 hover:border-amber-500/40
+                           shadow-xl hover:shadow-2xl hover:shadow-amber-400/10 
+                           transition-all duration-500 cursor-pointer`}>
+                
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-gray-900/30 group-hover:from-gray-900/80 transition-all duration-500" />
+                
+                {/* Ambient glow on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-400/0 via-transparent to-amber-400/0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
+
+                {/* Content */}
+                <div className={`absolute bottom-0 left-0 right-0 ${isMobile ? 'p-5' : 'p-6 sm:p-8'} text-white z-20 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300`}>
+                    
+                    {/* City badge */}
+                    <div className={`inline-block ${isMobile ? 'mb-2' : 'mb-3 sm:mb-4'}`}>
+                        <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-600/20 border border-amber-500/30 backdrop-blur-sm">
+                            <div className="flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
+                                <p className="text-xs font-semibold text-amber-300 font-inter">{item.city_name}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Name */}
+                    <h3 className={`${isMobile ? 'text-xl mb-2' : 'text-xl sm:text-2xl mb-2 sm:mb-3'} font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-300 group-hover:to-amber-200 transition-colors duration-300`}
+                        style={{ textShadow: '2px 2px 4px rgba(212,175,55,0.3)' }}>
+                        {item.name}
+                    </h3>
+
+                    {/* Description */}
+                    <p className={`${isMobile ? 'text-sm' : 'text-sm sm:text-base'} text-gray-400 line-clamp-3 group-hover:text-gray-300 transition-colors duration-300 leading-relaxed`}>
+                        {item.description}
+                    </p>
+
+                    {/* Decorative line */}
+                    <div className="w-16 h-px bg-gradient-to-r from-[#d4af37] to-transparent rounded-full opacity-60 mt-3 sm:mt-4" />
+                </div>
+
+                {/* Corner accent */}
+                <div className="absolute top-3 right-3 w-2 h-2 bg-amber-400/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+        </div>
+    );
+};
 
 const PlacesCards = ({ x, scroll, i }) => {
     let [h, setH] = useState(1);
@@ -177,29 +214,11 @@ const PlacesCards = ({ x, scroll, i }) => {
     return (
         <motion.div
             style={{ y, willChange: "transform" }}
-            className='ml-6'
+            className="ml-4 sm:ml-6"
         >
-            <div className="space-y-6 space-x-2">
+            <div className="space-y-5 sm:space-y-6">
                 {x.map((item, index) => (
-                    <div
-                        key={index}
-                        className="group border border-amber-200 relative h-44 sm:h-64 lg:h-96 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500 cursor-pointer"
-                    >
-                        <div className='absolute z-10 inset-0 rounded-2xl bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/70 transition-all duration-500' />
-                        <div className="absolute inset-0 rounded-2xl border-2 border-amber-400/0 group-hover:border-amber-400/30 transition-all duration-500"></div>
-                        <div className='absolute bottom-0 left-0 right-0 p-8 text-white z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300'>
-                            <div className="inline-flex items-center gap-2 bg-amber-300/20 border border-amber-400/30 px-3 py-1 rounded-full text-xs font-medium text-amber-300 mb-4">
-                                <span className="w-2 h-2 bg-amber-200 rounded-full"></span>
-                                {item.city_name}
-                            </div>
-                            <h3 className='text-2xl font-bold mb-3 text-white drop-shadow-[2px_2px_4px_rgba(0,0,0,0.8)] group-hover:text-amber-100 transition-colors duration-300'>
-                                {item.name}
-                            </h3>
-                            <p className='text-sm text-gray-300 mb-6 line-clamp-3 group-hover:text-white transition-colors duration-300 leading-relaxed'>
-                                {item.description}
-                            </p>
-                        </div>
-                    </div>
+                    <PlaceCard key={index} item={item} size="desktop" />
                 ))}
             </div>
         </motion.div>
