@@ -57,17 +57,14 @@ let   past_events= get_fetch("events","past");
       {/* About Us Section - SEO content rendered on server */}
       <section className="text-center relative flex flex-col items-center justify-center items-evenly min-h-screen md:h-[100vh] text-white mt-20 md:mt-36">
 <BgEffectLite/>
-        <TextAppear styling={` font-playfair drop-shadow-[2px_2px_2px_rgba(255,255,255,0.1)]  text-6xl text-[#d4af37] font-semibold `}>
+        <TextAppear styling={` text-4xl sm:text-5xl lg:text-6xl m-auto max-w-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 tracking-wide uppercase drop-shadow-[2px_4px_4px_rgba(0,0,0,0.25),0_0_8px_rgba(212,175,55,0.45)] font-cinzel`}>
         
             WHO ARE WE <span className="text-stone-300">?</span>
           </TextAppear>
           <TextAppear_para  styling={`font-inter mt-8 sm:mt-12 text-base sm:text-lg text-gray-300`}>
-            <p>At Wandering Hart,we believe that every journey should be as unique as the traveler. We are passionate about connecting you with unforgettable experiences in some of the world’s most iconic destinations — London, Tokyo, Paris, Seoul, and Istanbul. From bustling city streets to serene cultural hideaways, we curate bookings that go beyond just travel plans, offering you handpicked stays, tours, and activities that let you truly experience the heart of each city.</p>
-             <p>Whether you’re seeking the timeless charm of Paris, the vibrant energy of Tokyo, the historic streets of Istanbul, the modern elegance of London, or the dynamic culture of Seoul, our mission is to make your trip seamless, inspiring, and memorable. With Traveling We, you’re not just booking a trip — you’re unlocking a journey filled with stories, adventures, and moments you’ll cherish forever.</p>
-            <p >Whether you're seeking the timeless charm of Paris, the vibrant energy of Tokyo, 
-              the historic streets of Istanbul, the modern elegance of London, or the dynamic 
-              culture of Seoul, our mission is to make your trip seamless, inspiring, and memorable.
-            </p>
+           <p>The Computer Science Society at Government College University is dedicated to fostering a vibrant environment where innovation, curiosity, and learning thrive. We believe that every student’s journey into technology should be unique, inspiring, and empowering. From coding to creativity, from research to real-world applications, the CSS brings together individuals who are passionate about exploring the limitless possibilities of the digital world.</p>
+           <p>Whether you’re intrigued by software development, fascinated by artificial intelligence, motivated by cybersecurity, or inspired by interactive design and modern web technologies, our society offers opportunities to grow, collaborate, and experiment. Through workshops, competitions, seminars, and hands-on projects, the CSS aims to enrich your academic experience while bridging the gap between theory and practical skill. Our mission is to equip students with confidence, clarity, and the tools needed to excel in an ever-evolving tech landscape.</p>
+           <p>At the Computer Science Society, you’re not just joining a club — you’re joining a community. A community built on collaboration, creativity, and ambition. Together, we strive to create experiences that spark innovation, shape perspectives, and help students discover their true potential. Whether you're taking your first step into programming or preparing for advanced tech challenges, the CSS is here to guide your journey every step of the way.</p>
           </TextAppear_para>
        
       </section>
