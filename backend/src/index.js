@@ -10,10 +10,16 @@ import announcementRoutes from './routes/announcement.route.js';
 //import cookieParser from "cookie-parser";
 const app =express();
 dotenv.config();
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: [
+      "https://tech-takra-fullstack-five.vercel.app", // your frontend
+      "http://localhost:3000" // for testing locally
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  })
+);
 app.use(express.json()); 
 //app.use(cookieParser());
 const port = process.env.PORT;
