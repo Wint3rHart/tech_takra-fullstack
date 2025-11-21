@@ -1,3 +1,5 @@
+import { API_BASE_URL } from '@/config/api';
+
 export const get_fetch = async (route, options, x, y, z, cache_option) => {
   let aborter = new AbortController();
   let signal = aborter.signal;
@@ -9,41 +11,41 @@ export const get_fetch = async (route, options, x, y, z, cache_option) => {
     let url;
     switch (route) {
       case "events":
-        url = `https://computersciencesocietyonrender.com/api/events/${options}`;
+        url = `${API_BASE_URL}/api/events/${options}`;
         break;
       case "team":
-        url = `https://computersciencesocietyonrender.com/api/team`;
+        url = `${API_BASE_URL}/api/team`;
         break;
       case "announcement":
       case "notice":
-        url = `https://computersciencesocietyonrender.com/api/announcement`;
+        url = `${API_BASE_URL}/api/announcement`;
         break;
       case "places_parallax":
-        url = `https://computersciencesocietyonrender.com/api/places_parallax`;
+        url = `${API_BASE_URL}/api/places_parallax`;
         break;
       case "cities_cards":
-        url = `https://computersciencesocietyonrender.com/api/cities_details`;
+        url = `${API_BASE_URL}/api/cities_details`;
         break;
       case "top_hotels":
-        url = `https://computersciencesocietyonrender.com/api/top_hotels`;
+        url = `${API_BASE_URL}/api/top_hotels`;
         break;
       case "city_data":
         console.log(options);
-        url = `https://computersciencesocietyonrender.com/api/city_data/${options}`;
+        url = `${API_BASE_URL}/api/city_data/${options}`;
         break;
       case "order_dets":
         console.log("in order dets");
-        url = `https://computersciencesocietyonrender.com/api/order_dets?city=${options}&type=${x ? "package" : "custom"}&package_id=${x ? x : "none"}`;
+        url = `${API_BASE_URL}/api/order_dets?city=${options}&type=${x ? "package" : "custom"}&package_id=${x ? x : "none"}`;
         break;
       case "hotel_dets":
         console.log("in hotel dets");
-        url = `https://computersciencesocietyonrender.com/api/hotel_rooms?city=${options}`;
+        url = `${API_BASE_URL}/api/hotel_rooms?city=${options}`;
         break;
       case "all_hotels":
-        url = `https://computersciencesocietyonrender.com/api/hotels`;
+        url = `${API_BASE_URL}/api/hotels`;
         break;
       default:
-        url = `https://computersciencesocietyonrender.com/api/${route}/${options}`;
+        url = `${API_BASE_URL}/api/${route}/${options}`;
         break;
     }
 

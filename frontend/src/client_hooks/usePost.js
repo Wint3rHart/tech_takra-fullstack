@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { API_BASE_URL } from '@/config/api';
 
 const usePost = (type, method, access) => {
   console.log(access);
@@ -26,12 +27,12 @@ const usePost = (type, method, access) => {
 
       switch (type) {
         case "delete_form":
-          url = `https://computersciencesocietyonrender.com/api/regForm/${data.data_id}`;
+          url = `${API_BASE_URL}/api/regForm/${data.data_id}`;
           break;
 
         case "update_event":
           console.log(data);
-          url = `https://computersciencesocietyonrender.com/api/events/update/${data.id}`;
+          url = `${API_BASE_URL}/api/events/update/${data.id}`;
           try {
             const get = await fetch(url, {
               method,
@@ -47,11 +48,11 @@ const usePost = (type, method, access) => {
           }
 
         case "delete_event":
-          url = `https://computersciencesocietyonrender.com/api/events/delete/${data.data_id}`;
+          url = `${API_BASE_URL}/api/events/delete/${data.data_id}`;
           break;
 
         case "create_event":
-          url = `https://computersciencesocietyonrender.com/api/events/create`;
+          url = `${API_BASE_URL}/api/events/create`;
           try {
             const get = await fetch(url, {
               method,
@@ -67,7 +68,7 @@ const usePost = (type, method, access) => {
           }
 
         case "create_team":
-          url = `https://computersciencesocietyonrender.com/api/team/create`;
+          url = `${API_BASE_URL}/api/team/create`;
           try {
             const get = await fetch(url, {
               method,
@@ -83,7 +84,7 @@ const usePost = (type, method, access) => {
           }
 
         case "update_team":
-          url = `https://computersciencesocietyonrender.com/api/team/update/${data.id}`;
+          url = `${API_BASE_URL}/api/team/update/${data.id}`;
           try {
             const get = await fetch(url, {
               method,
@@ -99,7 +100,7 @@ const usePost = (type, method, access) => {
           }
 
         case "delete_team":
-          url = `https://computersciencesocietyonrender.com/api/team/delete/${data.data_id}`;
+          url = `${API_BASE_URL}/api/team/delete/${data.data_id}`;
           try {
             const get = await fetch(url, {
               method,
@@ -114,7 +115,7 @@ const usePost = (type, method, access) => {
           }
 
         case "create_notification":
-          url = `https://computersciencesocietyonrender.com/api/announcement/create`;
+          url = `${API_BASE_URL}/api/announcement/create`;
           try {
             const get = await fetch(url, {
               method,
@@ -133,7 +134,7 @@ const usePost = (type, method, access) => {
           }
 
         case "update_notification":
-          url = `https://computersciencesocietyonrender.com/api/announcement/update/${data.id}`;
+          url = `${API_BASE_URL}/api/announcement/update/${data.id}`;
           try {
             const { id, ...updateData } = data.formData || data;
             const get = await fetch(url, {
@@ -153,7 +154,7 @@ const usePost = (type, method, access) => {
           }
 
         case "delete_notification":
-          url = `https://computersciencesocietyonrender.com/api/announcement/delete/${data.data_id}`;
+          url = `${API_BASE_URL}/api/announcement/delete/${data.data_id}`;
           try {
             const get = await fetch(url, {
               method,
@@ -168,20 +169,20 @@ const usePost = (type, method, access) => {
           }
 
         case "create_admin":
-          url = `https://computersciencesocietyonrender.com/api/auth/admin/create`;
+          url = `${API_BASE_URL}/api/auth/admin/create`;
           break;
 
         case "delete_admin":
-          url = `https://computersciencesocietyonrender.com/api/auth/admin/delete/${data.data_id}`;
+          url = `${API_BASE_URL}/api/auth/admin/delete/${data.data_id}`;
           break;
 
         case "change_password":
-          url = `https://computersciencesocietyonrender.com/api/auth/admin/change-password`;
+          url = `${API_BASE_URL}/api/auth/admin/change-password`;
           if (data.error) throw new Error(data.error);
           break;
 
         case "logout_admin":
-          url = `https://computersciencesocietyonrender.com/api/auth/admin/logout`;
+          url = `${API_BASE_URL}/api/auth/admin/logout`;
           break;
 
         default:
