@@ -2,31 +2,55 @@
 // Use NEXT_PUBLIC_API_URL environment variable if set, otherwise auto-detect
 
 const getApiBaseUrl = () => {
-  // If environment variable is set, use it (works for both client and server)
+  // Priority 1: If environment variable is explicitly set, use it
   if (process.env.NEXT_PUBLIC_API_URL) {
+    console.log('[API Config] Using NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
     return process.env.NEXT_PUBLIC_API_URL;
   }
   
-  // For client-side: check if running on localhost
-  if (typeof window !== 'undefined') {
+  // Priority 2: Client-side detection (most reliable - checks actual browser location)
+  if (typeof window !== 'undefined' && window.location) {
     const hostname = window.location.hostname;
+    console.log('[API Config] Client-side detection, hostname:', hostname);
+    // Only use localhost if we're actually on localhost
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
       return 'http://localhost:4600';
     }
+    // For any other hostname (vercel.app, custom domain, etc.), use production
+    return 'https://computersciencesocietyonrender.com';
   }
   
-  // For server-side: check NODE_ENV
-  if (typeof window === 'undefined') {
-    if (process.env.NODE_ENV === 'development') {
-      return 'http://localhost:4600';
-    }
+  // Priority 3: Server-side detection
+  // In Next.js, during build/SSR, we need to check environment variables
+  // Vercel sets VERCEL_ENV: 'production', 'preview', or 'development'
+  // NODE_ENV is 'production' in production builds, 'development' in dev mode
+  
+  const isDevelopment = 
+    process.env.NODE_ENV === 'development' || 
+    process.env.VERCEL_ENV === 'development';
+  
+  console.log('[API Config] Server-side detection:', {
+    NODE_ENV: process.env.NODE_ENV,
+    VERCEL_ENV: process.env.VERCEL_ENV,
+    isDevelopment
+  });
+  
+  if (isDevelopment) {
+    return 'http://localhost:4600';
   }
   
-  // Default to production URL
+  // Default: Always use production URL for production builds
+  // This covers: Vercel production, Vercel preview, and any other production deployment
   return 'https://computersciencesocietyonrender.com';
 };
 
+// Export as constant - evaluated when module loads
+// For client components: will check window.location at runtime (when module loads in browser)
+// For server components: will use NODE_ENV/VERCEL_ENV (when module loads on server)
 export const API_BASE_URL = getApiBaseUrl();
+
+// Also export as function for dynamic access if needed
+export { getApiBaseUrl };
 
 // Helper function to build API URLs
 export const getApiUrl = (endpoint) => {
