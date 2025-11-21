@@ -96,7 +96,7 @@ const VerticalCard = ({ data, index }) => {
     >
       <div
         style={{
-          backgroundImage: `url('${data.images[0].url}')`,
+          backgroundImage: `url('${data?.images?.[0]?.url}')`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
