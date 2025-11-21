@@ -1,3 +1,4 @@
+export const dynamic='force-dynamic'
 import React from 'react';
 import UpdatesGallery from './gallery';
 import { get_fetch } from '@/server_fetch_fncs/fetch_fnx';

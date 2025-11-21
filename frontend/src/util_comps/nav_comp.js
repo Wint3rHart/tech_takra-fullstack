@@ -1,4 +1,4 @@
-// "use server"
+export const dynamic='force-dynamic'
 import WanderingHartNavbar from "@/app/navBar";
 import CryptoJS from "crypto-js";
 

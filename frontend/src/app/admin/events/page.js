@@ -1,13 +1,18 @@
 
-import UserBookings from './user_bookings';
-import React from 'react';
+export const dynamic='force-dynamic'
 import { cookies } from 'next/headers';
 import CryptoJS from 'crypto-js';
 import Link from 'next/link';
 import BgEffect from '@/util_comps/bg_effect';
+import { Events } from './events';
 
 
-const Page = async({children}) => {
+
+
+
+
+
+const Page = async() => {
     try {
     //  return   <User_header decrypt={{name:"Hassan",email:"test@gmail.com"}} />
         const cookieStore=await cookies();
@@ -22,7 +27,8 @@ if(parsed){
 return (
     <div className="min-h-screen relative  py-8 px-4">
         
-<RegForms access={parsed.accessToken}/>
+<Events role={parsed.role} access={parsed.accessToken}/>
+
 
           </div>
 )
@@ -120,23 +126,7 @@ return (
         );
     }
     
-}
-
-
-
-
-
-
-
-
-const RegForms = ({access}) => {
-    return (
-        <div className='md:mt-36 flex flex-col justify-center items-center'>
-            <h1 className='font-inter text-[#d4af37] text-3xl font-bold mt-6 lg:mt-0
-                          drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]'>Registration Forms</h1>
-           <UserBookings access={access}/>
-        </div>
-    );
-}
+};
 
 export default Page;
+
