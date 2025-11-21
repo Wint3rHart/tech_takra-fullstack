@@ -26,7 +26,7 @@ if(parsed){
 return (
     <div className="min-h-screen relative  py-8 px-4">
         
-<Events role={parsed.role}/>
+<Events role={parsed.role} access={parsed.accessToken}/>
 
 
           </div>

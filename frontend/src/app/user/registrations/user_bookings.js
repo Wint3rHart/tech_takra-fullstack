@@ -14,7 +14,7 @@ const cormotant = Work_Sans({ subsets: ["latin"], weight: ["400", "700"] });
 
 
 
-const UserBookings = ({id}) => {
+const UserBookings = ({access}) => {
 console.log("in user");
 let search=useSearchParams();
 
@@ -107,7 +107,7 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
     return (
         <div>
             { data.map((x,i)=>{
-                return <div className='mt-3' key={x._id}><Cards data={x} i={i}/></div>
+        return <div className='mt-3' key={x._id}><Cards data={x} i={i} access={access}/></div>
             })}
         </div>
     );

@@ -6,7 +6,7 @@ import BgEffect from "@/util_comps/bg_effect";
 import Cards from "./cards";
 import { Form } from "./form";
 
-export const Announcements = ({user}) => {
+export const Announcements = ({user,access}) => {
   console.log("in notifications");
   const [create, setCreate] = useState(false);
 
@@ -139,12 +139,12 @@ export const Announcements = ({user}) => {
       </h1>
 
       {create ? (
-        <Form user={user}/>
+        <Form user={user} access={access}/>
       ) : (
         data &&
         data.map((x, i) => (
           <div className="mt-3 w-full max-w-3xl" key={x._id || i}>
-            <Cards data={x} i={i} user={user}/>
+            <Cards data={x} i={i} user={user} access={access}/>
           </div>
         ))
       )}

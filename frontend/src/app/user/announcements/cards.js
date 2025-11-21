@@ -4,7 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import usePost from "@/client_hooks/usePost";
 
-const Cards = ({ data, i }) => {
+const Cards = ({ data, i,access }) => {
   const {
     register,
     handleSubmit,
@@ -31,8 +31,8 @@ const Cards = ({ data, i }) => {
 
   const canUpdate = textChanged;
 
-  const { abort_ref, post, msg } = usePost("update_notification", "PATCH");
-  const del_post = usePost("delete_notification", "DELETE");
+  const { abort_ref, post, msg } = usePost("update_notification", "PATCH",access);
+  const del_post = usePost("delete_notification", "DELETE",access);
 
   const onSubmit = (formData) => {
     

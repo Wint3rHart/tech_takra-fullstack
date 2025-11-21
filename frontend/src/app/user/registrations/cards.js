@@ -3,18 +3,15 @@
 import usePost from '@/client_hooks/usePost';
 import React from 'react';
 
-const Cards = React.memo(({ data, i }) => {
-  const { abort_ref, post, msg } = usePost("delete_form", "DELETE");
+const Cards = React.memo(({ data, i ,access}) => {
+  const { abort_ref, post, msg } = usePost("delete_form", "DELETE",access);
   const { mutate, error, isSuccess } = post;
 
   const del_fnx = (data_id) => {
     console.log(data_id);
     mutate({ data_id: data_id });
 
-    let timer = setTimeout(() => {
-      abort_ref.current.abort("Took too long");
-      clearTimeout(timer);
-    }, 10000);
+   
   };
 
   return (

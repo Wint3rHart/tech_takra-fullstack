@@ -7,7 +7,7 @@ import BgEffect from '@/util_comps/bg_effect';
 import TeamCards from './cards';
 import { TeamForm } from './form';
 
-export const Team = ({role}) => {
+export const Team = ({role,access}) => {
   console.log("in team management");
   let search = useSearchParams();
 
@@ -140,8 +140,8 @@ export const Team = ({role}) => {
         Team Members
       </h1>
       
-      {create ? <TeamForm /> : data.map((x, i) => {
-        return <div className='mt-3' key={x._id}><TeamCards data={x} i={i} role={role}/></div>
+      {create ? <TeamForm access={access}/> : data.map((x, i) => {
+        return <div className='mt-3' key={x._id}><TeamCards data={x} i={i} role={role} access={access}/></div>
       })}
     </div>
   );

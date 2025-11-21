@@ -6,7 +6,25 @@ import Cards from './cards';
 import { Form } from './form';
 
 
-export const Events = ({role}) => {
+
+const upcoming_events = [
+  {_id:12456,
+    name: "Grand Plaza Hotel",
+    location: "GCU Downtown",
+    date: "12-2-2025",category:"genneral",isFeatured:true,
+    description: "Experience luxury and comfort in the heart of the city with world-class amenities and exceptional service.",
+    featured: ["Pool & Spa", "Fine Dining", "Gym & Fitness", "Conference Rooms", "24/7 Room Service"]
+  },
+  {_id:12456,
+    name: "Sunset Resort",
+    location: "Beachside Avenue",
+    date: "15-3-2025",category:"genneral",isFeatured:true,
+    description: "A perfect getaway destination offering stunning ocean views and premium hospitality.",
+    featured: ["Private Beach", "Water Sports", "Rooftop Bar", "Kids Club"]
+  }
+];
+
+export const Events = ({role,access}) => {
 console.log("in user");
 
 
@@ -119,8 +137,8 @@ onClick={()=>{setCreate(x=>x=true)}}        type="submit"
                          <h1 className='font-cinzel text-[#d4af37] text-4xl sm:text-6xl  font-bold mt-6 lg:mt-16
                           drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]'>Events</h1>
                           
-            {create? <Form/>:data.map((x,i)=>{
-                return <div className='mt-3' key={x._id}><Cards data={x} i={i} role={role}/></div>
+            {create? <Form access={access}/>:data?.map((x,i)=>{
+                return <div className='mt-3' key={x._id}><Cards data={x} i={i} role={role} access={access}/></div>
             })}
         </div>
     );

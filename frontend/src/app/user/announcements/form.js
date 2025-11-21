@@ -6,7 +6,7 @@ import { DevTool } from "@hookform/devtools";
 import BgEffect from "@/util_comps/bg_effect";
 import usePost from "@/client_hooks/usePost";
 
-export const Form = () => {
+export const Form = ({access}) => {
   const {
     register,
     control,
@@ -15,7 +15,7 @@ export const Form = () => {
     reset,
   } = useForm();
 
-  const { abort_ref, post, msg } = usePost("create_notification", "POST");
+  const { abort_ref, post, msg } = usePost("create_notification", "POST",access);
 
   const onSubmit = (formData) => {
     console.log("Create notification form:", formData);

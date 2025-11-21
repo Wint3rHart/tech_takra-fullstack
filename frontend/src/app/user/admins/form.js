@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import BgEffect from "@/util_comps/bg_effect";
 import usePost from "@/client_hooks/usePost";
 
-export const Form = () => {
+export const Form = ({access}) => {
   const {
     register,
     control,
@@ -15,7 +15,7 @@ export const Form = () => {
     reset,
   } = useForm();
 
-  const { abort_ref, post, msg } = usePost("create_admin", "POST");
+  const { abort_ref, post, msg } = usePost("create_admin", "POST",access);
   const { isError, isSuccess } = post;
 
   const onSubmit = (formData) => {

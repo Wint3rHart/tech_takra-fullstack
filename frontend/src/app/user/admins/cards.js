@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import usePost from "@/client_hooks/usePost";
 
-const Cards = ({ data, i }) => {
+const Cards = ({ data, i,access }) => {
   const {
     register,
     handleSubmit,
@@ -34,15 +34,13 @@ const Cards = ({ data, i }) => {
 
   const canUpdate = textChanged;
 
-  const { abort_ref, post, msg } = usePost("update_admin", "PATCH");
-  const del_post = usePost("delete_admin", "DELETE");
-
+  const { abort_ref, post, msg } = usePost("update_admin", "PATCH",access);
+  const del_post = usePost("delete_admin", "DELETE",access);
+useEffect(()=>{console.log("msg==",del_post.msg||msg);
+},[msg])
   const del_fnx = (id) => {
     del_post.post.mutate({ data_id: id });
-        let timer= setTimeout(() => {
-      abort_ref.current.abort("Took too long");
-      clearTimeout(timer);
-    }, 10000);
+       
   };
 
   return (
@@ -97,10 +95,11 @@ const Cards = ({ data, i }) => {
       >
         Remove Admin →
       </button>
-
-      <div className="mb-4 mt-4 p-3 rounded-xl border border-amber-600/10">
-        <p className="text-lg text-gray-300">{msg}</p>
-      </div>
+ {/* Message */}
+        <div className="mb-4 p-3 rounded-xl border border-amber-600/10 relative z-10">
+          <p className="text-xs text-gray-400 font-semibold mb-1"></p>
+          <p className="text-lg text-gray-300">{del_post.msg||msg}</p>
+        </div>
     </form>
   );
 };

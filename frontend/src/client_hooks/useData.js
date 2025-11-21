@@ -32,7 +32,7 @@ case "admin":{url="http://localhost:4600/api/auth/admin/all";break}
 
   default:{url=`http://localhost:4600/api/${type}`;break;}  };
 
-        let get=await fetch(url,{signal});
+        let get=await fetch(url,{signal,headers:{"authorization":`Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiU3VwZXJBZG1pbiIsImlhdCI6MTc2MzcxODQ4MywiZXhwIjoxNzY2MzEwNDgzfQ.884P4bCyLRskiBRyjKemCeCnWa6oXhl35R2ijeq_UCk`}});
         let conv=await get.json();
 if(!get.ok){ throw new Error(conv.msg||`Error in useData-${type}`) };
 if(get.status===304){

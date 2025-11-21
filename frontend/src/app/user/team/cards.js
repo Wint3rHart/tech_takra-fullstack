@@ -2,7 +2,7 @@ import usePost from "@/client_hooks/usePost";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
-const TeamCards = ({ data, i, role }) => {
+const TeamCards = ({ data, i, role,access }) => {
   const {
     register,
     handleSubmit,
@@ -31,8 +31,8 @@ const TeamCards = ({ data, i, role }) => {
 
   const canUpdate = textChanged || fileChanged;
 
-  const { abort_ref, post, msg } = usePost("update_team", "PATCH");
-  const del_post = usePost("delete_team", "DELETE");
+  const { abort_ref, post, msg } = usePost("update_team", "PATCH",access);
+  const del_post = usePost("delete_team", "DELETE",access);
 
   const onSubmit = (formData) => {
     let form = new FormData();
@@ -48,18 +48,12 @@ const TeamCards = ({ data, i, role }) => {
     }
 
     post.mutate({ form, id: data._id });
-    let timer = setTimeout(() => {
-      abort_ref.current.abort("Took too long");
-      clearTimeout(timer);
-    }, 10000);
+
   };
 
   const del_fnx = (id) => {
     del_post.post.mutate({ data_id: id });
-    let timer = setTimeout(() => {
-      abort_ref.current.abort("Took too long");
-      clearTimeout(timer);
-    }, 10000);
+   
   };
 
   return (
@@ -223,8 +217,14 @@ const TeamCards = ({ data, i, role }) => {
                             -translate-x-full group-hover/del:translate-x-full transition-transform duration-1000 rounded-xl" />
             <span className="relative z-10">Remove Member →</span>
           </button>
+          
         )}
       </div>
+       {/* Message */}
+        <div className="mb-4 p-3 rounded-xl border border-amber-600/10 relative z-10">
+          <p className="text-xs text-gray-400 font-semibold mb-1"></p>
+          <p className="text-lg text-gray-300">{del_post.msg||msg}</p>
+        </div>
     </form>
   );
 };

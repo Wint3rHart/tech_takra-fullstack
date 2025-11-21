@@ -22,7 +22,7 @@ if(parsed){
 return (
     <div className="min-h-screen relative  py-8 px-4">
         
-<Team role={parsed.role}/>
+<Team role={parsed.role}  access={parsed.accessToken} id={parsed._id}/>
 
 
           </div>

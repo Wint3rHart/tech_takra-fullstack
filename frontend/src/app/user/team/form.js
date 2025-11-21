@@ -5,10 +5,10 @@ import { useForm } from "react-hook-form";
 import BgEffect from "@/util_comps/bg_effect";
 import usePost from "@/client_hooks/usePost";
 
-export const TeamForm = () => {
+export const TeamForm = ({access}) => {
   const { register, control, formState: { errors, isDirty }, handleSubmit,reset } = useForm();
 
-  const { abort_ref, post, msg } = usePost("create_team", "POST");
+  const { abort_ref, post, msg } = usePost("create_team", "POST",access);
   const { isError, isSuccess } = post;
 
   const onSubmit = (formData) => {
@@ -30,10 +30,7 @@ export const TeamForm = () => {
     }
 
     post.mutate({ form: form });
-        let timer= setTimeout(() => {
-      abort_ref.current.abort("Took too long");
-      clearTimeout(timer);
-    }, 10000);
+     
     reset();
   };
 

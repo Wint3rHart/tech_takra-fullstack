@@ -9,12 +9,12 @@ import { Form } from "./form";
 
 const mock_data=[{name:"Hassan",email:"test@gmail.com",role:"prime minister"}];
 
-export const Admin = ({role}) => {
+export const Admin = ({role,access}) => {
   console.log("in admin page");
 
   const [create, setCreate] = useState(false);
 
-  const { query, abort_ref } = useData("admin");
+  const { query, abort_ref } = useData("admin",access);
   const { data, isSuccess, error, isPending } = query;
 
   useEffect(() => {
@@ -146,11 +146,11 @@ export const Admin = ({role}) => {
       </h1>
 
       {create ? (
-        <Form />
+        <Form access={access}/>
       ) : (
      data?.admins?.map((x, i) => (
           <div className="mt-3" key={x._id || i}>
-            <Cards data={x} i={i} role={role}/>
+            <Cards data={x} i={i} role={role} access={access}/>
           </div>
         ))
       )}

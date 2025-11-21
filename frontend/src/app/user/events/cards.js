@@ -1,9 +1,11 @@
 import usePost from "@/client_hooks/usePost";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-const Cards = ({ data, i, role }) => {
+const Cards = ({ data, i, role,access }) => {
+  console.log(access,"ppp");
+  
   const {
     register,
     handleSubmit,
@@ -44,9 +46,10 @@ const Cards = ({ data, i, role }) => {
   const fileChanged = watched.images && watched.images.length > 0;
   const canUpdate = textChanged || fileChanged;
 
-  const { abort_ref, post, msg } = usePost("update_event", "PATCH");
-  const del_post = usePost("delete_event", "DELETE");
-
+  const { abort_ref, post, msg } = usePost("update_event", "PATCH",access);
+  const del_post = usePost("delete_event", "DELETE",access);
+useEffect(()=>{console.log(del_post.msg);
+},[del_post.msg,msg])
   const onSubmit = (formData) => {
     let form = new FormData();
 
@@ -62,19 +65,14 @@ const Cards = ({ data, i, role }) => {
 
     post.mutate({ form, id: data._id });
 
-    let timer = setTimeout(() => {
-      abort_ref.current.abort("Took too long");
-      clearTimeout(timer);
-    }, 10000);
+   
   };
-
+useEffect(()=>{console.log("msg from postings",msg)
+},[msg])
   const del_fnx = (id) => {
     del_post.post.mutate({ data_id: id });
 
-    let timer = setTimeout(() => {
-      abort_ref.current.abort("Took too long");
-      clearTimeout(timer);
-    }, 10000);
+   
   };
 
   return (
@@ -313,7 +311,7 @@ const Cards = ({ data, i, role }) => {
           </button>
 
           {/* Delete Button */}
-          {role?.toUpperCase().trim() === "SUPER_ADMIN" && (
+          {role?.toUpperCase().trim() === "SUPERADMIN" && (
             <button
               type="button"
               onClick={() => del_fnx(data._id)}
@@ -335,9 +333,9 @@ const Cards = ({ data, i, role }) => {
           )}
 
           {/* Message Display */}
-          {msg && (
-            <div className="mt-4 p-4 rounded-xl border border-amber-600/20 bg-gray-800/50 relative z-10">
-              <p className="text-sm text-gray-300 font-playfair">{msg}</p>
+          {del_post.msg||msg&& (
+            <div className="mt-4 p-4 rounded-xl border text-white border-amber-600/20 bg-gray-500/50 relative z-10">
+              <p className="text-sm text-white font-playfair">{del_post.msg||msg}</p>
             </div>
           )}
         </div>

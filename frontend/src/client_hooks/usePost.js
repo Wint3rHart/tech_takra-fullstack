@@ -5,7 +5,9 @@ import { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 
-const usePost=(type,method)=>{
+const usePost=(type,method,access)=>{
+    console.log(access);
+    
     const client=useQueryClient();
 let abort_ref=useRef(null);
 let [msg,setMsg]=useState(null);
@@ -20,17 +22,13 @@ const timer=setTimeout(() => {
 }, 10000);
 let url;
 switch (type) {
-    case "booking":{
-        url='http://localhost:4600/api/booking';
-        console.log(method);
-        
-        break;}
+    
 case "delete_form":{ url=`http://localhost:4600/api/regForm/${data.data_id}`;break;}
 case "update_event":{console.log(data)
     url=`http://localhost:4600/api/events/update/${data.id}`;
     
 try{
-const get=await fetch(url,{method:method,body:data.form,signal});
+const get=await fetch(url,{method:method,body:data.form,signal,headers:{"authorization":`Bearer ${access}`}});
 const conv=await get.json();
 if(!get.ok){throw new Error(conv.msg||`Error in ${type} from usePost`)};
 return conv}
@@ -42,7 +40,7 @@ case "delete_event":{url=`http://localhost:4600/api/events/delete/${data.data_id
 case "create_event":{ url=`http://localhost:4600/api/events/create`;
     
 try{
-const get=await fetch(url,{method:method,body:data.form,signal});
+const get=await fetch(url,{method:method,body:data.form,signal,headers:{"authorization":`Bearer ${access}`}});
 const conv=await get.json();
 if(!get.ok){throw new Error(conv.msg||`Error in ${type} from usePost`)};
 return conv}
@@ -53,7 +51,7 @@ finally{clearTimeout(timer)};}
 case "create_team":{ url=`http://localhost:4600/api/team/create`;
     
 try{
-const get=await fetch(url,{method:method,body:data.form,signal});
+const get=await fetch(url,{method:method,body:data.form,signal,headers:{"authorization":`Bearer ${access}`}});
 const conv=await get.json();
 if(!get.ok){throw new Error(conv.msg||`Error in ${type} from usePost`)};
 return conv}
@@ -62,7 +60,7 @@ finally{clearTimeout(timer)};}
 case "update_team":{ url=`http://localhost:4600/api/team/update/${data.id}`;
     
 try{
-const get=await fetch(url,{method:method,body:data.form,signal});
+const get=await fetch(url,{method:method,body:data.form,signal,headers:{"authorization":`Bearer ${access}`}});
 const conv=await get.json();
 if(!get.ok){throw new Error(conv.msg||`Error in ${type} from usePost`)};
 return conv}
@@ -91,14 +89,14 @@ case "delete_admin":{ url=`http://localhost:4600/api/auth/admin/delete/${data.da
 
 
 try{
-const get=await fetch(url,{method:method,body:JSON.stringify(data),headers:{"content-type":"application/json"},signal});
+const get=await fetch(url,{method:method,body:JSON.stringify(data),headers:{"content-type":"application/json","authorization":`Bearer ${access}`},signal});
 const conv=await get.json();
-if(!get.ok){throw new Error(conv.msg||`Error in ${type} from usePost`)};
+if(!get.ok){throw new Error(conv.msg||`Error in ${type} `)};
 return conv}
 finally{clearTimeout(timer)};
 
-    },onError:(error)=>{console.log(error);
-        setMsg(y=>y=error||"FAILED")
+    },onError:(error)=>{console.log(error.message);
+        setMsg(y=>{if(error&&error==="Took too long"){return y=error}else{return y=error.message||"Failed,Try Again Later"} })
           let timer=    setTimeout(() => {
              setMsg(y=>{return y=null });
              clearTimeout(timer);

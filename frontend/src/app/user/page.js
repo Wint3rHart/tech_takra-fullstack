@@ -18,6 +18,7 @@ const Page = async () => {
         CryptoJS.enc.Utf8
       );
       const parsed = JSON.parse(decrypt);
+console.log(parsed,"decrypted user data");
 
       if (parsed) {
         if (new Date(parsed.expiry) > new Date()) {
@@ -268,7 +269,7 @@ const User_header = ({ decrypt }) => {
           { label: "Events", href: "/user/events" },
           { label: "Team", href: "/user/team" },
           { label: "Announcements", href: "/user/announcements" },
-          ...(decrypt?.role === "super_admin"
+          ...(decrypt?.role === "SuperAdmin"
             ? [{ label: "Admins", href: "/user/admins" }]
             : []),
         ].map((item, i) => (

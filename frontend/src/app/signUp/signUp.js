@@ -37,7 +37,8 @@ console.log(logIn);
 
 
 }
-
+useEffect(()=>{console.log(logStatus);
+},[logStatus])
     return (
    <div className="flex items-center justify-center mt-16 py-12 h-[140vh] bg-gray-900 relative overflow-hidden">
     

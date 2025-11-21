@@ -21,7 +21,7 @@ if(parsed){
 return (
     <div className="min-h-screen relative  py-8 px-4">
         
-<Announcements />
+<Announcements access={parsed.accessToken} />
 
 
           </div>

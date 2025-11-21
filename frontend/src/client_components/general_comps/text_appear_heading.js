@@ -3,10 +3,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import UseVariants from '@/client_hooks/useVariants';
+import { useRouter } from 'next/navigation';
+
 
 
 export const TextAppear = ({children,styling}) => {
-  
+
 // console.log(styling);
 
     return (
@@ -17,8 +19,9 @@ whileInView={{x:0,opacity:1}} transition={{duration:.4,ease:"easeIn",delay:.2}} 
     );
 };
 
-export const TextAppear_2=({children})=>{
+export const TextAppear_3=({children})=>{
     // console.log(children);
+      const router=useRouter();
     
 let Comp=motion[children?.[0]?.type];
 
@@ -32,8 +35,31 @@ return (
    React.Children.toArray(children).map((x,i)=>{
     ;return    <Comp key={i} className={x.props.className} variants={child_one_after_one}>{x.props.children}</Comp>})
 }
-
 </motion.div>
+
+)
+
+
+}
+
+export const TextAppear_2=({children})=>{
+    // console.log(children);
+      const router=useRouter();
+    
+let Comp=motion[children?.[0]?.type];
+
+
+    let {parent_One_after_one,child_one_after_one}=UseVariants();
+// console.log(children);
+
+return (
+<motion.div className=' font-bold text-8xl  flex flex-col justify-center items-center' variants={parent_One_after_one} initial="initial" whileInView="animate" viewport={{amount:.8}}>
+{
+   React.Children.toArray(children).map((x,i)=>{
+    ;return    <Comp key={i} className={x.props.className} variants={child_one_after_one}>{x.props.children}</Comp>})
+}<motion.p variants={child_one_after_one} onClick={()=>{router.push("/signUp")}}  href='/signUp'  className="text-stone-300 z-90 border rounded-xl mt-2 border-amber-400 hover:scale-101 z-90 text-6xl [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">Register</motion.p>
+</motion.div>
+
 
 )
 

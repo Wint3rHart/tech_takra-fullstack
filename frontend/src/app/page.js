@@ -2,7 +2,7 @@
 
 
 import Ref_wrapper from "@/client_components/general_comps/text_stagger";
-import {TextAppear,TextAppear_2, TextAppear_para} from "@/client_components/general_comps/text_appear_heading";
+import {TextAppear,TextAppear_2,TextAppear_3, TextAppear_para} from "@/client_components/general_comps/text_appear_heading";
 import { Places } from "@/client_components/home_components/places_parallax";
 import { get_fetch } from "@/server_fetch_fncs/fetch_fnx";
 import { ErrorBoundary } from "react-error-boundary";
@@ -14,6 +14,7 @@ import FAQs from "@/client_components/general_comps/faq";
 import Footer from "@/client_components/general_comps/footer";
 import { Cinzel, Work_Sans } from "next/font/google";
 import BgEffect from "@/util_comps/bg_effect";
+import Link from "next/link";
 
 // import Places from "@/client_components/places_parallax";
 const tangerine=Cinzel({subsets: ["latin"],
@@ -86,24 +87,25 @@ let   places_parallax= get_fetch("places_parallax");
     <section className="min-h-screen  h-full w-full relative w-full hide-scrollbar mt-20 md:mt-36">
       
       <ErrorBoundary FallbackComponent={MyErrorFallback}>
-         <TextAppear_2>
+         <TextAppear_3>
       <p className="text-stone-300 text-3xl sm:text-6xl m-auto [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">
         OFFERED CITIES </p>
         <BgEffect/>
-     </TextAppear_2>
+     </TextAppear_3>
       <City_Ref_wrapper data={cities_details}/>
       </ErrorBoundary>
      </section>
 
 
 
-<section className="max-h-[100vh] h-full custom-grid-background flex flex-col items-center justify-center relative w-[98vw]  text-4xl text-white w-screen">
+<section className="max-h-[100vh] h-full mt-24 custom-grid-background flex flex-col items-center justify-center relative w-[98vw]  text-4xl text-white w-screen">
   <ErrorBoundary FallbackComponent={MyErrorFallback}>
-<div  className={`h-[100vh] text-center w-full absolute  flex flex-col justify-center items-center font-cinzel `}> 
+<div  className={`h-[100vh] text-center w-full   flex flex-col justify-center items-center font-cinzel `}> 
     <TextAppear_2>
-      <p className="text-stone-300 text-8xl [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">Why</p>
-       <p className="text-[#d4af37] text-8xl drop-shadow-[2px_2px_2px_rgba(255,255,255,0.2)]">Choose</p>
-       <p className="text-stone-300 text-8xl [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">Us ?</p>
+      <p className="text-stone-300 text-8xl [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">Join</p>
+       <p className="text-[#d4af37] text-8xl drop-shadow-[2px_2px_2px_rgba(255,255,255,0.2)]">Us</p>
+       <p className="text-stone-300 text-8xl [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">Now</p>
+
         </TextAppear_2>
     </div> 
 
