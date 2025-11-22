@@ -8,23 +8,33 @@ const WanderingHartNavbar = ({data}) => {
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
   const [isMobileEventsOpen, setIsMobileEventsOpen] = useState(false);
 
-  const sign_display = useMemo(() => {
-    return (
-      <div className="hidden md:block relative h-full mt-10 group">
-        <button className="relative bg-gradient-to-r from-amber-300/50 to-amber-400/50 hover:from-amber-400/70 hover:to-amber-500/70 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-400/40 hover:scale-105">
-          {data?.status && (
-            <Link href='/user' className='absolute hidden w-[10vw] font-poppins text-sm group-hover:block z-90 border rounded-xl mt-2 border-amber-400 p-4 left-10 sm:top-12 sm:-translate-x-8 md:top-11 md:-translate-x-12 text-amber-300 text-lg'>
-              Open Admin Panel
-            </Link>
-          )}
-          <Link href='/signUp' className="relative z-10 font-inter flex items-center text-white gap-2">
-            {data?.status ? "Signed In" : "Sign In for Admins"}
-          </Link>
-          <div className="absolute inset-0 rounded-full border border-amber-300/30 group-hover:border-amber-200/50 transition-colors duration-300"></div>
-        </button>
-      </div>
-    );
-  }, [data]);
+ const sign_display = useMemo(() => {
+  return (
+    <div className="hidden md:flex items-center gap-4">
+
+      {/* If signed in → show Admin Panel button */}
+      {data?.status && (
+        <Link
+          href="/admin"
+          className="bg-amber-500/20 border border-amber-400 text-amber-300 px-4 py-2 rounded-xl text-sm font-semibold hover:bg-amber-500/30 transition-all duration-300 shadow-md hover:shadow-amber-400/40"
+        >
+          Admin Panel
+        </Link>
+      )}
+
+      {/* Sign In / Signed In button */}
+      <Link
+        href="/signUp"
+        className="relative bg-gradient-to-r from-amber-300/50 to-amber-400/50 hover:from-amber-400/70 hover:to-amber-500/70 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-400/40 hover:scale-105"
+      >
+        {data?.status ? "Signed In" : "Sign In for Admins"}
+        <div className="absolute inset-0 rounded-full border border-amber-300/30"></div>
+      </Link>
+
+    </div>
+  );
+}, [data]);
+
 
   const navItems = [
     { name: 'Team', href: '/team' },

@@ -12,7 +12,7 @@ export const get_fetch = async (route, options, x, y, z, cache_option) => {
     let url;
     switch (route) {
       case "events":
-        url = `${API_BASE_URL}/api/events`;
+        url = `${API_BASE_URL}/api/events/${options}`;
         break;
       case "team":
         url = `${API_BASE_URL}/api/team`;
