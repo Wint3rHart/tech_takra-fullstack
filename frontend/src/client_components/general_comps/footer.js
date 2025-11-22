@@ -112,7 +112,7 @@ const Footer = () => {
         </a>
       ))}
     </div>
-    <p className="text-gray-500 text-sm font-normal">Made With Love By Hassan Nadeem & M.ALi Iqbal</p>
+    <p className="text-gray-500 text-sm font-normal">Developed By Hassan & Aly Iqbal For CSS</p>
   </div>
 </footer>
 
