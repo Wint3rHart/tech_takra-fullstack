@@ -19,6 +19,14 @@
   }
 }
 /* --- SYSTEM FONTS YOU IMPORTED --- */
+.font-playfair {
+  font-family: var(--font-playfair);
+}
+
+.font-cinzel {
+  font-family: var(--font-cinzel);
+}
+
 .font-geist-sans {
   font-family: var(--font-geist-sans);
 }

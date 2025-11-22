@@ -21,9 +21,10 @@ const DisplayCards = ({ scroll, ind, x, nav_url, isMobile }) => {
 
   const title = x?.title || x?.name || 'Untitled';
   const location = x?.location || x?.place || '';
-  const formattedDate = x?.date 
-    ? new Date(x.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) 
-    : '';
+  const formattedDate = x?.date
+  ? new Date(x.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: '2-digit' })
+  : '';
+
 
   const firstImage = x?.images && x.images.length ? x.images[0] : null;
 

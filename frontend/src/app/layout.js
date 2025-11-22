@@ -3,7 +3,7 @@ import {
   Geist,
   Geist_Mono,
   Inter,
-  Poppins,
+  Poppins,Cinzel,Playfair_Display
 } from "next/font/google";
 
 import "./globals.css";
@@ -36,7 +36,17 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
 });
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
 export const metadata = {
   title: "GCU CSS Society",
@@ -51,7 +61,7 @@ console.log("root layout rendered");
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${poppins.variable} antialiased hide-scrollbar flex flex-col justify-center bg-gray-900 relative  max-w-screen min-h-screen   z-10 scrollbar-hide`}
+        className={`${inter.variable} ${poppins.variable} ${cinzel.variable} ${playfair.variable} antialiased hide-scrollbar flex flex-col justify-center bg-gray-900 relative  max-w-screen min-h-screen   z-10 scrollbar-hide`}
       > 
       
     <div className="absolute inset-0 pointer-events-none z-0 

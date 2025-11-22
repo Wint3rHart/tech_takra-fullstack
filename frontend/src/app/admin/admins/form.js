@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { DevTool } from "@hookform/devtools";
 import { useForm } from "react-hook-form";
 import usePost from "@/client_hooks/usePost";
 

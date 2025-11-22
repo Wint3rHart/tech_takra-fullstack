@@ -55,7 +55,7 @@ let opacityTrans=useTransform(scrollYProgress,[0,.1,1],[1,0,0]);
  
 <motion.p variants={childVar} className={`text-5xl sm:text-5xl md:text-6xl [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)] font-semibold font-cinzel `}>{React.Children.toArray(x)[0].props.children}</motion.p>
 
-<motion.div style={{y:yC}} variants={childVar} className={`font-cinzel  text-5xl sm:text-6xl md:text-6xl font-bold  text-[#d4af37] [text-shadow:2px_4px_5px_rgba(0,0,0,0.6),0_0_10px_rgba(255,255,255,0.4)] font-black flex`}>
+<motion.div style={{y:yC}} variants={childVar} className={`font-cinzel  text-5xl sm:text-6xl md:text-6xl font-black  text-[#d4af37] [text-shadow:2px_4px_5px_rgba(0,0,0,0.6),0_0_10px_rgba(255,255,255,0.4)] font-black flex`}>
   <motion.p  variants={grandChildVar} >{x?.[1]?.props?.children}</motion.p>
 </motion.div>
 
@@ -71,7 +71,7 @@ let opacityTrans=useTransform(scrollYProgress,[0,.1,1],[1,0,0]);
 
 
  <motion.p style={{opacity:opacityTrans}} variants={childVar} className={`mt-6 flex font-semibold font-inter font-italic    text-[#d4af37] text-lg items-center text-center justify-center`}>
-  “Empowering students through technology, innovation, and community.”
+  Empowering students through technology, innovation, and community.
   </motion.p>
 
  </motion.div>
