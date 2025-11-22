@@ -1,9 +1,12 @@
 "use server";
 
+import { getApiBaseUrl } from '@/config/api';
+
 /* -------------------------------------------
    REGISTER FUNCTION
 --------------------------------------------- */
 export const register_fnx = async (data) => {
+  const API_BASE_URL = getApiBaseUrl(); // Get fresh URL at runtime
   let aborter = new AbortController();
   let signal = aborter.signal;
 
@@ -19,7 +22,8 @@ export const register_fnx = async (data) => {
   form.append("pic", data.pic[0]);
 
   try {
-    let get = await fetch('https://computersciencesocietyonrender.com/api/register', {
+    console.log('[register_fnx] Using API_BASE_URL:', API_BASE_URL);
+    let get = await fetch(`${API_BASE_URL}/api/register`, {
       method: "POST",
       body: form,
       signal
@@ -46,6 +50,7 @@ export const register_fnx = async (data) => {
    GENERIC SERVER ACTION (LOGIN / FORM SUBMISSION)
 --------------------------------------------- */
 export const serverAction = async (type, method, data) => {
+  const API_BASE_URL = getApiBaseUrl(); // Get fresh URL at runtime
   let abort = new AbortController();
   let signal = abort.signal;
 
@@ -59,12 +64,12 @@ export const serverAction = async (type, method, data) => {
   switch (type) {
     case "signIn":
       body_data = JSON.stringify({ email: data.email, password: data.password });
-      url = 'https://computersciencesocietyonrender.com/api/auth/admin/login';
+      url = `${API_BASE_URL}/api/auth/admin/login`;
       break;
 
     case "registration":
       body_data = JSON.stringify(data);
-      url = 'https://computersciencesocietyonrender.com/api/regForm';
+      url = `${API_BASE_URL}/api/regForm`;
       break;
 
     default:
@@ -73,6 +78,7 @@ export const serverAction = async (type, method, data) => {
   }
 
   try {
+    console.log('[serverAction] Using API_BASE_URL:', API_BASE_URL, 'URL:', url);
     let get = await fetch(url, {
       method,
       body: body_data,

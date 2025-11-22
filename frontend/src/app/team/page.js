@@ -2,6 +2,7 @@ export const dynamic='force-dynamic'
 import React from 'react';
 import Gallery from './gallery';
 import { get_fetch } from '@/server_fetch_fncs/fetch_fnx';
+import Link from 'next/link';
 
 const Page = async () => {
   try {
@@ -12,7 +13,8 @@ const Page = async () => {
     const teamMembers = Array.isArray(get) ? get : [];
 
     return (
-      <div className='bg-gray-900 min-h-screen'>
+      <div className='bg-gray-900 min-h-screen relative'>
+    
         <Gallery x={teamMembers} />
       </div>
     );

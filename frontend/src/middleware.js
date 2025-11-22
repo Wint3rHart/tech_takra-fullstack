@@ -1,11 +1,13 @@
 import React from 'react';
 import CryptoJS from 'crypto-js';
 import { NextResponse } from 'next/server';
+import { getApiBaseUrl } from '@/config/api';
 
 export const config = { matcher: ["/"] };
 
 const loginFnx = async (request, signal) => {
   try {
+    const API_BASE_URL = getApiBaseUrl(); // Get fresh URL at runtime
     const user_check = request.cookies.get("User-data")?.value;
     if (user_check) {
       let decrypted = null;
@@ -38,7 +40,7 @@ const loginFnx = async (request, signal) => {
     if (access_check) {
       console.log("sending");
       let get = await fetch(
-        `https://computersciencesocietyonrender.com/api/next_autoLogin`,
+        `${API_BASE_URL}/api/next_autoLogin`,
         {
           method: "POST",
           headers: { 'content-type': 'application/json', "authorization": `${access_check}` },
@@ -77,11 +79,12 @@ const loginFnx = async (request, signal) => {
 const refresh_fnx = async (request, signal) => {
   console.log("in refresh");
   try {
+    const API_BASE_URL = getApiBaseUrl(); // Get fresh URL at runtime
     const refresh = request.cookies.get("refresh")?.value;
     console.log("refresh", refresh);
     if (refresh) {
       let get = await fetch(
-        `https://computersciencesocietyonrender.com/api/next_refresh`,
+        `${API_BASE_URL}/api/next_refresh`,
         {
           method: "POST",
           headers: { "content-type": "application/json", "authorization": `${refresh}` },

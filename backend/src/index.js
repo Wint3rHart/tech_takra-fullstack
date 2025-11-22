@@ -10,13 +10,60 @@ import announcementRoutes from './routes/announcement.route.js';
 //import cookieParser from "cookie-parser";
 const app =express();
 dotenv.config();
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true,
-}));
+
+// CORS configuration - allow all Vercel deployments and localhost
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://tech-takra-fullstack-five.vercel.app",
+  // Add your production frontend URL here
+  process.env.FRONTEND_URL,
+  // Add any other production URLs
+  process.env.PRODUCTION_FRONTEND_URL,
+].filter(Boolean); // Remove undefined values
+
+// Vercel pattern for preview deployments
+const vercelPattern = /^https:\/\/.*\.vercel\.app$/;
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps, Postman, etc.)
+      if (!origin) return callback(null, true);
+      
+      // Check if origin matches Vercel pattern
+      if (vercelPattern.test(origin)) {
+        return callback(null, true);
+      }
+      
+      // Check if origin is in allowed list
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      
+      // In development, allow all origins for easier debugging
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`Allowing origin in development: ${origin}`);
+        return callback(null, true);
+      }
+      
+      // Block in production if not in allowed list
+      console.warn(`CORS blocked origin: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Cache-Status"],
+    exposedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json()); 
 //app.use(cookieParser());
 const port = process.env.PORT;
+app.get("/", (req, res) => {
+  res.send("Backend is running...");
+});
+
 app.use("/api/auth/admin" , adminRoutes)
 app.use("/api/events", eventRoutes)
 app.use("/api/regForm", regFormRoutes)

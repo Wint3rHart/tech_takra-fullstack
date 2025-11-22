@@ -1,6 +1,7 @@
 "use client"
 import { useQuery } from '@tanstack/react-query';
 import React, { useRef } from 'react';
+import { getApiBaseUrl } from '@/config/api';
 
 
 
@@ -8,7 +9,7 @@ const useData = (type,key) => {
 console.log("in useData");
 let abort_ref=useRef();
     let query=useQuery({queryKey:[type],queryFn:async()=>{
-
+const API_BASE_URL = getApiBaseUrl(); // Get fresh URL at runtime
 let controller=new AbortController();
 let signal=controller.signal;
 abort_ref.current=controller;
@@ -19,18 +20,18 @@ try{
     let url="";
     switch (type) {
     
-        case "get_forms":{ if (key=="All"){url="https://computersciencesocietyonrender.com/api/regForm";}else{url=` https://computersciencesocietyonrender.com/api/regForm/${key}`;console.log(url);
+        case "get_forms":{ if (key=="All"){url=`${API_BASE_URL}/api/regForm`;}else{url=`${API_BASE_URL}/api/regForm/${key}`;console.log(url);
         };break;};
-        case "events":{url="https://computersciencesocietyonrender.com/api/events";break}
-        case "team":{url="https://computersciencesocietyonrender.com/api/team";break}
-case "notice":{url="https://computersciencesocietyonrender.com/api/announcement";break}
-case "admin":{url="https://computersciencesocietyonrender.com/api/auth/admin/all";break}
+        case "events":{url=`${API_BASE_URL}/api/events`;break}
+        case "team":{url=`${API_BASE_URL}/api/team`;break}
+case "notice":{url=`${API_BASE_URL}/api/announcement`;break}
+case "admin":{url=`${API_BASE_URL}/api/auth/admin/all`;break}
     
       
         case "user_data":{
-        ;url=`https://computersciencesocietyonrender.com/api/user_data?id=${key}`;break;}
+        ;url=`${API_BASE_URL}/api/user_data?id=${key}`;break;}
 
-  default:{url=`https://computersciencesocietyonrender.com/api/${type}`;break;}  };
+  default:{url=`${API_BASE_URL}/api/${type}`;break;}  };
 
         const authHeader = key ? { "authorization": `Bearer ${key}` } : {};
         console.log(`Fetching ${type} from ${url}`, { hasAuth: !!key });

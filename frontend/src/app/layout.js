@@ -1,28 +1,4 @@
 
-error in nav Dynamic server usage: Route /events couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-root layout rendered
-error in nav Dynamic server usage: Route /_not-found couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-root layout rendered
-error in nav Dynamic server usage: Route /signUp couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-root layout rendered
-sending req from booking
-error in nav Dynamic server usage: Route /register couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-root layout rendered
-home rendering
-error in nav Dynamic server usage: Route / couldn't be rendered statically because it used `cookies`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-from fetch_fnx fetch failed
-from fetch_fnx fetch failed
-Error occurred prerendering page "/". Read more: https://nextjs.org/docs/messages/prerender-error
-TypeError: fetch failed
-    at async d (F:\React_Projects\Tech_takra-fullstack\frontend\.next\server\app\page.js:5:17063) {
-  digest: '4065023895',
-  [cause]: [Error: getaddrinfo ENOTFOUND computersciencesocietyonrender.com] {
-    errno: -3008,
-    code: 'ENOTFOUND',
-    syscall: 'getaddrinfo',
-    hostname: 'computersciencesocietyonrender.com'
-  }
-}
 import {
   Geist,
   Geist_Mono,

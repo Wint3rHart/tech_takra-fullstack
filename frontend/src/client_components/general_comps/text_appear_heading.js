@@ -27,7 +27,7 @@ export const TextAppear = ({ children, styling }) => {
 --------------------------------------------- */
 export const TextAppear_3 = ({ children }) => {
   const router = useRouter();
-  const { parent_One_after_one, child_one_after_one } = UseVariants();
+  const { parent_One_after_one, child_one_after_one,childVar } = UseVariants();
 
   const arrayChildren = React.Children.toArray(children);
   const first = arrayChildren[0];
@@ -44,7 +44,7 @@ export const TextAppear_3 = ({ children }) => {
       viewport={{ amount: 0.8 }}
     >
       {arrayChildren.map((x, i) => (
-        <Comp key={i} variants={child_one_after_one}>
+        <Comp key={i} variants={childVar}>
           {x.props.children}
         </Comp>
       ))}
