@@ -64,7 +64,7 @@ export const serverAction = async (type, method, data) => {
   switch (type) {
     case "signIn":
       body_data = JSON.stringify({ email: data.email, password: data.password });
-      url = `http://localhost:4600/api/auth/admin/login`;
+      url = `${API_BASE_URL}/api/auth/admin/login`;
       break;
 
     case "registration":
