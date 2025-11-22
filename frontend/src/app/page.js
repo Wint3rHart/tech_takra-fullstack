@@ -126,7 +126,7 @@ export default async function Home() {
   </ErrorBoundary>
 </section>
 
-<section className="flex flex-col items-center mt-20 md:mt-36 relative justify-center text-center px-4 sm:px-6">
+<section className="flex flex-col justify-center items-center mt-20 md:mt-36 relative justify-center text-center px-4 sm:px-6">
   <BgEffectLite/>
   
   <Footer/>

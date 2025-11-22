@@ -92,16 +92,17 @@ const Gallery = ({ x }) => {
   return (
     <div className='min-h-screen bg-gray-900 pt-32 pb-16 px-4 sm:px-6 lg:px-8 relative'>
       <BgEffect />
-          <div className="mt-6 flex justify-center">
-        <Link
+         <div className="mt-6 flex justify-start">
+  <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium 
-                     text-amber-200 bg-amber-700/10 border border-amber-400/10
-                     hover:bg-amber-700/20 transition"
+          className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 font-semibold mb-8 transition-colors duration-300"
         >
-          Back
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Home
         </Link>
-      </div>
+</div>
       {/* Page Header */}
       <motion.div 
         className="text-center mb-12 relative z-10 mt-12"

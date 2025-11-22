@@ -1,8 +1,9 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Footer = () => {
     return (
-       <footer className="bg-transparent text-white py-6 mt-12">
+       <footer className="bg-transparent flex flex-col items-center justify-center text-white py-6 mt-12">
   <div className="container mx-auto px-4 font-cormorant">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       
@@ -18,14 +19,14 @@ const Footer = () => {
       <div className="md:ps-[25px] lg:flex lg:flex-col lg:items-center">
         <h6 className="text-2xl font-bold font-orbitron text-[#A89E4F] mb-4 lg:ms-[-80px]">Quick Links</h6>
         <ul className="space-y-2 text-sm font-semibold">
-          {["Events", "Projects", "Team", "Join CSS", "Gallery"].map((label) => (
+          {[{name:"Future Events",link:"events?type=past"},{name:"Past Events",link:"events?type=upcoming"},  {name:"Our Team",link:"/team"}, {name:"Join Us",link:"/register"}].map((label) => (
             <li key={label}>
-              <a
-                href={`./${label.toLowerCase().replace(/\s+/g, "-")}`}
+              <Link
+                href={`/${label.link}`}
                 className="text-gray-400 hover:text-white transition"
               >
-                {label}
-              </a>
+                {label.name}
+              </Link>
             </li>
           ))}
         </ul>
@@ -38,56 +39,41 @@ const Footer = () => {
         <p className="text-gray-400 text-sm font-semibold">
           <i className="fa fa-envelope me-2" style={{ color: "#2D567C" }}></i>
           <a
-            href="mailto:gcu.css.official@gmail.com"
+            href="https://www.instagram.com/css.gcu?igsh=NTc4MTIwNjQ2YQ=="
             target="_blank"
             rel="noopener noreferrer"
           >
-            gcu.css.official@gmail.com
+          Instagram
+          </a>
+        </p>
+ <p className="text-gray-400 text-sm font-semibold">
+          <i className="fa fa-envelope me-2" style={{ color: "#2D567C" }}></i>
+          <a
+            href="http://dcs.gcu.edu.pk/DCS/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+      Website
           </a>
         </p>
 
-        <p className="text-gray-400 text-sm font-semibold">
-          <i className="fa-solid fa-phone me-2" style={{ color: "#2D567C" }}></i>
-          <a href="tel:+923000000000">+92 300 0000000</a>
-        </p>
-
-        <p className="text-gray-400 text-sm font-semibold">
-          <i className="fa-brands fa-whatsapp me-2 text-[18px]" style={{ color: "#2D567C" }}></i>
-          <a target="_blank" rel="noopener noreferrer">
-            +92 300 0000000
+       <p className="text-gray-400 text-sm font-semibold">
+          <i className="fa fa-envelope me-2" style={{ color: "#2D567C" }}></i>
+          <a
+            href="https://www.linkedin.com/company/computer-science-society-gcu/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+      LinkedIn
           </a>
         </p>
+     
 
-        <p className="text-gray-400 text-sm font-semibold">
-          <i className="fa-regular fa-comments text-[#2D567C] me-2 text-[15px]"></i>
-          <a href="./contact-us">Reach Out</a>
-        </p>
-
-        <p className="text-gray-400 text-sm font-semibold">
-          <i className="fa-solid fa-headset text-[#2D567C] me-2 text-[18px]"></i>
-          <a href="./support">Student Support</a>
-        </p>
+       
       </div>
 
       {/* Legal */}
-      <div className="md:ps-[25px] xl:ps-0 lg:ps-0 lg:flex lg:flex-col lg:items-center">
-        <h6 className="text-2xl font-bold font-orbitron text-[#A89E4F] mb-4 lg:ms-[-80px]">Legal</h6>
-        <ul className="space-y-2 text-sm font-semibold">
-          {[
-            { href: "./about", label: "About CSS" },
-            { href: "./privacy-policy", label: "Privacy Policy" },
-            { href: "./terms", label: "Terms & Conditions" },
-            { href: "./code-of-conduct", label: "Code of Conduct" },
-            { href: "./policies", label: "General Policies" },
-          ].map((link) => (
-            <li key={link.href}>
-              <a href={link.href} className="text-gray-400 hover:text-white transition">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+     
     </div>
   </div>
 
