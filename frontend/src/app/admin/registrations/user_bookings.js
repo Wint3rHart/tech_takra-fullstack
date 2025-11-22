@@ -127,7 +127,7 @@ useEffect(()=>{console.log("i re rendered,user bookings comp");
                 <p className='text-gray-400 text-base max-w-2xl font-inter'>Review every registration with the same premium surface used across Team and Announcements. Latest entries stay on top so you can act quickly.</p>
               </div>
               <div className='flex flex-wrap gap-3'>
-                <Link href="/user" className='px-6 py-3 rounded-xl font-inter font-bold text-sm bg-gray-800 text-gray-200 border border-amber-600/20 hover:border-amber-500/50 hover:text-amber-300 transition-all duration-300'>Back to Admin Home</Link>
+                <Link href="/admin" className='px-6 py-3 rounded-xl font-inter font-bold text-sm bg-gray-800 text-gray-200 border border-amber-600/20 hover:border-amber-500/50 hover:text-amber-300 transition-all duration-300'>Back to Admin Home</Link>
                 <Link href="/register" className='px-6 py-3 rounded-xl font-inter font-bold text-sm bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 shadow-lg shadow-amber-400/30 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300'>Open Registration Form</Link>
               </div>
             </div>
