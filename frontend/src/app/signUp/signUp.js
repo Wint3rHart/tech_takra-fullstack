@@ -120,13 +120,6 @@ const SignUp = () => {
             {/* Decorative line */}
             <div className="w-full h-px bg-gradient-to-r from-transparent via-amber-600/30 to-transparent mt-6" />
 
-            {/* Register link */}
-            <p className="text-center text-gray-400 text-sm">
-              Don't have an account?{' '}
-              <Link href="/register" className="text-amber-400 hover:text-amber-300 font-semibold transition-colors">
-                Register here
-              </Link>
-            </p>
           </form>
 
           {/* Corner accents */}
