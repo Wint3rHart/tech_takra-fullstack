@@ -28,51 +28,22 @@ const loginFnx = async (request, signal) => {
       if (new Date(decrypt_parse.expiry) > new Date()) {
         console.log("User data fresh");
         let res = NextResponse.next();
-        if (request.nextUrl.pathname.includes("/booking")) {
-          res.headers.set("userId", decrypt_parse.id);
-        }
+      
         return res;
       }
-    }
+    }else {console.log("User-data not found");
+    ;throw new Error("Session Not Present")}
 
-    const access_check = request.cookies.get("access")?.value;
-    console.log("ayien", access_check);
-    if (access_check) {
-      console.log("sending");
-      let get = await fetch(
-        `${API_BASE_URL}/api/next_autoLogin`,
-        {
-          method: "POST",
-          headers: { 'content-type': 'application/json', "authorization": `${access_check}` },
-          signal
-        }
-      );
-      let conv = await get.json();
-      if (!get.ok) throw new Error(conv.msg);
 
-      let res = NextResponse.next();
-      const expiry = new Date();
-      res.cookies.set(
-        "User-data",
-        CryptoJS.AES.encrypt(JSON.stringify({ ...conv.user, expiry: expiry.setHours(expiry.getHours() + 5) }), "125xyzabc").toString(),
-        { httpOnly: true, sameSite: "strict", secure: true, maxAge: 60 * 60 * 10 }
-      );
-
-      if (request.nextUrl.pathname.includes("/booking")) {
-        res.headers.set("userId", conv.user.id);
-      }
-      return res;
-    } else {
-      return await refresh_fnx(request, signal);
-    }
+// await refresh_fnx(request,signal);
   } catch (error) {
-    console.log(error.message);
-    if (error.message.toUpperCase() === "TokenExpiredError".toUpperCase() ||
-        error.message.toUpperCase() === "Access Not Found".toUpperCase()) {
-      return await refresh_fnx(request, signal);
-    } else {
+    // console.log(error.message);
+    // if (error.message.toUpperCase() === "TokenExpiredError".toUpperCase() ||
+    //     error.message.toUpperCase() === "Access Not Found".toUpperCase()) {
+    //   return await refresh_fnx(request, signal);
+    // } else {
       throw error;
-    }
+    // }
   }
 };
 
@@ -84,18 +55,18 @@ const refresh_fnx = async (request, signal) => {
     console.log("refresh", refresh);
     if (refresh) {
       let get = await fetch(
-        `${API_BASE_URL}/api/next_refresh`,
+        `${API_BASE_URL}/api/admin/auth/refresh-token`,
         {
           method: "POST",
-          headers: { "content-type": "application/json", "authorization": `${refresh}` },
-          signal
+          headers: { "content-type": "application/json"},
+          signal,body:JSON.stringify({refreshToken:refresh})
         }
       );
       let conv = await get.json();
       if (!get.ok) throw new Error(conv.msg);
 
       let res = NextResponse.next();
-      res.cookies.set("access", conv.tokens.access, { httpOnly: true, sameSite: "strict", secure: true, maxAge: 60 * 60 * 24 });
+      res.cookies.set("access", conv.accessToken, { httpOnly: true, sameSite: "strict", secure: true, maxAge: 60 * 60 * 24 });
       res.cookies.set("refresh", conv.tokens.refresh, { httpOnly: true, sameSite: "strict", secure: true, maxAge: 60 * 60 * 24 * 3 });
 
       const expiry = new Date();
@@ -122,7 +93,7 @@ const Middleware = async (request) => {
   const signal = aborter.signal;
   const timer = setTimeout(() => {
     aborter.abort("took too long");
-  }, 10000);
+  }, 900000);
 
   try {
     let logger = await loginFnx(request, signal);

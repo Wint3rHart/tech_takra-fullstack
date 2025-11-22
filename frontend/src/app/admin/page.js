@@ -274,12 +274,12 @@ const User_header = ({ decrypt }) => {
       {/* Navigation cards aligned with hero theme */}
       <div className="mt-10 md:mt-14 pb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {[
-          { label: "Registrations", href: "/user/registrations" },
-          { label: "Events", href: "/user/events" },
-          { label: "Team", href: "/user/team" },
-          { label: "Announcements", href: "/user/announcements" },
+          { label: "Registrations", href: "/admin/registrations" },
+          { label: "Events", href: "/admin/events" },
+          { label: "Team", href: "/admin/team" },
+          { label: "Announcements", href: "/admin/announcements" },
           ...(decrypt?.role?.toUpperCase().trim() === "SUPERADMIN" || decrypt?.role === "super_admin"
-            ? [{ label: "Admins", href: "/user/admins" }]
+            ? [{ label: "Admins", href: "/admin/admins" }]
             : []),
         ].map((item, i) => (
           <Link
