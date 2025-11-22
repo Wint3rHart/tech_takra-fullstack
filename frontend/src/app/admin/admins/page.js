@@ -1,15 +1,15 @@
+export const dynamic='force-dynamic'
 import React from 'react';
 import { cookies } from 'next/headers';
 import{ Suspense } from 'react';
 import CryptoJS from 'crypto-js';
 import Link from 'next/link';
 import BgEffect from '@/util_comps/bg_effect';
-import { Team } from './team';
+import { Admin } from './admin';
 
 
 const Page = async() => {
     try {
-    //  return   <User_header decrypt={{name:"Hassan",email:"test@gmail.com"}} />
         const cookieStore=await cookies();
 
         const user=cookieStore.get('User-data')?.value;
@@ -19,14 +19,13 @@ const parsed=JSON.parse(decrypt);
 if(parsed){
 
     if(new Date(parsed.expiry)>new Date()){
-return (
-    <div className="min-h-screen relative  py-8 px-4">
-        
-<Team role={parsed.role}  access={parsed.accessToken} id={parsed._id}/>
 
 
-          </div>
-)
+       if( parsed.role.toUpperCase().trim() === "SUPERADMIN" || parsed.role === "super_admin" ){return     <div className="min-h-screen relative  py-8 px-4"> <Admin user={parsed} access={parsed.accessToken} role={parsed.role} /> </div>}
+else{  throw new Error("User Not Authorized - SuperAdmin Access Required")}
+
+       
+
 }else{
     throw new Error("User data not available. Please login again.")}
         }else {

@@ -1,14 +1,17 @@
+export const dynamic='force-dynamic'
+
 import React from 'react';
 import { cookies } from 'next/headers';
+import{ Suspense } from 'react';
 import CryptoJS from 'crypto-js';
 import Link from 'next/link';
 import BgEffect from '@/util_comps/bg_effect';
-import { Announcements } from './announcements';
+import { Team } from './team';
 
 
 const Page = async() => {
     try {
-   
+    //  return   <User_header decrypt={{name:"Hassan",email:"test@gmail.com"}} />
         const cookieStore=await cookies();
 
         const user=cookieStore.get('User-data')?.value;
@@ -21,7 +24,7 @@ if(parsed){
 return (
     <div className="min-h-screen relative  py-8 px-4">
         
-<Announcements access={parsed.accessToken} />
+<Team role={parsed.role}  access={parsed.accessToken} id={parsed._id}/>
 
 
           </div>
