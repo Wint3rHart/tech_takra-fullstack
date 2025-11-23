@@ -15,7 +15,7 @@ let signal=controller.signal;
 abort_ref.current=controller;
 let timer=setTimeout(() => {
     controller.abort("Took to long,Request Aborted");
-}, 900000);
+}, 90000);
 try{
     let url="";
     switch (type) {

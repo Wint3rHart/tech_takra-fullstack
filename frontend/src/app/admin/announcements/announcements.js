@@ -78,7 +78,7 @@ export const Announcements = ({user,access}) => {
             {/* Error Message */}
             <div className="font-poppins text-xl text-gray-300 mb-8 font-semibold
                        bg-gray-800/50 p-6 rounded-2xl border border-amber-600/10">
-              <p className="leading-relaxed">{error.message}</p>
+              <p className="leading-relaxed">{error.message||error}</p>
             </div>
 
             {/* Decorative Line */}

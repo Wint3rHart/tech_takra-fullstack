@@ -15,6 +15,7 @@ import Footer from "@/client_components/general_comps/footer";
 import BgEffect from "@/util_comps/bg_effect";
 import BgEffectLite from "@/util_comps/bg_effect_lite";
 import Link from "next/link";
+import { Suspense } from "react";
 
 
 
@@ -23,16 +24,9 @@ export default async function Home() {
   
   // Components use use() hook which expects promises, so we always return promises
   // Wrap in catch to handle errors gracefully during build
-  let past_events = get_fetch("events", "past").catch((error) => {
-    console.log("Failed to fetch past events:", error.message);
-    return [];
-  });
+  let past_events = get_fetch("events", "past");
   
-  let upcoming_events = get_fetch("events", "upcoming").catch((error) => {
-    console.log("Failed to fetch upcoming events:", error.message);
-    return [];
-  });
-  
+  let upcoming_events = get_fetch("events", "upcoming");
   // let top_hotels=get_fetch("top_hotels");
 
 
@@ -84,17 +78,55 @@ export default async function Home() {
        Past Events </p>
         <BgEffectLite/>
      </TextAppear_3></div>
-      {/* Suspense fallback could be used here if needed:
-          <Suspense fallback={<p className="text-white font-black">Loading...</p>}>
-      */}
+    
+          <Suspense fallback={ <div className="flex items-center justify-center h-64 bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl border border-amber-600/20">
+        <div className="text-center">
+          {/* Elegant Loading Spinner */}
+          <div className="w-16 h-16 border-4 border-amber-600/30 border-t-[#d4af37] 
+                          rounded-full animate-spin mx-auto mb-4 shadow-lg shadow-amber-400/20"></div>
+          
+          {/* Floating Dots */}
+          <div className="flex gap-2 justify-center mb-4">
+            <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce"></div>
+            <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce delay-100"></div>
+            <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce delay-200"></div>
+          </div>
+          
+          <p className={`font-inter text-[#d4af37] text-2xl font-bold 
+                          drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]`}>
+            Loading
+          </p>
+        </div>
+      </div>}>
+    
       <ErrorBoundary FallbackComponent={MyErrorFallback}>
         <BgEffectLite/>
         
         <Places data={past_events}/>
       </ErrorBoundary>
+      </Suspense>
     </section>
     <section className="min-h-screen  h-full w-[100vw] relative w-full hide-scrollbar mt-20 md:mt-36">
       <BgEffectLite/>
+      <Suspense fallback={<div className="flex items-center justify-center h-64 bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl border border-amber-600/20">
+        <div className="text-center">
+          {/* Elegant Loading Spinner */}
+          <div className="w-16 h-16 border-4 border-amber-600/30 border-t-[#d4af37] 
+                          rounded-full animate-spin mx-auto mb-4 shadow-lg shadow-amber-400/20"></div>
+          
+          {/* Floating Dots */}
+          <div className="flex gap-2 justify-center mb-4">
+            <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce"></div>
+            <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce delay-100"></div>
+            <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce delay-200"></div>
+          </div>
+          
+          <p className={`font-inter text-[#d4af37] text-2xl font-bold 
+                          drop-shadow-[2px_2px_4px_rgba(212,175,55,0.3)]`}>
+            Loading
+          </p>
+        </div>
+      </div>}>
       <ErrorBoundary FallbackComponent={MyErrorFallback}>
          <TextAppear_3>
       <p className="font-poppins text-stone-300 text-3xl sm:text-6xl m-auto [text-shadow:2px_4px_5px_rgba(0,0,0,0.6)]">
@@ -103,6 +135,7 @@ export default async function Home() {
      </TextAppear_3>
       <City_Ref_wrapper data={upcoming_events}/>
       </ErrorBoundary>
+      </Suspense>
      </section>
 
 
