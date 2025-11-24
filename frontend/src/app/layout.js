@@ -1,7 +1,6 @@
 
 import {
-  Geist,
-  Geist_Mono,
+  
   Inter,
   Poppins,Cinzel,Playfair_Display
 } from "next/font/google";
@@ -13,15 +12,7 @@ import TanstackQueryClient from  "@/client_components/general_comps/tanstack_que
 import { Get_status } from "@/util_comps/nav_comp";
 
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 // Inter for headings (700-900) and body (400-500)
 const inter = Inter({

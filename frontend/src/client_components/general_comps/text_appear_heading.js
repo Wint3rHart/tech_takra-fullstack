@@ -83,7 +83,7 @@ export const TextAppear_2 = ({ children }) => {
       <motion.button
         variants={childVar}
         onClick={() => {
-          router.push("/signUp");
+          router.push("/register");
         }}
         type="button"
         className="mt-4 z-90 cursor-pointer px-6 py-3 bg-gradient-to-r from-amber-500 to-[#d4af37] text-black font-semibold rounded-xl shadow-lg hover:scale-105 transition-transform duration-200 text-base sm:text-lg md:text-2xl"

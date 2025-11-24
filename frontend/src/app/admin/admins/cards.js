@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import usePost from "@/client_hooks/usePost";
+import Link from "next/link";
 
 const Cards = ({ data, i, access, currentUserId }) => {
   const [showPasswordChange, setShowPasswordChange] = useState(false);
@@ -88,6 +89,16 @@ const Cards = ({ data, i, access, currentUserId }) => {
         {/* Header */}
         <div className="flex flex-wrap items-start gap-6 justify-between border-b border-amber-600/20 pb-6">
           <div className="flex items-center gap-4">
+            <Link
+             
+             href='/admin'
+              className="p-2 bg-gray-800/60 hover:bg-gray-700/60 border border-amber-600/20 rounded-xl transition-all duration-300 hover:scale-105"
+              title="Back to Admin"
+            >
+              <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+            </Link>
             <div className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 rounded-2xl font-inter font-black shadow-lg shadow-amber-400/30 border border-amber-600/40">
               #{String(i + 1).padStart(2, "0")}
             </div>
