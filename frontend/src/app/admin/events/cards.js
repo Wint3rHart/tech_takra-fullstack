@@ -1,14 +1,17 @@
 import usePost from "@/client_hooks/usePost";
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { useForm, useFieldArray } from "react-hook-form";
 
-const Cards = ({ data, i, role,access }) => {
-  console.log(access,"ppp");
+const Cards = ({ data, i, role, access }) => {
+  console.log(access, "ppp");
   
   const {
     register,
     handleSubmit,
     watch,
+    control,
+    setValue,
     formState: { defaultValues },
   } = useForm({
     defaultValues: {
@@ -18,11 +21,63 @@ const Cards = ({ data, i, role,access }) => {
       description: data.description,
       category: data.category || "",
       featured: data.featured || [],
-      images: null,
+      imgs: [{ img: null }],
     },
   });
 
+  const { fields, append, remove } = useFieldArray({ control, name: "imgs" });
   const watched = watch();
+  const images = watch("imgs");
+
+  // State to hold local preview URLs
+  const [previewUrls, setPreviewUrls] = useState({});
+
+  // Clean up object URLs when component unmounts
+  useEffect(() => {
+    return () => {
+      Object.values(previewUrls).forEach(url => URL.revokeObjectURL(url));
+    };
+  }, [previewUrls]);
+
+  // Handle file change and create preview URL
+  const handleFileChange = (e, index) => {
+    const file = e.target.files?.[0];
+    
+    if (file) {
+      setValue(`imgs.${index}.img`, file, { shouldDirty: true });
+      
+      const url = URL.createObjectURL(file);
+      
+      if (previewUrls[index]) {
+        URL.revokeObjectURL(previewUrls[index]);
+      }
+      
+      setPreviewUrls(prev => ({ ...prev, [index]: url }));
+    } else {
+      setValue(`imgs.${index}.img`, null, { shouldDirty: true });
+      if (previewUrls[index]) {
+        URL.revokeObjectURL(previewUrls[index]);
+        setPreviewUrls(prev => {
+          const newPrev = { ...prev };
+          delete newPrev[index];
+          return newPrev;
+        });
+      }
+    }
+  };
+
+  // Handle removal to clean up preview URL
+  const handleRemove = (index) => {
+    if (previewUrls[index]) {
+      URL.revokeObjectURL(previewUrls[index]);
+      setPreviewUrls(prev => {
+        const newPrev = { ...prev };
+        delete newPrev[index];
+        return newPrev;
+      });
+    }
+    remove(index);
+  };
 
   const textChanged =
     JSON.stringify({
@@ -42,42 +97,56 @@ const Cards = ({ data, i, role,access }) => {
       featured: defaultValues.featured,
     });
 
-  const fileChanged = watched.images && watched.images.length > 0;
+  // Check if any images have been added
+  const fileChanged = images.some(item => item.img instanceof File);
   const canUpdate = textChanged || fileChanged;
 
-  const { abort_ref, post, msg } = usePost("update_event", "PATCH",access);
-  const del_post = usePost("delete_event", "DELETE",access);
-useEffect(()=>{console.log(del_post.msg);
-},[del_post.msg,msg])
+  const { abort_ref, post, msg } = usePost("update_event", "PATCH", access);
+  const del_post = usePost("delete_event", "DELETE", access);
+  
+  useEffect(() => {
+    console.log(del_post.msg);
+  }, [del_post.msg, msg]);
+
   const onSubmit = (formData) => {
     let form = new FormData();
 
     for (let key in formData) {
       const value = formData[key];
 
-      if (value instanceof FileList) {
-        Array.from(value).forEach((file) => form.append("images", file));
+      if (key === "imgs") {
+        // Only append images that are actually files (not null)
+        value.forEach((x) => {
+          if (x.img instanceof File) {
+            form.append("images", x.img);
+          }
+        });
+      } else if (Array.isArray(value)) {
+        value.forEach((item, idx) => {
+          form.append(`${key}[${idx}]`, item);
+        });
       } else {
         form.append(key, value);
       }
     }
 
     post.mutate({ form, id: data._id });
-
-   
   };
-useEffect(()=>{console.log("msg from postings",msg)
-},[msg])
+  
+  useEffect(() => {
+    console.log("msg from postings", msg);
+  }, [msg]);
+
   const del_fnx = (id) => {
     del_post.post.mutate({ data_id: id });
   };
 
-  const formattedDate = data?.createdAt ? new Date(data.createdAt).toLocaleString("en-GB",{
-    day:"2-digit",
-    month:"short",
-    year:"numeric",
-    hour:"2-digit",
-    minute:"2-digit"
+  const formattedDate = data?.createdAt ? new Date(data.createdAt).toLocaleString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
   }) : "Not available";
 
   const shortId = data?._id ? `${data._id.slice(0, 12)}...` : "N/A";
@@ -90,10 +159,19 @@ useEffect(()=>{console.log("msg from postings",msg)
         {/* Header */}
         <div className="flex flex-wrap items-start gap-6 justify-between border-b border-amber-600/20 pb-6">
           <div className="flex items-center gap-4">
-            <div className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 rounded-2xl font-inter font-black shadow-lg shadow-amber-400/30 border border-amber-600/40">
-              #{String(i + 1).padStart(2,"0")}
+          <Link
+             
+             href='/admin'
+              className="p-2 bg-gray-800/60 hover:bg-gray-700/60 border border-amber-600/20 rounded-xl transition-all duration-300 hover:scale-105"
+              title="Back to Admin"
+            >
+              <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+            </Link>  <div className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-amber-500 text-gray-900 rounded-2xl font-inter font-black shadow-lg shadow-amber-400/30 border border-amber-600/40">
+              #{String(i + 1).padStart(2, "0")}
             </div>
-            <div>
+            <div> 
               <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold">Event</p>
               <h3 className="text-2xl font-inter text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
                 {data?.title || data?.name || "Untitled Event"}
@@ -138,23 +216,6 @@ useEffect(()=>{console.log("msg from postings",msg)
               placeholder="Enter category"
             />
           </div>
-          <div className="bg-gray-800/40 rounded-2xl border border-amber-600/20 p-4">
-            <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold mb-2">Event Images</p>
-            <input
-              type="file"
-              multiple
-              accept="image/*"
-              {...register("images")}
-              className="w-full text-sm text-gray-300 bg-gray-900/50 rounded-lg p-3
-                         border border-amber-600/20 focus:border-amber-500/40 
-                         outline-none transition-all duration-300
-                         file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
-                         file:text-sm file:font-semibold file:font-inter
-                         file:bg-gradient-to-r file:from-[#d4af37] file:to-amber-500
-                         file:text-gray-900 file:cursor-pointer
-                         hover:file:scale-105 file:transition-all file:duration-300"
-            />
-          </div>
         </div>
 
         {/* Title Input */}
@@ -177,6 +238,81 @@ useEffect(()=>{console.log("msg from postings",msg)
                        min-h-[120px] resize-y placeholder:text-gray-600"
             placeholder="Enter event description..."
           />
+        </div>
+
+        {/* Image Fields Section */}
+        <div className="bg-gray-800/40 rounded-2xl border border-amber-600/20 p-4">
+          <p className="text-xs text-amber-400/90 font-poppins mb-2">Only JPG, JPEG, PNG images are allowed (Max 5MB, Max 5 images)</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold mb-4">Event Images</p>
+          
+          {fields.map((x, idx) => {
+            return (
+              <div key={x.id} className="relative space-y-3 mb-6 p-4 bg-gray-900/30 rounded-xl border border-amber-600/10">
+                <input
+                  type="file"
+                  accept="image/jpeg,image/jpg,image/png"
+                  onChange={(e) => handleFileChange(e, idx)}
+                  className="w-full text-sm text-gray-300 bg-gray-900/50 rounded-lg p-3
+                    border border-amber-600/20 focus:border-amber-500/40 
+                    outline-none transition-all duration-300
+                    file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
+                    file:text-sm file:font-semibold file:font-inter
+                    file:bg-gradient-to-r file:from-[#d4af37] file:to-amber-500
+                    file:text-gray-900 file:cursor-pointer
+                    hover:file:scale-105 file:transition-all file:duration-300"
+                />
+
+                {/* Preview and Error */}
+                <div className="flex items-start gap-3">
+                  {previewUrls[idx] && (
+                    <div className="flex-shrink-0">
+                      <img
+                        src={previewUrls[idx]}
+                        alt="Preview"
+                        className="h-24 w-24 rounded-lg object-cover border-2 border-amber-500/50 shadow-lg"
+                      />
+                    </div>
+                  )}
+                  <div className="flex-1">
+                    {images[idx]?.img instanceof File ? (
+                      <p className="text-xs text-gray-300 font-poppins mb-1">
+                        📎 {images[idx].img.name}
+                        <span className="text-gray-500 ml-2">
+                          ({(images[idx].img.size / 1024).toFixed(1)} KB)
+                        </span>
+                      </p>
+                    ) : (
+                      <p className="text-xs text-gray-400 font-poppins italic">
+                        No file chosen
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Remove button */}
+                {fields.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => handleRemove(idx)}
+                    className="absolute top-2 right-2 p-1.5 w-7 h-7 bg-red-600/90 hover:bg-red-700 text-white rounded-full text-sm font-bold transition-all duration-300 hover:scale-110 shadow-lg"
+                  >
+                    ×
+                  </button>
+                )}
+              </div>
+            );
+          })}
+
+          {fields.length < 5 && (
+            <button
+              type="button"
+              onClick={() => append({ img: null })}
+              className="w-full text-sm text-gray-900 bg-gradient-to-r from-amber-400 to-amber-500 rounded-lg p-3 font-semibold mt-4 
+                        hover:from-amber-500 hover:to-amber-600 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02]"
+            >
+              ➕ Add Another Image ({fields.length}/5)
+            </button>
+          )}
         </div>
 
         {/* Featured Fields */}

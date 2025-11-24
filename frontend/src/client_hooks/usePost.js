@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { API_BASE_URL } from '@/config/api';
 
 const usePost = (type, method, access) => {
-  console.log(access);
+  // console.log(access);
 
   const client = useQueryClient();
   const abort_ref = useRef(null);
@@ -13,7 +13,7 @@ const usePost = (type, method, access) => {
 
   const post = useMutation({
     mutationFn: async (data) => {
-      console.log(data);
+      // console.log(data);
 
       const aborter = new AbortController();
       const signal = aborter.signal;

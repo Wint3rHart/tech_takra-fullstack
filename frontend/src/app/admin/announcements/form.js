@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 
 import BgEffect from "@/util_comps/bg_effect";
 import usePost from "@/client_hooks/usePost";
+import Link from "next/link";
 
 export const Form = ({access}) => {
   const {
@@ -47,6 +48,16 @@ export const Form = ({access}) => {
 
         {/* Form Header */}
         <div className="mb-8 relative z-10">
+            <Link
+             
+             href='/admin'
+              className="p-2 h-[5vh] transition-all duration-300 hover:scale-105"
+              title="Back to Admin"
+            >
+              <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+            </Link>
           <h2 className="text-3xl sm:text-4xl font-bold font-inter text-transparent bg-clip-text 
                          bg-gradient-to-r from-[#d4af37] to-amber-300 mb-2"
               style={{textShadow: '2px 2px 4px rgba(212,175,55,0.3)'}}>

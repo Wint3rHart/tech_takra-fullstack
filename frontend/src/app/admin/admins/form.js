@@ -3,6 +3,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import usePost from "@/client_hooks/usePost";
+import Link from "next/link";
 
 export const Form = ({access}) => {
   const {
@@ -39,11 +40,20 @@ export const Form = ({access}) => {
       >
         {/* Header */}
         <div className="flex flex-wrap items-start gap-6 justify-between border-b border-amber-600/20 pb-6">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-amber-400/70 font-semibold">Create Admin</p>
-            <h3 className="text-2xl font-inter text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">
-              New Admin Account
-            </h3>
+          <div className="flex items-center gap-4">
+            <Link
+             
+             href='/admin'
+              className="p-2 bg-gray-800/60 hover:bg-gray-700/60 border border-amber-600/20 rounded-xl transition-all duration-300 hover:scale-105"
+              title="Back to Admin"
+            >
+              <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+            </Link>
+          
+            <p  className="text-2xl font-inter text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-amber-200 drop-shadow-[1px_1px_2px_rgba(212,175,55,0.3)]">Create Admin</p>
+            
           </div>
         </div>
 
