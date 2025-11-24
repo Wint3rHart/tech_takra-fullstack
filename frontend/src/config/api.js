@@ -17,7 +17,7 @@ const getApiBaseUrl = () => {
       return 'http://localhost:4600';
     }
     // For any other hostname (vercel.app, custom domain, etc.), use production
-    return 'https://computersciencesocietyonrender.com';
+    return 'https://computersciencesociety.onrender.com';
   }
   
   // Priority 3: Server-side detection
@@ -41,7 +41,7 @@ const getApiBaseUrl = () => {
   
   // Default: Always use production URL for production builds
   // This covers: Vercel production, Vercel preview, and any other production deployment
-  return 'https://computersciencesocietyonrender.com';
+  return 'https://computersciencesociety.onrender.com';
 };
 
 // Export function for runtime evaluation (not build-time constant)

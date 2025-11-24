@@ -1,12 +1,15 @@
 import { getApiBaseUrl } from '@/config/api';
 
 export const get_fetch = async (route, options, x, y, z, cache_option) => {
-  let aborter = new AbortController();
+ 
+
+for(let i=0;i<3;i++){
+   let aborter = new AbortController();
   let signal = aborter.signal;
   let timer = setTimeout(() => {
     aborter.abort("timed out");
-  }, 900000);
-
+    
+  }, 90000);
   try {
     const API_BASE_URL = getApiBaseUrl(); // Get fresh URL at runtime
     let url;
@@ -66,8 +69,13 @@ export const get_fetch = async (route, options, x, y, z, cache_option) => {
     return conv;
   } catch (error) {
     console.log("from fetch_fnx", error.message);
-    throw error;
-  } finally {
-    clearTimeout(timer);
+       clearTimeout(timer);
+    if(i==2){throw error}
+  await new Promise((resolve,reject)=>{setTimeout(() => {
+    return resolve();
+   }, 20000);})
+  }  
+
   }
+
 };

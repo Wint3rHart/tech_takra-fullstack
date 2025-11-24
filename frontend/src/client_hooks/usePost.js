@@ -21,7 +21,7 @@ const usePost = (type, method, access) => {
 
       const timer = setTimeout(() => {
         aborter.abort("took too long");
-      }, 900000);
+      }, 90000);
 
       let url;
 
