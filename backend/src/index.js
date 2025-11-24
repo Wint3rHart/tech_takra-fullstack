@@ -3,10 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
-import mongoSanitize from "express-mongo-sanitize";
-import xss from "xss-clean";
 import connectDb from "./lib/connectDb.js";
-
 import eventRoutes from "./routes/events.route.js";
 import regFormRoutes from "./routes/regform.route.js";
 import teamRoutes from "./routes/team.route.js";
@@ -25,13 +22,7 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-app.use(mongoSanitize({ checkQuery: false }));
-app.use((req, res, next) => {
-  if (req.body) {
-    req.body = xss(req.body);
-  }
-  next();
-});
+
 
 const allowedOrigins = [
   "http://localhost:3000",
