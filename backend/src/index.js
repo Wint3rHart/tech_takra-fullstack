@@ -16,25 +16,18 @@ import announcementRoutes from "./routes/announcement.route.js";
 dotenv.config();
 const app = express();
 
-// Set security HTTP headers
 app.use(helmet());
 
-// Limit requests from the same IP
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 200, // max requests per 15 mins
+  windowMs: 15 * 60 * 1000,
+  max: 200,
   message: "Too many requests. Please try again later.",
 });
-
 app.use(limiter);
 
-// Sanitize data to prevent NoSQL injections
-app.use(mongoSanitize());
-
-// Sanitize user input to prevent XSS attacks
+app.use(mongoSanitize({ checkQuery: false }));
 app.use(xss());
 
-// CORS
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
@@ -48,15 +41,10 @@ const vercelPattern = /^https:\/\/.*\.vercel\.app$/;
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin) return callback(null, true); // Mobile apps, Postman, curl
-
+      if (!origin) return callback(null, true);
       if (vercelPattern.test(origin)) return callback(null, true);
-
       if (allowedOrigins.includes(origin)) return callback(null, true);
-
       if (process.env.NODE_ENV === "development") return callback(null, true);
-
-      console.warn("❌ CORS blocked origin:", origin);
       return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
@@ -65,9 +53,8 @@ app.use(
     exposedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.use(express.json({ limit: "10mb" })); 
 
-// Routes 
+app.use(express.json({ limit: "10mb" }));
 
 app.get("/", (req, res) => {
   res.send("Backend is running...");
@@ -79,28 +66,22 @@ app.use("/api/regForm", regFormRoutes);
 app.use("/api/team", teamRoutes);
 app.use("/api/announcement", announcementRoutes);
 
-// Error Handlers: 
-
 app.use((err, req, res, next) => {
-  console.error("⚠ Backend Error:", err.message);
+  console.error(err.message);
   res.status(err.status || 500).json({
     message: err.message || "Internal Server Error",
   });
 });
-
 
 const port = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
     await connectDb();
-    console.log("✅ Database connected");
-
-    app.listen(port, () =>
-      console.log(`🚀 Server running on port: ${port}`)
-    );
+    console.log("Database connected");
+    app.listen(port, () => console.log(`Server running on port: ${port}`));
   } catch (error) {
-    console.error("❌ Failed to start server:", error.message);
+    console.error("Failed to start server:", error.message);
     process.exit(1);
   }
 };
